@@ -31,6 +31,8 @@
 		50C9EC3B1AC9C96300D34A0B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC3A1AC9C96300D34A0B /* SystemConfiguration.framework */; };
 		50CB10A81ACAA907007CEF1A /* LocationShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CB108E1ACAA907007CEF1A /* LocationShareModel.m */; };
 		50CB10AE1ACAA907007CEF1A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CB109B1ACAA907007CEF1A /* Reachability.m */; };
+		50E0BE7F1ACC408400F7D67B /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0BE7E1ACC408400F7D67B /* HistoryViewController.m */; };
+		50E0BE811ACC463A00F7D67B /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0BE801ACC463A00F7D67B /* Utils.m */; };
 		84E13C33845AB477223D3B60 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E1D45D8055C3292BEBB55E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +82,9 @@
 		50CB108E1ACAA907007CEF1A /* LocationShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationShareModel.m; sourceTree = "<group>"; };
 		50CB109A1ACAA907007CEF1A /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		50CB109B1ACAA907007CEF1A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		50E0BE7D1ACC408400F7D67B /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		50E0BE7E1ACC408400F7D67B /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		50E0BE801ACC463A00F7D67B /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		88452E494A482A709562740A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B174152F6DFB203BD452E124 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F2E1D45D8055C3292BEBB55E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +156,7 @@
 		501BB5301AC4012E0066CA3D /* FairFare */ = {
 			isa = PBXGroup;
 			children = (
+				50E0BE7C1ACC405300F7D67B /* ViewController */,
 				50CB10761ACAA907007CEF1A /* Utils */,
 				50C9EC1D1AC9B06C00D34A0B /* Assets */,
 				501BB5351AC4012E0066CA3D /* AppDelegate.h */,
@@ -229,8 +235,18 @@
 				50CB109A1ACAA907007CEF1A /* Reachability.h */,
 				50CB109B1ACAA907007CEF1A /* Reachability.m */,
 				506813B71ACB012400E79ADB /* Utils.h */,
+				50E0BE801ACC463A00F7D67B /* Utils.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		50E0BE7C1ACC405300F7D67B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				50E0BE7D1ACC408400F7D67B /* HistoryViewController.h */,
+				50E0BE7E1ACC408400F7D67B /* HistoryViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		8E049CFCBC1D7663B3EE9037 /* Frameworks */ = {
@@ -388,8 +404,10 @@
 				501BB53A1AC4012E0066CA3D /* ViewController.m in Sources */,
 				501BB5371AC4012E0066CA3D /* AppDelegate.m in Sources */,
 				501BB5341AC4012E0066CA3D /* main.m in Sources */,
+				50E0BE811ACC463A00F7D67B /* Utils.m in Sources */,
 				507ACDC71ACBAC2500B743C0 /* LayoutManager.m in Sources */,
 				50CB10AE1ACAA907007CEF1A /* Reachability.m in Sources */,
+				50E0BE7F1ACC408400F7D67B /* HistoryViewController.m in Sources */,
 				50CB10A81ACAA907007CEF1A /* LocationShareModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

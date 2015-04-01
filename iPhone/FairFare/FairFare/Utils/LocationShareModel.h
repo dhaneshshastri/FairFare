@@ -21,5 +21,7 @@
 @property (nonatomic) BOOL afterResume;
 
 +(id)sharedModel;
+- (void)restartLocationUpdate;
+- (void)stopUpdatingLocation;
 
 @end

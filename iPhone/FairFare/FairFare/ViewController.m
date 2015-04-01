@@ -9,13 +9,14 @@
 #import "ViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <LiveFrost/LiveFrost.h>
-
+#import "HistoryViewController.h"
 
 
 @interface ViewController ()
 {
     GMSMapView* _mapView;
     UIView* _controlsView;
+    UIButton* _closeButton;
 }
 @property (nonatomic,readonly,strong) LFGlassView* glassView;
 @end
@@ -44,14 +45,41 @@
     _mapView.delegate = self;
     GMSUISettings * settings = _mapView.settings;
     [settings setConsumesGesturesInView:NO];
-
+    
     [self.view addSubview:_mapView];
     [self.view insertSubview:_mapView atIndex:0];
-    [self.view addSubview:self.glassView];
-    [self createAndAddControlsView];    
+    
+    [self createAndAddControlsView];
+}
+- (void)removeControlsView
+{
+    [UIView transitionWithView:self.view
+                      duration:1.0
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        [_controlsView setAlpha:0.0];
+                        [_glassView setAlpha:0.0];
+                    }
+                    completion:^(BOOL finished){
+                        //Remove the _controlsView
+                        if(_controlsView)
+                        {
+                            [_controlsView removeFromSuperview];
+                            _controlsView = nil;
+                        }
+                        //Also remove blurr view
+                        if(_glassView)
+                        {
+                            [_glassView removeFromSuperview];
+                            _glassView = nil;
+                        }
+                    }];
+    
+    
 }
 - (void)createAndAddControlsView
 {
+    [self.view addSubview:self.glassView];
     if(_controlsView)
     {
         [_controlsView removeFromSuperview];
@@ -63,7 +91,7 @@
     [[LayoutManager layoutManager] fillView:_controlsView
                                      inView:self.view];
     [_controlsView setBackgroundColor:[UIColor clearColor]];
-
+    
     //Adding controls
     //Add the Buttons
     {
@@ -138,6 +166,58 @@
                            andRefAlignmentOption:NSLayoutAttributeCenterY];
     }
 }
+- (void)stopJourney
+{
+    if(_closeButton)
+    {
+        [_closeButton removeFromSuperview];
+        _closeButton = nil;
+    }
+}
+- (void)createOnTravelControls
+{
+    if(_closeButton)
+    {
+        [_closeButton removeFromSuperview];
+        _closeButton = nil;
+    }
+    _closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_closeButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_mapView addSubview:_closeButton];
+    [_closeButton addTarget:self
+                     action:@selector(stopJourney:)
+           forControlEvents:UIControlEventTouchUpInside];
+    
+    [_closeButton setTitle:@"X"
+                  forState:UIControlStateNormal];
+    
+    [_closeButton setBackgroundColor:[UIColor colorWithRed:1.0
+                                                     green:1.0
+                                                      blue:1.0
+                                                     alpha:0.5]];
+    
+    [_closeButton setContentCompressionResistancePriority:500
+                                                  forAxis:UILayoutConstraintAxisHorizontal];
+    
+    
+    [_closeButton.layer setCornerRadius:15.0];
+    
+    [[LayoutManager layoutManager] alignView:_closeButton
+                                   toRefView:_mapView
+                                  withOffset:CGPointZero
+                                      inView:_mapView
+                         withAlignmentOption:NSLayoutAttributeRight
+                       andRefAlignmentOption:NSLayoutAttributeRight];
+    
+    [[LayoutManager layoutManager] alignView:_closeButton
+                                   toRefView:_mapView
+                                  withOffset:CGPointMake(65, 0)
+                                      inView:_mapView
+                         withAlignmentOption:NSLayoutAttributeTop
+                       andRefAlignmentOption:NSLayoutAttributeTop];
+    
+    
+}
 
 - (LFGlassView *) glassView {
     if (!_glassView) {
@@ -181,14 +261,47 @@
     
     [_mapView animateToLocation:theLocation];
     [_mapView animateToZoom:15];
+    
+    NSLog(@"Location updated: %@",newLocation);
 }
 #pragma Actions
 - (void)showHistory:(UIButton*)sender
 {
-    
+    HistoryViewController* historyVC = (HistoryViewController*)viewControllerFromStoryboard(@"Main",@"historyViewController");
+    [self.navigationController pushViewController:historyVC
+                                         animated:YES];
 }
 - (void)startJourney:(UIButton*)sender
 {
-    
+    [self removeControlsView];
+    //start updating the location
+    [[LocationShareModel sharedModel] restartLocationUpdate];
+    [self createOnTravelControls];
+}
+- (void)stopJourney:(UIButton*)sender
+{
+    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@""
+                                                   message:@"Are you sure you want to stop the journey ?"
+                                                  delegate:self
+                                         cancelButtonTitle:@"No"
+                                         otherButtonTitles:@"Yes", nil];
+    [alert show];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+            
+        case 1:
+        {
+            //stop
+            [[LocationShareModel sharedModel] stopUpdatingLocation];
+            //Remove the close button
+            [self stopJourney];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 @end

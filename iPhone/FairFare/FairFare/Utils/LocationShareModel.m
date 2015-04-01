@@ -20,6 +20,14 @@
     });
     return sharedMyModel;
 }
-
+- (void)restartLocationUpdate
+{
+    [self.anotherLocationManager stopUpdatingLocation];
+    [self.anotherLocationManager startUpdatingLocation];
+}
+- (void)stopUpdatingLocation
+{
+    [self.anotherLocationManager stopUpdatingLocation];
+}
 
 @end

@@ -8,6 +8,10 @@
 
 #ifndef FairFare_Utils_h
 #define FairFare_Utils_h
+
 #define kLocationUpdated @"kLocationUpdated"
+
+
+UIViewController* viewControllerFromStoryboard(NSString* storyBoardName,NSString* controllerId);
 
 #endif
