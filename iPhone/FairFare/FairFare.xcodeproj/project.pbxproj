@@ -14,6 +14,24 @@
 		501BB53F1AC4012E0066CA3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 501BB53E1AC4012E0066CA3D /* Images.xcassets */; };
 		501BB5421AC4012E0066CA3D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501BB5401AC4012E0066CA3D /* LaunchScreen.xib */; };
 		501BB54E1AC4012E0066CA3D /* FairFareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BB54D1AC4012E0066CA3D /* FairFareTests.m */; };
+		507ACDC71ACBAC2500B743C0 /* LayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 507ACDC61ACBAC2500B743C0 /* LayoutManager.m */; };
+		50C9EC211AC9C6F000D34A0B /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC201AC9C6F000D34A0B /* GoogleMaps.framework */; };
+		50C9EC231AC9C78400D34A0B /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50C9EC221AC9C78400D34A0B /* GoogleMaps.bundle */; };
+		50C9EC251AC9C8B600D34A0B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC241AC9C8B600D34A0B /* AVFoundation.framework */; };
+		50C9EC271AC9C8C400D34A0B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC261AC9C8C400D34A0B /* CoreData.framework */; };
+		50C9EC291AC9C8CE00D34A0B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC281AC9C8CE00D34A0B /* CoreLocation.framework */; };
+		50C9EC2B1AC9C8D900D34A0B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC2A1AC9C8D900D34A0B /* CoreText.framework */; };
+		50C9EC2D1AC9C8E300D34A0B /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC2C1AC9C8E300D34A0B /* GLKit.framework */; };
+		50C9EC2F1AC9C8F900D34A0B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC2E1AC9C8F900D34A0B /* ImageIO.framework */; };
+		50C9EC311AC9C92E00D34A0B /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC301AC9C92E00D34A0B /* libc++.dylib */; };
+		50C9EC331AC9C93A00D34A0B /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC321AC9C93A00D34A0B /* libicucore.dylib */; };
+		50C9EC351AC9C94400D34A0B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC341AC9C94400D34A0B /* libz.dylib */; };
+		50C9EC371AC9C94F00D34A0B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC361AC9C94F00D34A0B /* OpenGLES.framework */; };
+		50C9EC391AC9C95B00D34A0B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC381AC9C95B00D34A0B /* QuartzCore.framework */; };
+		50C9EC3B1AC9C96300D34A0B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC3A1AC9C96300D34A0B /* SystemConfiguration.framework */; };
+		50CB10A81ACAA907007CEF1A /* LocationShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CB108E1ACAA907007CEF1A /* LocationShareModel.m */; };
+		50CB10AE1ACAA907007CEF1A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CB109B1ACAA907007CEF1A /* Reachability.m */; };
+		84E13C33845AB477223D3B60 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E1D45D8055C3292BEBB55E /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +58,31 @@
 		501BB5471AC4012E0066CA3D /* FairFareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FairFareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		501BB54C1AC4012E0066CA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		501BB54D1AC4012E0066CA3D /* FairFareTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FairFareTests.m; sourceTree = "<group>"; };
+		506813B61ACB00D500E79ADB /* FairFare-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FairFare-Prefix.pch"; sourceTree = "<group>"; };
+		506813B71ACB012400E79ADB /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		507ACDC51ACBAC2500B743C0 /* LayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutManager.h; sourceTree = "<group>"; };
+		507ACDC61ACBAC2500B743C0 /* LayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutManager.m; sourceTree = "<group>"; };
+		50C9EC201AC9C6F000D34A0B /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = FairFare/GoogleMaps.framework; sourceTree = "<group>"; };
+		50C9EC221AC9C78400D34A0B /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = FairFare/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		50C9EC241AC9C8B600D34A0B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		50C9EC261AC9C8C400D34A0B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		50C9EC281AC9C8CE00D34A0B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		50C9EC2A1AC9C8D900D34A0B /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		50C9EC2C1AC9C8E300D34A0B /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		50C9EC2E1AC9C8F900D34A0B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		50C9EC301AC9C92E00D34A0B /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		50C9EC321AC9C93A00D34A0B /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		50C9EC341AC9C94400D34A0B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		50C9EC361AC9C94F00D34A0B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		50C9EC381AC9C95B00D34A0B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		50C9EC3A1AC9C96300D34A0B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		50CB108D1ACAA907007CEF1A /* LocationShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationShareModel.h; sourceTree = "<group>"; };
+		50CB108E1ACAA907007CEF1A /* LocationShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationShareModel.m; sourceTree = "<group>"; };
+		50CB109A1ACAA907007CEF1A /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		50CB109B1ACAA907007CEF1A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		88452E494A482A709562740A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B174152F6DFB203BD452E124 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		F2E1D45D8055C3292BEBB55E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +90,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50C9EC3B1AC9C96300D34A0B /* SystemConfiguration.framework in Frameworks */,
+				50C9EC391AC9C95B00D34A0B /* QuartzCore.framework in Frameworks */,
+				50C9EC371AC9C94F00D34A0B /* OpenGLES.framework in Frameworks */,
+				50C9EC351AC9C94400D34A0B /* libz.dylib in Frameworks */,
+				50C9EC331AC9C93A00D34A0B /* libicucore.dylib in Frameworks */,
+				50C9EC311AC9C92E00D34A0B /* libc++.dylib in Frameworks */,
+				50C9EC2F1AC9C8F900D34A0B /* ImageIO.framework in Frameworks */,
+				50C9EC2D1AC9C8E300D34A0B /* GLKit.framework in Frameworks */,
+				50C9EC2B1AC9C8D900D34A0B /* CoreText.framework in Frameworks */,
+				50C9EC291AC9C8CE00D34A0B /* CoreLocation.framework in Frameworks */,
+				50C9EC271AC9C8C400D34A0B /* CoreData.framework in Frameworks */,
+				50C9EC251AC9C8B600D34A0B /* AVFoundation.framework in Frameworks */,
+				50C9EC211AC9C6F000D34A0B /* GoogleMaps.framework in Frameworks */,
+				84E13C33845AB477223D3B60 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +117,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43BF5E6EB3A3C09DEA8F9C4E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B174152F6DFB203BD452E124 /* Pods.debug.xcconfig */,
+				88452E494A482A709562740A /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		501BB5251AC4012E0066CA3D = {
 			isa = PBXGroup;
 			children = (
+				506813B61ACB00D500E79ADB /* FairFare-Prefix.pch */,
+				50C9EC3C1AC9C98600D34A0B /* Framework */,
 				501BB5301AC4012E0066CA3D /* FairFare */,
 				501BB54A1AC4012E0066CA3D /* FairFareTests */,
 				501BB52F1AC4012E0066CA3D /* Products */,
+				43BF5E6EB3A3C09DEA8F9C4E /* Pods */,
+				8E049CFCBC1D7663B3EE9037 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +151,8 @@
 		501BB5301AC4012E0066CA3D /* FairFare */ = {
 			isa = PBXGroup;
 			children = (
+				50CB10761ACAA907007CEF1A /* Utils */,
+				50C9EC1D1AC9B06C00D34A0B /* Assets */,
 				501BB5351AC4012E0066CA3D /* AppDelegate.h */,
 				501BB5361AC4012E0066CA3D /* AppDelegate.m */,
 				501BB5381AC4012E0066CA3D /* ViewController.h */,
@@ -119,6 +191,56 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		50C9EC1D1AC9B06C00D34A0B /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		50C9EC3C1AC9C98600D34A0B /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				50C9EC221AC9C78400D34A0B /* GoogleMaps.bundle */,
+				50C9EC201AC9C6F000D34A0B /* GoogleMaps.framework */,
+				50C9EC3A1AC9C96300D34A0B /* SystemConfiguration.framework */,
+				50C9EC381AC9C95B00D34A0B /* QuartzCore.framework */,
+				50C9EC361AC9C94F00D34A0B /* OpenGLES.framework */,
+				50C9EC341AC9C94400D34A0B /* libz.dylib */,
+				50C9EC321AC9C93A00D34A0B /* libicucore.dylib */,
+				50C9EC301AC9C92E00D34A0B /* libc++.dylib */,
+				50C9EC2E1AC9C8F900D34A0B /* ImageIO.framework */,
+				50C9EC2C1AC9C8E300D34A0B /* GLKit.framework */,
+				50C9EC2A1AC9C8D900D34A0B /* CoreText.framework */,
+				50C9EC281AC9C8CE00D34A0B /* CoreLocation.framework */,
+				50C9EC261AC9C8C400D34A0B /* CoreData.framework */,
+				50C9EC241AC9C8B600D34A0B /* AVFoundation.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		50CB10761ACAA907007CEF1A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				507ACDC51ACBAC2500B743C0 /* LayoutManager.h */,
+				507ACDC61ACBAC2500B743C0 /* LayoutManager.m */,
+				50CB108D1ACAA907007CEF1A /* LocationShareModel.h */,
+				50CB108E1ACAA907007CEF1A /* LocationShareModel.m */,
+				50CB109A1ACAA907007CEF1A /* Reachability.h */,
+				50CB109B1ACAA907007CEF1A /* Reachability.m */,
+				506813B71ACB012400E79ADB /* Utils.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		8E049CFCBC1D7663B3EE9037 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F2E1D45D8055C3292BEBB55E /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +248,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 501BB5511AC4012E0066CA3D /* Build configuration list for PBXNativeTarget "FairFare" */;
 			buildPhases = (
+				2161A9EF0812EEC39DCBDA8E /* Check Pods Manifest.lock */,
 				501BB52A1AC4012E0066CA3D /* Sources */,
 				501BB52B1AC4012E0066CA3D /* Frameworks */,
 				501BB52C1AC4012E0066CA3D /* Resources */,
+				2D78E91415D0A89A110BEFE7 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,6 +292,14 @@
 				TargetAttributes = {
 					501BB52D1AC4012E0066CA3D = {
 						CreatedOnToolsVersion = 6.2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					501BB5461AC4012E0066CA3D = {
 						CreatedOnToolsVersion = 6.2;
@@ -202,6 +334,7 @@
 				501BB53D1AC4012E0066CA3D /* Main.storyboard in Resources */,
 				501BB5421AC4012E0066CA3D /* LaunchScreen.xib in Resources */,
 				501BB53F1AC4012E0066CA3D /* Images.xcassets in Resources */,
+				50C9EC231AC9C78400D34A0B /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +347,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2161A9EF0812EEC39DCBDA8E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		2D78E91415D0A89A110BEFE7 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		501BB52A1AC4012E0066CA3D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -222,6 +388,9 @@
 				501BB53A1AC4012E0066CA3D /* ViewController.m in Sources */,
 				501BB5371AC4012E0066CA3D /* AppDelegate.m in Sources */,
 				501BB5341AC4012E0066CA3D /* main.m in Sources */,
+				507ACDC71ACBAC2500B743C0 /* LayoutManager.m in Sources */,
+				50CB10AE1ACAA907007CEF1A /* Reachability.m in Sources */,
+				50CB10A81ACAA907007CEF1A /* LocationShareModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +469,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -334,6 +504,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -341,21 +512,39 @@
 		};
 		501BB5521AC4012E0066CA3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B174152F6DFB203BD452E124 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FairFare",
+				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/FairFare-Prefix.pch";
 				INFOPLIST_FILE = FairFare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		501BB5531AC4012E0066CA3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88452E494A482A709562740A /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FairFare",
+				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/FairFare-Prefix.pch";
 				INFOPLIST_FILE = FairFare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -412,6 +601,7 @@
 				501BB5531AC4012E0066CA3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		501BB5541AC4012E0066CA3D /* Build configuration list for PBXNativeTarget "FairFareTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +610,7 @@
 				501BB5561AC4012E0066CA3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>283786A5-D139-4C6C-9634-7C5E892892FE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>FairFare</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AC024C2A82A6EDA89C22C4F15AF363D2ABE65AA8</key>
+		<string>https://github.com/dhaneshshastri/FairFare.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iPhone/FairFare/FairFare.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AC024C2A82A6EDA89C22C4F15AF363D2ABE65AA8</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/dhaneshshastri/FairFare.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AC024C2A82A6EDA89C22C4F15AF363D2ABE65AA8</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AC024C2A82A6EDA89C22C4F15AF363D2ABE65AA8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>FairFare</string>
+		</dict>
+	</array>
+</dict>
+</plist>

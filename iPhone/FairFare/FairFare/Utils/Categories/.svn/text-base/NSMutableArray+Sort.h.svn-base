@@ -1,0 +1,10 @@
+
+#import <Foundation/Foundation.h>
+
+@interface NSMutableArray (Sort)
+
+- (void)reverse;
+- (void)sortPosDescByKey:(NSString *)key;
+- (void)sortNegDescByKey:(NSString *)key;
+
+@end

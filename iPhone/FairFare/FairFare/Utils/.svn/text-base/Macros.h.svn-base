@@ -1,0 +1,399 @@
+
+/********************************************************************************************************************
+ This file contains macros used in varios classes
+ *********************************************************************************************************************/
+
+#ifndef LeanTaas_Mobile_Macros_h
+#define LeanTaas_Mobile_Macros_h
+
+/********************************************************************************************************************
+ Application Macros
+ *********************************************************************************************************************/
+
+#define Application_Name                                           @"The A3 Creator"
+#define Application_DB_Version_Key                                 @"Application_DB_Version"
+#define Application_DB_Version                                     2//Always an unsigned int. It is used inside DBHandler class while executing db
+//update instructions. Don't set double or float values here.
+#define Application_Hyperlink_Text_Color                           [UIColor colorWithRed:85.0/255.0 green:189.0/255.0 blue:230.0/255.0 alpha:1.0]
+#define List_BGColor                                               [UIColor whiteColor]
+#define Application_BGColor                                        [UIColor colorWithRed:237.0/255.0 green:240.0/255.0 blue:242.0/255.0 alpha:1.0]
+#define Application_BGColor_v2                                     [UIColor colorWithRed:241.0/255.0 green:241.0/255.0 blue:241.0/255.0 alpha:1.0]
+#define Application_Supported_Keyboard_Frame_Y                     352.0
+#define Application_Resource_Max_Size                              1000000 //max resource size is 5mb on server
+
+#define Application_Height                                         748.0
+#define Application_Width                                          1024.0
+#define Application_List_View_Width                                320.0
+#define Application_Details_View_Width                             400.0
+#define Application_Support_Email                                  @"support@a3creator.com"
+
+/********************************************************************************************************************
+ File Specific Macros
+ *********************************************************************************************************************/
+
+//Sqlite3 DB
+
+#define A3Creator_DB_NAME                                          @"A3db.sqllite"
+#define DB_NAME                                                    @"leanA3.sqlite"
+
+//HTTP  Request Status Codes
+
+#define HTTP_STATUS_CODE_200                                       200  //returned when a request succeeds
+#define HTTP_STATUS_CODE_401                                       401  //returned on login failure or invalid request header
+
+//Utils
+#define Utils_PREVIOUS_VERSIONS_NOT_FOUND                          -404.0 //used for app versions management
+
+#define Utils_EncryptionKey                                        @"6b2c8762aedjkee0bce1485da86530dc0*2-01dn102)-1-~~`%$#@#" //The key used for doing AES encryption
+
+#define kScreenname                                                @"screenname"
+#define kUsername                                                  @"username"
+#define kPassword                                                  @"password"
+#define kIsLoggedIn                                                @"isloggedin"
+#define kIsSyncEnabled                                             @"issyncenabled"
+#define kIsSubscribed                                              @"issubscribed"
+#define kIsMigrationAlertShown                                     @"ismigrationalertshown"
+#define kIsSubscriptionAlertTurnedOff                              @"isSubscriptionAlertTurnedOff"
+
+#define kDefault                                                   NSIntegerMin
+
+/********************************************************************************************************************
+ Enum used to act as a bridge between SyncOpertion.m <=> SyncManager.m <=> DBHandler.m
+ *********************************************************************************************************************/
+
+typedef enum
+{
+    SYNC_OPERATION_SAVE_A3_DETAILS = 1,
+    SYNC_OPERATION_SAVE_SECTION_IMAGE,
+    SYNC_OPERATION_SAVE_A3_SECTION_DETAILS,
+    SYNC_OPERATION_SAVE_ACTION_ITEM,
+    SYNC_OPERATION_SAVE_MESSAGE,
+    SYNC_OPERATION_SAVE_ATTACHMENT,
+    SYNC_OPERATION_LOCK_SECTION,
+    //the following operations are not supporeted in offline/sync disabled/no subscription modes.
+    //they can never be found in sync_info in db.
+    SYNC_OPERATION_DELETE_A3,
+    SYNC_OPERATION_ADD_A3_TO_LIBRARY,
+    SYNC_OPERATION_COPY_A3,
+    
+}SYNC_OPERATION;
+
+/********************************************************************************************************************
+ Enum for managing direct requests for SyncManager class
+ *********************************************************************************************************************/
+
+typedef enum
+{
+    //Any sync operation is first saved in the db. If db saving fails, we need to return OP_FATAL_ERROR to the caller
+    OP_FATAL_ERROR = 1,
+    
+    //If db saving succeeds, we check the internet connection and if it is available, we start the operation and return OP_STARTED to the caller
+    OP_STARTED,
+    
+    //If db saving succeeds, we check the internet connection and if it is not available, we return OP_NOT_STARTED_NO_INTERNET to the caller
+    OP_NOT_STARTED_NO_INTERNET,
+    
+    //If db saving succeeds, we check the sync enabled settings connection and if it is not enabled, we return OP_NOT_STARTED_SYNC_DISABLED to the caller
+    OP_NOT_STARTED_SYNC_DISABLED,
+    
+    //If db saving succeeds, we check the subscription dates enabled settings connection and if subscription is not active, we return OP_NOT_STARTED_SUBSCRIPTION_EXPIRED to the caller
+    OP_NOT_STARTED_SUBSCRIPTION_EXPIRED,
+    
+    //If the a3 is pending sync, we don't trigger any post to server even if internet is available until the a3 is synced.
+    OP_PENDING_SYNC,
+    
+    //This value is specially introduced to handle delete of a3's.
+    OP_NO_STATUS
+    
+}op_status;
+
+/********************************************************************************************************************
+ Enum for managing pending requests for SyncManager class
+ *********************************************************************************************************************/
+
+typedef enum
+{
+    //If a pending op could not be started due to some fatal error. This is returned to caller.
+    PENDING_OP_FATAL_ERROR = 1,
+    
+    //If a pending op is started successfully, we return PENDING_OP_STARTED to the caller
+    PENDING_OP_STARTED,
+    
+    //We check the internet connection and if it is not available, we return OP_NOT_STARTED_NO_INTERNET to the caller
+    PENDING_OP_NOT_STARTED_NO_INTERNET,
+    
+    //We check the sync enabled settings connection and if it is not available, we return OP_NOT_STARTED_SYNC_DISABLED to the caller
+    PENDING_OP_NOT_STARTED_SYNC_DISABLED,
+    
+    //If db saving succeeds, we check the subscription dates enabled settings connection and if subscription is not active, we return OP_NOT_STARTED_SUBSCRIPTION_EXPIRED to the caller
+    PENDING_OP_NOT_STARTED_SUBSCRIPTION_EXPIRED,
+    
+}pending_op_status;
+
+/*********************************************************************************************************************
+ Enum representing resource type. Do not change RESOURCE_TYPE enum values or order as the caching logic in
+ ResourceCacher class is tighly coupled with it.
+ *********************************************************************************************************************/
+
+typedef enum
+{
+    TYPE_ATTACHMENT = 0,
+    TYPE_SECTION_IMAGE,
+    TYPE_PNG_SNAPSHOT,
+    TYPE_PDF,
+    
+}RESOURCE_TYPE;
+
+/*********************************************************************************************************************
+ Macros for sync management
+ *********************************************************************************************************************/
+
+#define kSyncInfoRecordId                                                 @"syncInfoRecordId"
+#define kOpType                                                           @"opType"
+#define kResponseObject                                                   @"responseObject"
+#define kMappingId                                                        @"mappingId"
+#define kLocalResourceURL                                                 @"localResourceURL"
+#define kServerResourceURL                                                @"serverResourceURL"
+#define kA3Id                                                             @"a3Id"
+#define kSyncOperation                                                    @"syncOperation"
+#define kIsPendingA3                                                      @"isPendingA3"
+#define kIsNewA3                                                          @"isNewA3"
+
+/*********************************************************************************************************************
+ Macros for local resource loading in offline mode
+ *********************************************************************************************************************/
+
+#define kAssetsScheme                                                     @"assets-library"
+#define kFileScheme                                                       @"file"
+
+/*********************************************************************************************************************
+ Macros for sync parameters
+ *********************************************************************************************************************/
+
+#define kInternetBit                                                      1
+#define kInternetBitPos                                                   1
+#define kSubscriptionBit                                                  2
+#define kSubscriptionBitPos                                               2
+#define kSyncEnabledBit                                                   4
+#define kSyncEnabledBitPos                                                3
+#define kPendingA3Bit                                                     8
+#define kPendingA3BitPos                                                  4
+
+/*********************************************************************************************************************
+ Enum for Subscription active boolean
+ *********************************************************************************************************************/
+
+typedef enum
+{
+    SUBSCRIPTION_ACTIVE_NO = 0,
+    SUBSCRIPTION_ACTIVE_YES,
+    
+}SUBSCRIPTION_ACTIVE;
+
+/*********************************************************************************************************************
+ Templates
+ *********************************************************************************************************************/
+
+#define kTemplate7ProblemSolving                                         @"7-Step Problem Solving A3"
+#define kTemplate7ProblemSolvingPreviewImage                             @"template-7step.png"
+#define kTemplateStrategy                                                @"Strategy A3"
+#define kTemplateStrategyPreviewImage                                    @"template-strategy.png"
+#define kTemplate8ProblemSolving                                         @"8-Step Problem Solving A3"
+#define kTemplate8ProblemSolvingPreviewImage                             @"template-8step.png"
+
+typedef enum
+{
+    TEMPLATE_7_PROBLEM_SOLVING = 1,
+    TEMPLATE_STRATEGY,
+    TEMPLATE_8_PROBLEM_SOLVING,
+    TEMPLATE_ALL
+    
+}TEMPLATE_ID;
+
+/*********************************************************************************************************************
+ Macros for Section Types
+ *********************************************************************************************************************/
+
+#define kSectionTypeGeneral                                              @"general"
+#define kSectionTypePlan                                                 @"plan"
+
+/*********************************************************************************************************************
+ Roles
+ *********************************************************************************************************************/
+
+typedef enum
+{
+    ROLE_OWNER = 1,
+    ROLE_COLLABORATOR,
+    ROLE_MENTOR,
+    ROLE_ALL,
+    ROLE_NOT_FOUND,
+    
+}ROLE;
+
+/*********************************************************************************************************************
+ Alerts
+ *********************************************************************************************************************/
+
+#define kAlertNoChanges                                                  @"You have not made any changes."
+#define kAlertNoInternet                                                 @"This information is being stored locally because an active internet connection is not available. It can be synced later."
+#define kAlertPendingOpNoInternet                                        @"No Internet."
+#define kAlertSyncDisabled                                               @"This information is being stored locally because sync is disabled. Enable sync from Settings and sync the data."
+#define kAlertPendingOpSyncDisabled                                      @"Sync is disabled. Enable sync from Settings and sync the data."
+#define kAlertSyncDisabledA3Refresh                                      @"Sync is disabled. Enable sync from Settings to fetch information from server."
+#define kAlertExpiredSubscription                                        @"Your subscription has expired. Please renew your subscription to sync data."
+#define kAlertPendingA3                                                  @"This information is being stored locally because the A3 is pending sync. Please sync the A3."
+#define kAlertPendingA3Refresh                                           @"This A3 is pending sync. Please sync the A3 to fetch infromation from server."
+#define kAlertRequestFailure                                             @"Something went wrong. This information is being stored locally. It can be synced later."
+#define kAlertFatalError                                                 @"Something went wrong. Please retry."
+#define kAlertMediaTypeNotSupported                                      @"Media type not supported."
+#define kAlertCollaboratorsGIWritePermission                             @"You are a Collaborator. Collaborators cannot edit this section."
+#define kAlertCollaboratorsWritePermission                               @"You are a Collaborator. Collaborators don't have edit permissions on this A3."
+#define kAlertRoleNotFoundError                                          @"You don't have edit permissions on this A3."
+#define kAlertLockedSection                                              @"The section is locked. Only A3 owner can perform edits on locked sections."
+#define kAlertLockPermission                                             @"Only A3 owner can lock a section."
+#define kAlertUnlinkAccount                                              @"This action will log you out and delete the data stored on device under %@ account."
+#define kAlertDockedAndMergedKeyboard                                    @"Keyboard type not supported. Please change your keyboard type to \"Docked and Merged\"."
+#define kAlertNoEmailConfigured                                          @"Please configure an email account on your device."
+#define kAlertA3Sent                                                     @"A3 sent."
+#define kAlertA3Saved                                                    @"A3 saved."
+#define kAlertA3SendingFailed                                            @"A3 sending failed. Please retry."
+#define kAlertSupportEmailSent                                           @"Email sent."
+#define kAlertSupportEmailSaved                                          @"Email saved."
+#define kAlertSupportEmailSendingFailed                                  @"Email sending failed. Please retry."
+
+#define kAlertNoMatchingResults                                          @"No matching results."
+#define kAlertNoNetwork                                                  @"No network."
+#define kAlertDuplicateAttachmentName                                    @"An attachment with this name already exists. Please provide a different name."
+#define kAlertA3Migrated                                                 @"This A3 has been migrated and is available as a pending sync item. Please sync the A3."
+#define kAlertShowSubscriptionExpired                                    @"Your subscription has expired."
+#define kAlertMigration                                                  @"Looks like you have previous A3s. Do you want to migrate your older A3s?"
+
+#define kWhyMigrateText                                                  @"Why is it necessary to migrate your old A3s?\n\nWe've drastically overhauled the A3 Creator and" "incorporated a lot of advanced features. Your A3s created in previous versions of the A3 Creator are still saved on your device--but you will need to use the \"Migrate old A3s\" feature to access them from our new and improved app."
+
+#define kAlertDeleteA3Title                                              @"Delete A3?"
+#define kAlertDeleteA3                                                   @"This action will permanently delete the A3."
+#define kAlertDeleteA3Failure                                            @"Delete failed. Please retry."
+#define kAlertA3SubscriptionExpired                                      @"This A3 is present on the server. You need an active subscription to delete it."
+#define kAlertA3SyncDisabled                                             @"Sync is disabled. Enable sync from Settings and retry."
+#define kAlertA3NoInternet                                               @"No Internet."
+#define kAlertMoveOrDeleteA3Permission                                   @"Only A3 owner can perform this action."
+
+#define kAlertLibraryA3EditPermission                                    @"You cannot edit a library A3."
+#define kAlertAddA3ToLibraryFailure                                      @"Adding A3 to library failed. Please retry."
+#define kAlertAddA3ToLibrarySuccess                                      @"A3 successfully added to library."
+#define kAlertAddA3ToLibraryTitle                                        @"Add A3 to library?"
+#define kAlertAddA3ToLibraryPendingSync                                  @"This A3 is pending sync. Please sync the A3 and retry."
+#define kAlertSubscriptionExpired                                        @"Your subscription has expired. You need active subscription to perform this action."
+#define kAlertNoActiveInternet                                           @"No Internet. You need Internet to use this feature."
+#define kAlertCopyA3Title                                                @"Copy A3?"
+#define kAlertCopyA3Failure                                              @"Copying failed. Please retry."
+#define kAlertCopyA3Success                                              @"A3 successfully copied."
+#define kAlertProfileUpdateSuccess                                       @"Profile successfully updated."
+#define kAlertPasswordUpdateSuccess                                      @"Password successfully updated."
+#define kAlertSignUpSuccess                                              @"SignUp successful."
+#define kAlertResourceTooBig                                             @"File too big to upload."
+#define kAlertLockSectionSuccess                                         @"Section locked."
+#define kAlertUnlockSectionSuccess                                       @"Section unlocked."
+
+/*********************************************************************************************************************
+ Date Format
+ **********************************************************************************************************************/
+
+#define Date_Format                                                      @"yyyy/MM/dd HH:mm:ss"
+#define Message_Date_Format                                              @"EEEE, d MMMM, yyyy hh:mm:ss a"
+#define ActionItem_Date_Format                                           @"yyyy/MM/dd"
+#define User_Date_Format                                                 @"yyyy-MM-dd"
+#define Account_Date_Display_Format                                      @"d MMMM, yyyy"
+#define A3_Date_Display_Format                                           @"MMMM dd, yyyy hh:mm a"
+
+#endif
+
+/*********************************************************************************************************************
+ PDF WebView Macros
+ **********************************************************************************************************************/
+
+#define PDF_WEBVIEW_WIDTH                                                680.0
+#define PDF_WEBVIEW_HEIGHT                                               1.0
+#define IMG_WIDTH                                                        500.0
+
+/*********************************************************************************************************************
+ HTML Macros
+ **********************************************************************************************************************/
+
+//Macro to wrap html content to provide baseURL to wrapped content.
+#define PDF_HTML_CONTENT_WRAPPER                                         @"<html><head><style type=\"text/css\">body{background-color:#FFFFFF;margin:0px;border-radius:5px;padding:5px;}img{max-width:%fpx;}div.header{color:#43A0D1;height:35px;font-family:Helvetica,Arial;font-size:14px;}</style><base href="kURLPrefix"/></head><body><div class=\"header\"><h3>%@</h3></div><div style=\"width:%fpx;word-wrap:break-word;\">%@</div></body></html>"
+
+//Macro to wrap html content to provide baseURL to wrapped content.
+#define HTML_CONTENT_WRAPPER                                             @"<html><head><style type=\"text/css\">img{max-width: %fpx;}</style><base href="kURLPrefix"/></head><body>%@</body></html>"
+
+//Macro to wrap html content to provide baseURL to wrapped content and make it editable.
+#define HTML_EDITABLE_CONTENT_WRAPPER                                    @"<html><head><style type=\"text/css\">img{max-width: %fpx;}</style><base href="kURLPrefix"/></head><body><div id=\"mobile_edit\" contenteditable = \"true\">%@</div></body></html>"
+
+//This is used as separator for <img> src extracted using JS from UIWebView.
+#define IMG_URL_SEPARATOR                                                @"!@#$%^&*"
+
+/*********************************************************************************************************************
+ Attachment/AttachmentSummary Actions
+ **********************************************************************************************************************/
+
+//used in attachmentSummary get API
+#define kAttachmentA3Summary                                             @"a3Summary"
+
+//used in client db
+#define kAttachmentActionItem                                            @"actionItem"
+#define kAttachmentA3                                                    @"a3"
+
+/*********************************************************************************************************************
+ System Versioning Preprocessor Macros
+ **********************************************************************************************************************/
+
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+/*********************************************************************************************************************
+ Dummy image insertion for camera uploads/drawing tool image insertion
+ **********************************************************************************************************************/
+
+#define Dummy_Image_URL                                                 @"http://dummyImage/"
+
+/*********************************************************************************************************************
+ Login page links
+ **********************************************************************************************************************/
+
+#define kA3DojoURL                                                      @"http://www.lean.org/a3dojo/"
+#define kA3DojoColumnURL                                                @"http://www.lean.org/a3dojo/LatestColumn.cfm"
+#define kA3ArticlesAndPresentationsURL                                  @"http://www.lean.org/a3dojo/ContentList.cfm?MTLCategoryId=12"
+#define kA3ToolsAndResourcesURL                                         @"http://www.lean.org/a3dojo/ContentList.cfm?MTLCategoryId=14"
+#define kA3ContactUsURL                                                 @"http://www.lean.org/WhoWeAre/ContactUs.cfm"
+
+/*********************************************************************************************************************
+ Macro for appending <img tag to section content in a3Details page
+ **********************************************************************************************************************/
+
+#define Append_Image_Tag_Html                                           @"<img src=\"%@\" width=\"%f\" height=\"%f\">"
+#define Append_Image_Tag_Html_With_Drawing_JSON                         @"<img src=\"%@\" width=\"%f\" height=\"%f\" drawing=\"%@\">"
+
+/*********************************************************************************************************************
+ Privacy html and Terms html file names
+ **********************************************************************************************************************/
+
+#define Privace_Html_Filename                                           @"privacy"
+#define Terms_And_Conditions_Html_Filename                              @"terms"
+
+/*********************************************************************************************************************
+ Highlighted image style while moving
+ **********************************************************************************************************************/
+#define Move_Image_Highlight_Style                                      @"border: 2px solid blue;"
+
+/*********************************************************************************************************************
+ Custom URL for moving image
+ **********************************************************************************************************************/
+
+#define Custom_Image_URL                                                @"http://movingimage/"
+
+
+

@@ -1,0 +1,15 @@
+//
+//  NSString+DateConverter.h
+//  The A3 Creator
+//
+//  Created by murali on 25/06/13.
+//
+//
+
+#import <Foundation/Foundation.h>
+
+@interface NSString (DateConverter)
+
+- (NSString *)convertFormat:(NSString *)format1 toFormat:(NSString *)fomat2;
+
+@end
