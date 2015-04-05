@@ -23,7 +23,7 @@
     
     self.shareModel = [LocationShareModel sharedModel];
     self.shareModel.afterResume = NO;
-
+    
     UIAlertView * alert;
     
     //We have to make sure that the Background App Refresh is enable for the Location updates to work in the background.
@@ -62,8 +62,7 @@
             // are actually from the key "UIApplicationLaunchOptionsLocationKey"
             self.shareModel.afterResume = YES;
             
-            self.shareModel.anotherLocationManager = [[CLLocationManager alloc]init];
-            self.shareModel.anotherLocationManager.delegate = self;
+            [[self shareModel] initiateWithDelegate:self];
             self.shareModel.anotherLocationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
             self.shareModel.anotherLocationManager.activityType = CLActivityTypeOtherNavigation;
             
@@ -77,27 +76,25 @@
     return YES;
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+-(void)locationManager:(CLLocationManager *)manager
+    didUpdateLocations:(NSArray *)locations{
     
     
     if(!locations || [locations count] == 0)
         return;
     
-    NSDictionary* dict = nil;
-    if([locations count] > 1)
-    {
-        dict = @{@"oldLocation": locations[[locations count] - 2],
-                 @"newLocation": [locations lastObject]};
-    }
-    else
-    {
-        dict = @{@"newLocation": [locations lastObject]};
-    }
     //Notify to other parts of the application that location is updated
     [[NSNotificationCenter defaultCenter] postNotificationName:kLocationUpdated
-                                                        object:dict];
+                                                        object:locations];
+    
+    [[[self shareModel] anotherLocationManager] allowDeferredLocationUpdatesUntilTraveled:10.0
+                                                                                  timeout:CLTimeIntervalMax];
 }
-
+- (void)locationManager:(CLLocationManager *)manager
+didFinishDeferredUpdatesWithError:(NSError *)error
+{
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -126,11 +123,8 @@
     //Remove the "afterResume" Flag after the app is active again.
     self.shareModel.afterResume = NO;
     
-    if(self.shareModel.anotherLocationManager)
-        [self.shareModel.anotherLocationManager stopMonitoringSignificantLocationChanges];
     
-    self.shareModel.anotherLocationManager = [[CLLocationManager alloc]init];
-    self.shareModel.anotherLocationManager.delegate = self;
+    [[self shareModel] initiateWithDelegate:self];
     self.shareModel.anotherLocationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     self.shareModel.anotherLocationManager.activityType = CLActivityTypeOtherNavigation;
     

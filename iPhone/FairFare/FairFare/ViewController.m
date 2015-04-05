@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <LiveFrost/LiveFrost.h>
 #import "HistoryViewController.h"
+#import "M13Checkbox.h"
 
 
 @interface ViewController ()
@@ -17,6 +18,8 @@
     GMSMapView* _mapView;
     UIView* _controlsView;
     UIButton* _closeButton;
+    BOOL _reachedDestinationChecked;
+    CLLocation* _startLocation;
 }
 @property (nonatomic,readonly,strong) LFGlassView* glassView;
 @end
@@ -31,9 +34,13 @@
                                                  name:kLocationUpdated
                                                object:nil];
     // coordinate -33.86,151.20 at zoom level 6.
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.86
-                                                            longitude:151.20
-                                                                 zoom:9];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:0.0
+                                                            longitude:0.0
+                                                                 zoom:18
+                                                              bearing:30
+                                                         viewingAngle:30];
+    
+    
     _mapView = [GMSMapView mapWithFrame:CGRectMake(0,
                                                    0,
                                                    self.view.frame.size.width,
@@ -41,7 +48,7 @@
                                  camera:camera];
     [_mapView setCamera:camera];
     _mapView.myLocationEnabled = YES;
-    _mapView.mapType = kGMSTypeSatellite;
+    _mapView.mapType = kGMSTypeNormal;
     _mapView.delegate = self;
     GMSUISettings * settings = _mapView.settings;
     [settings setConsumesGesturesInView:NO];
@@ -249,20 +256,39 @@
 #pragma Location
 - (void)locationUpdatedNotification:(NSNotification*)notification
 {
-    id locationDict = notification.object;
-    CLLocation* newLocation = locationDict[@"newLocation"];
+    id locations = notification.object;
+    CLLocation* newLocation = [locations lastObject];
     CLLocationCoordinate2D theLocation = newLocation.coordinate;
-    // Creates a marker in the center of the map.
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = theLocation;
-    marker.title = @"Sydney";
-    marker.snippet = @"Australia";
-    marker.map = _mapView;
+    
     
     [_mapView animateToLocation:theLocation];
     [_mapView animateToZoom:15];
-    
+
+    NSLog(@"Locations Count : %d", (int)[locations count]);
     NSLog(@"Location updated: %@",newLocation);
+    
+    //
+
+    if(!_startLocation)//First one
+    {
+        _startLocation = newLocation;
+        GMSGeocoder* geocoder = [GMSGeocoder geocoder];
+        
+        [geocoder reverseGeocodeCoordinate:theLocation
+                         completionHandler:^(GMSReverseGeocodeResponse *geocodeResponse, NSError *erroe){
+                         //    NSArray* results = geocodeResponse.results;
+                             GMSAddress* firstResult = geocodeResponse.firstResult;
+                        //     NSLog(@"%@",geocodeResponse.results);
+                             
+                             
+                             // Creates a marker in the center of the map.
+                             GMSMarker *marker = [[GMSMarker alloc] init];
+                             marker.position = firstResult.coordinate;
+                             marker.title = firstResult.thoroughfare;
+                             marker.snippet = firstResult.subLocality;
+                             marker.map = _mapView;
+                         }];
+    }
 }
 #pragma Actions
 - (void)showHistory:(UIButton*)sender
@@ -273,6 +299,7 @@
 }
 - (void)startJourney:(UIButton*)sender
 {
+    _startLocation = nil;
     [self removeControlsView];
     //start updating the location
     [[LocationShareModel sharedModel] restartLocationUpdate];
@@ -285,6 +312,46 @@
                                                   delegate:self
                                          cancelButtonTitle:@"No"
                                          otherButtonTitles:@"Yes", nil];
+
+    {
+        UIView* view = [[UIView alloc] init];
+        [view setBackgroundColor:[UIColor clearColor]];
+        [view setFrame:CGRectMake(0, 0, 0, 40.0)];
+        {
+            //Add checkbox
+            M13Checkbox *checkBox = [[M13Checkbox alloc] initWithTitle:@"Reached Destination?"];
+            checkBox.checkAlignment = M13CheckboxAlignmentLeft;
+            [checkBox addTarget:self action:@selector(reachedDestSelected:) forControlEvents:UIControlEventValueChanged];
+            [checkBox setBackgroundColor:[UIColor clearColor]];
+            
+            [view addSubview:checkBox];
+            
+            //Layout
+            {
+                [checkBox setTranslatesAutoresizingMaskIntoConstraints:NO];
+                
+                [[LayoutManager layoutManager] setWidthOfView:checkBox
+                                                   sameAsView:view
+                                                       inView:view
+                                                   multiplier:0.68
+                                                  andRelation:NSLayoutRelationEqual];
+                
+                [[LayoutManager layoutManager] setHeightOfView:checkBox
+                                                   sameAsView:view
+                                                       inView:view
+                                                   multiplier:1.0
+                                                  andRelation:NSLayoutRelationEqual];
+                
+                [[LayoutManager layoutManager] positionSubview:checkBox
+                                                        toView:view
+                                                    withOffset:CGPointZero
+                                             andPositionOption:POS_CENTER];
+                
+                [checkBox.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0]];
+            }
+        }
+        [alert setValue:view forKey:@"accessoryView"];
+    }
     [alert show];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -293,15 +360,21 @@
             
         case 1:
         {
-            //stop
+            //Stop
             [[LocationShareModel sharedModel] stopUpdatingLocation];
             //Remove the close button
             [self stopJourney];
+            //If reached destination, then use the journey data collected and use to calculate the terrif
+            
         }
             break;
             
         default:
             break;
     }
+}
+- (void)reachedDestSelected:(M13Checkbox*)sender
+{
+    _reachedDestinationChecked = sender.checkState == M13CheckboxStateChecked;
 }
 @end

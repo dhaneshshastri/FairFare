@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="Xcode">
+    <wpt lon="78.447855" lat="17.419443">
+        <name>63.265614</name>
+    </wpt>
+    <wpt lon="78.448198" lat="17.420057">
+        <name>63.265614</name>
+    </wpt>
+    <wpt lon="78.448520" lat="17.420651">
+        <name>45.113590</name>
+    </wpt>
+    <wpt lon="78.448949" lat="17.421531">
+        <name>45.052517</name>
+    </wpt>
+    <wpt lon="78.449421" lat="17.422493">
+        <name>45.798065</name>
+    </wpt>
+    <wpt lon="78.448648" lat="17.423251">
+        <name>45.798065</name>
+    </wpt>
+    <wpt lon="78.448219" lat="17.424233">
+        <name>45.798065</name>
+    </wpt>
+    <wpt lon="78.448627" lat="17.425421">
+        <name>45.798065</name>
+    </wpt>
+</gpx>

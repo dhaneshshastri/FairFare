@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A3475963E7CEB59FD187A94F"
+               BlueprintIdentifier = "A8338E30EBDC4DEFE4B2FAFB"
                BuildableName = "libPods-LiveFrost.a"
                BlueprintName = "Pods-LiveFrost"
                ReferencedContainer = "container:Pods.xcodeproj">

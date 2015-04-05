@@ -15,6 +15,7 @@
 		501BB5421AC4012E0066CA3D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501BB5401AC4012E0066CA3D /* LaunchScreen.xib */; };
 		501BB54E1AC4012E0066CA3D /* FairFareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BB54D1AC4012E0066CA3D /* FairFareTests.m */; };
 		507ACDC71ACBAC2500B743C0 /* LayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 507ACDC61ACBAC2500B743C0 /* LayoutManager.m */; };
+		507B20801ACD4D4D0087A966 /* Locations.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 507B207F1ACD4D480087A966 /* Locations.gpx */; };
 		50C9EC211AC9C6F000D34A0B /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC201AC9C6F000D34A0B /* GoogleMaps.framework */; };
 		50C9EC231AC9C78400D34A0B /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50C9EC221AC9C78400D34A0B /* GoogleMaps.bundle */; };
 		50C9EC251AC9C8B600D34A0B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC241AC9C8B600D34A0B /* AVFoundation.framework */; };
@@ -33,6 +34,7 @@
 		50CB10AE1ACAA907007CEF1A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CB109B1ACAA907007CEF1A /* Reachability.m */; };
 		50E0BE7F1ACC408400F7D67B /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0BE7E1ACC408400F7D67B /* HistoryViewController.m */; };
 		50E0BE811ACC463A00F7D67B /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0BE801ACC463A00F7D67B /* Utils.m */; };
+		50FD9EA91AD11F07002519A7 /* M13Checkbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FD9EA81AD11F07002519A7 /* M13Checkbox.m */; };
 		84E13C33845AB477223D3B60 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E1D45D8055C3292BEBB55E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,7 @@
 		506813B71ACB012400E79ADB /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		507ACDC51ACBAC2500B743C0 /* LayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutManager.h; sourceTree = "<group>"; };
 		507ACDC61ACBAC2500B743C0 /* LayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutManager.m; sourceTree = "<group>"; };
+		507B207F1ACD4D480087A966 /* Locations.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Locations.gpx; sourceTree = "<group>"; };
 		50C9EC201AC9C6F000D34A0B /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = FairFare/GoogleMaps.framework; sourceTree = "<group>"; };
 		50C9EC221AC9C78400D34A0B /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = FairFare/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		50C9EC241AC9C8B600D34A0B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -85,6 +88,8 @@
 		50E0BE7D1ACC408400F7D67B /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		50E0BE7E1ACC408400F7D67B /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		50E0BE801ACC463A00F7D67B /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		50FD9EA71AD11F07002519A7 /* M13Checkbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13Checkbox.h; sourceTree = "<group>"; };
+		50FD9EA81AD11F07002519A7 /* M13Checkbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13Checkbox.m; sourceTree = "<group>"; };
 		88452E494A482A709562740A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B174152F6DFB203BD452E124 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F2E1D45D8055C3292BEBB55E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +168,7 @@
 				501BB5361AC4012E0066CA3D /* AppDelegate.m */,
 				501BB5381AC4012E0066CA3D /* ViewController.h */,
 				501BB5391AC4012E0066CA3D /* ViewController.m */,
+				507B207F1ACD4D480087A966 /* Locations.gpx */,
 				501BB53B1AC4012E0066CA3D /* Main.storyboard */,
 				501BB53E1AC4012E0066CA3D /* Images.xcassets */,
 				501BB5401AC4012E0066CA3D /* LaunchScreen.xib */,
@@ -228,6 +234,8 @@
 		50CB10761ACAA907007CEF1A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				50FD9EA71AD11F07002519A7 /* M13Checkbox.h */,
+				50FD9EA81AD11F07002519A7 /* M13Checkbox.m */,
 				507ACDC51ACBAC2500B743C0 /* LayoutManager.h */,
 				507ACDC61ACBAC2500B743C0 /* LayoutManager.m */,
 				50CB108D1ACAA907007CEF1A /* LocationShareModel.h */,
@@ -347,6 +355,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				507B20801ACD4D4D0087A966 /* Locations.gpx in Resources */,
 				501BB53D1AC4012E0066CA3D /* Main.storyboard in Resources */,
 				501BB5421AC4012E0066CA3D /* LaunchScreen.xib in Resources */,
 				501BB53F1AC4012E0066CA3D /* Images.xcassets in Resources */,
@@ -403,6 +412,7 @@
 			files = (
 				501BB53A1AC4012E0066CA3D /* ViewController.m in Sources */,
 				501BB5371AC4012E0066CA3D /* AppDelegate.m in Sources */,
+				50FD9EA91AD11F07002519A7 /* M13Checkbox.m in Sources */,
 				501BB5341AC4012E0066CA3D /* main.m in Sources */,
 				50E0BE811ACC463A00F7D67B /* Utils.m in Sources */,
 				507ACDC71ACBAC2500B743C0 /* LayoutManager.m in Sources */,

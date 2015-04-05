@@ -10,6 +10,8 @@
 	<string>FairFare</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>78946af6-89e7-4081-8849-04cb3a9dcf4f++8649</key>
+		<string>http://67.21.3.185/svn/community/trunk/leanA3/mobile_code/LeanTaas_iPad/trunk/LeanTaas_Mobile/Utils</string>
 		<key>AC024C2A82A6EDA89C22C4F15AF363D2ABE65AA8</key>
 		<string>https://github.com/dhaneshshastri/FairFare.git</string>
 	</dict>
@@ -17,8 +19,15 @@
 	<string>iPhone/FairFare/FairFare.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>78946af6-89e7-4081-8849-04cb3a9dcf4f++8649</key>
+		<string>../../../iPhone/FairFare/FairFare/Utils</string>
 		<key>AC024C2A82A6EDA89C22C4F15AF363D2ABE65AA8</key>
 		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>78946af6-89e7-4081-8849-04cb3a9dcf4f++8649</key>
+		<string>http://67.21.3.185/svn/community</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/dhaneshshastri/FairFare.git</string>
@@ -35,6 +44,14 @@
 			<string>AC024C2A82A6EDA89C22C4F15AF363D2ABE65AA8</string>
 			<key>IDESourceControlWCCName</key>
 			<string>FairFare</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>78946af6-89e7-4081-8849-04cb3a9dcf4f++8649</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Utils</string>
 		</dict>
 	</array>
 </dict>
