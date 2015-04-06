@@ -14,6 +14,7 @@
 		501BB53F1AC4012E0066CA3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 501BB53E1AC4012E0066CA3D /* Images.xcassets */; };
 		501BB5421AC4012E0066CA3D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501BB5401AC4012E0066CA3D /* LaunchScreen.xib */; };
 		501BB54E1AC4012E0066CA3D /* FairFareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BB54D1AC4012E0066CA3D /* FairFareTests.m */; };
+		5060593B1AD264B200EDB895 /* FareCalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5060593A1AD264B200EDB895 /* FareCalculatorViewController.m */; };
 		507ACDC71ACBAC2500B743C0 /* LayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 507ACDC61ACBAC2500B743C0 /* LayoutManager.m */; };
 		507B20801ACD4D4D0087A966 /* Locations.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 507B207F1ACD4D480087A966 /* Locations.gpx */; };
 		50C9EC211AC9C6F000D34A0B /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC201AC9C6F000D34A0B /* GoogleMaps.framework */; };
@@ -62,6 +63,8 @@
 		501BB5471AC4012E0066CA3D /* FairFareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FairFareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		501BB54C1AC4012E0066CA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		501BB54D1AC4012E0066CA3D /* FairFareTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FairFareTests.m; sourceTree = "<group>"; };
+		506059391AD264B200EDB895 /* FareCalculatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareCalculatorViewController.h; sourceTree = "<group>"; };
+		5060593A1AD264B200EDB895 /* FareCalculatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FareCalculatorViewController.m; sourceTree = "<group>"; };
 		506813B61ACB00D500E79ADB /* FairFare-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FairFare-Prefix.pch"; sourceTree = "<group>"; };
 		506813B71ACB012400E79ADB /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		507ACDC51ACBAC2500B743C0 /* LayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutManager.h; sourceTree = "<group>"; };
@@ -253,6 +256,8 @@
 			children = (
 				50E0BE7D1ACC408400F7D67B /* HistoryViewController.h */,
 				50E0BE7E1ACC408400F7D67B /* HistoryViewController.m */,
+				506059391AD264B200EDB895 /* FareCalculatorViewController.h */,
+				5060593A1AD264B200EDB895 /* FareCalculatorViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -416,6 +421,7 @@
 				501BB5341AC4012E0066CA3D /* main.m in Sources */,
 				50E0BE811ACC463A00F7D67B /* Utils.m in Sources */,
 				507ACDC71ACBAC2500B743C0 /* LayoutManager.m in Sources */,
+				5060593B1AD264B200EDB895 /* FareCalculatorViewController.m in Sources */,
 				50CB10AE1ACAA907007CEF1A /* Reachability.m in Sources */,
 				50E0BE7F1ACC408400F7D67B /* HistoryViewController.m in Sources */,
 				50CB10A81ACAA907007CEF1A /* LocationShareModel.m in Sources */,

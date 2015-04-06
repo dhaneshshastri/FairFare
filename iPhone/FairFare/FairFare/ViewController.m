@@ -11,6 +11,7 @@
 #import <LiveFrost/LiveFrost.h>
 #import "HistoryViewController.h"
 #import "M13Checkbox.h"
+#import "FareCalculatorViewController.h"
 
 
 @interface ViewController ()
@@ -20,6 +21,8 @@
     UIButton* _closeButton;
     BOOL _reachedDestinationChecked;
     CLLocation* _startLocation;
+    CLLocation* _currentLocation;
+    GMSMutablePath* _travelPath;
 }
 @property (nonatomic,readonly,strong) LFGlassView* glassView;
 @end
@@ -47,7 +50,6 @@
                                                    self.view.frame.size.height)
                                  camera:camera];
     [_mapView setCamera:camera];
-    _mapView.myLocationEnabled = YES;
     _mapView.mapType = kGMSTypeNormal;
     _mapView.delegate = self;
     GMSUISettings * settings = _mapView.settings;
@@ -86,12 +88,17 @@
 }
 - (void)createAndAddControlsView
 {
-    [self.view addSubview:self.glassView];
+    if(_glassView)
+    {
+        [_glassView removeFromSuperview];
+        _glassView = nil;
+    }
     if(_controlsView)
     {
         [_controlsView removeFromSuperview];
         _controlsView = nil;
     }
+    [self.view addSubview:self.glassView];
     _controlsView = [[UIView alloc] init];
     [_controlsView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:_controlsView];
@@ -180,6 +187,9 @@
         [_closeButton removeFromSuperview];
         _closeButton = nil;
     }
+    _travelPath = nil;
+    [_mapView clear];
+    [[LocationShareModel sharedModel] stopUpdatingLocation];
 }
 - (void)createOnTravelControls
 {
@@ -264,11 +274,11 @@
     [_mapView animateToLocation:theLocation];
     [_mapView animateToZoom:15];
 
-    NSLog(@"Locations Count : %d", (int)[locations count]);
-    NSLog(@"Location updated: %@",newLocation);
+    _currentLocation = nil;
+    _currentLocation = newLocation;
     
-    //
-
+    [self updatePathWithCoordinate:theLocation];
+    
     if(!_startLocation)//First one
     {
         _startLocation = newLocation;
@@ -278,9 +288,7 @@
                          completionHandler:^(GMSReverseGeocodeResponse *geocodeResponse, NSError *erroe){
                          //    NSArray* results = geocodeResponse.results;
                              GMSAddress* firstResult = geocodeResponse.firstResult;
-                        //     NSLog(@"%@",geocodeResponse.results);
-                             
-                             
+
                              // Creates a marker in the center of the map.
                              GMSMarker *marker = [[GMSMarker alloc] init];
                              marker.position = firstResult.coordinate;
@@ -300,9 +308,10 @@
 - (void)startJourney:(UIButton*)sender
 {
     _startLocation = nil;
+    _currentLocation = nil;
     [self removeControlsView];
     //start updating the location
-    [[LocationShareModel sharedModel] restartLocationUpdate];
+    [[LocationShareModel sharedModel] startUpdatingLocation];
     [self createOnTravelControls];
 }
 - (void)stopJourney:(UIButton*)sender
@@ -364,8 +373,16 @@
             [[LocationShareModel sharedModel] stopUpdatingLocation];
             //Remove the close button
             [self stopJourney];
+            //Recreate
+            [self createAndAddControlsView];
             //If reached destination, then use the journey data collected and use to calculate the terrif
-            
+            if(_reachedDestinationChecked)
+            {
+                //Take to FareCalculator screen
+                FareCalculatorViewController* fareCalculatorVC = (FareCalculatorViewController*)viewControllerFromStoryboard(@"Main",@"fareCalculatorController");
+                [self.navigationController pushViewController:fareCalculatorVC
+                                                     animated:YES];
+            }
         }
             break;
             
@@ -377,4 +394,21 @@
 {
     _reachedDestinationChecked = sender.checkState == M13CheckboxStateChecked;
 }
+#pragma mark Polyline
+- (void)updatePathWithCoordinate:(CLLocationCoordinate2D)location
+{
+    if(!_travelPath)
+    {
+        _travelPath = [GMSMutablePath path];
+    }
+    [_travelPath addCoordinate:location];
+    //Updating polygon
+    GMSPolyline *polyline = [GMSPolyline polylineWithPath:_travelPath];
+    polyline.strokeColor = [UIColor blueColor];
+    polyline.strokeWidth = 5.f;
+    polyline.geodesic = YES;
+    polyline.map = _mapView;
+    polyline = nil;
+}
+
 @end

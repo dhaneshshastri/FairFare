@@ -24,5 +24,6 @@
 - (void)restartLocationUpdate;
 - (void)stopUpdatingLocation;
 - (void)initiateWithDelegate:(id<CLLocationManagerDelegate>)delegate;
+- (void)startUpdatingLocation;
 
 @end

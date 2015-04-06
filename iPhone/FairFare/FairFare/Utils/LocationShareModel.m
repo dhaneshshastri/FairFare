@@ -44,5 +44,9 @@
 {
     [self.anotherLocationManager stopUpdatingLocation];
 }
+- (void)startUpdatingLocation
+{
+    [self.anotherLocationManager startUpdatingLocation];
+}
 
 @end
