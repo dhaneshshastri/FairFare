@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface FareCalculatorViewController : UIViewController <UIPickerViewDataSource>
+#import "ActionSheetCustomPicker.h"
+@interface FareCalculatorViewController : UIViewController <UIPickerViewDataSource,ActionSheetCustomPickerDelegate,UIPickerViewDataSource>
 
 @end

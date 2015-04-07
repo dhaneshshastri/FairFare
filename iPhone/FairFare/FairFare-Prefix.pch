@@ -14,5 +14,6 @@
 #import "Utils.h"
 #import "LayoutManager.h"
 #import "LocationShareModel.h"
+#import "ContentManager.h"
 
 #endif
