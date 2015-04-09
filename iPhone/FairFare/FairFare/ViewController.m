@@ -20,9 +20,9 @@
     UIView* _controlsView;
     UIButton* _closeButton;
     BOOL _reachedDestinationChecked;
-    CLLocation* _startLocation;
     CLLocation* _currentLocation;
     GMSMutablePath* _travelPath;
+    BOOL _reverseGeocodeStartLocation;
 }
 @property (nonatomic,readonly,strong) LFGlassView* glassView;
 @end
@@ -279,9 +279,8 @@
     
     [self updatePathWithCoordinate:theLocation];
     
-    if(!_startLocation)//First one
+    if(_reverseGeocodeStartLocation)//First one
     {
-        _startLocation = newLocation;
         GMSGeocoder* geocoder = [GMSGeocoder geocoder];
         
         [geocoder reverseGeocodeCoordinate:theLocation
@@ -296,6 +295,7 @@
                              marker.snippet = firstResult.subLocality;
                              marker.map = _mapView;
                          }];
+        _reverseGeocodeStartLocation = NO;
     }
 }
 #pragma Actions
@@ -307,7 +307,7 @@
 }
 - (void)startJourney:(UIButton*)sender
 {
-    _startLocation = nil;
+    _reverseGeocodeStartLocation = YES;
     _currentLocation = nil;
     [self removeControlsView];
     //start updating the location
@@ -409,6 +409,8 @@
     polyline.geodesic = YES;
     polyline.map = _mapView;
     polyline = nil;
+    
+    NSLog(@"Plotting >>>>>> ");
 }
 
 @end

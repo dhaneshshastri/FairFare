@@ -11,7 +11,13 @@
 @interface FareCalculatorViewController ()
 {
     ActionSheetCustomPicker* _pickerView;
+    NSDictionary* _selectedService;
+    NSDictionary* _selectedProvider;
+    __weak IBOutlet UIButton *_providerButton;
     __weak IBOutlet UIButton *_serviceButton;
+    __weak IBOutlet UILabel *_providerTitle;
+    __weak IBOutlet NSLayoutConstraint *_selectProviderTitleHeightConstraint;
+    __weak IBOutlet NSLayoutConstraint *_selectedProviderNameHeightConstraint;
 }
 @end
 
@@ -19,14 +25,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [_serviceButton setTitle:[[ContentManager sharedManager] services][0]
+    [_serviceButton setTitle:((NSDictionary*)[[ContentManager sharedManager] services][0])[@"name"]
                     forState:UIControlStateNormal];
+    
+    //Select first
+    _selectedService = [[ContentManager sharedManager] services][0];
+    
+    
+    NSArray* providers = [[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]];
+    if(!providers)
+    {
+        _providerButton.hidden = YES;
+    }
+    
+    [_providerButton setTitle:((NSDictionary*)[[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]][0])[@"name"]
+                     forState:UIControlStateNormal];
+    
 }
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
-    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -34,14 +52,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - ActionSheetCustomPickerDelegate Optional's
 /////////////////////////////////////////////////////////////////////////
@@ -53,7 +71,7 @@
 
 - (void)actionSheetPickerDidSucceed:(AbstractActionSheetPicker *)actionSheetPicker origin:(id)origin
 {
-
+    
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -71,6 +89,8 @@
     switch (pickerView.tag) {
         case 1:
             return [[[ContentManager sharedManager] services] count];
+        case 2:
+            return [[[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]] count];
         default:break;
     }
     return 0;
@@ -83,12 +103,7 @@
 // returns width of column and height of row for each component.
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
 {
-    switch (component) {
-        case 0: return 300.0f;
-        default:break;
-    }
-    
-    return 0;
+    return 300.0f;
 }
 /*- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
  {
@@ -102,7 +117,9 @@
 {
     switch (pickerView.tag) {
         case 1:
-            return [[ContentManager sharedManager] services][row];
+            return ((NSDictionary*)[[ContentManager sharedManager] services][row])[@"name"];
+        case 2:
+            return ((NSDictionary*)[[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]][row])[@"name"];
         default:break;
     }
     return nil;
@@ -113,13 +130,42 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     NSLog(@"Row %li selected in component %li", (long)row, (long)component);
-
+    
     switch (_pickerView.tag) {
         case 1:
         {
             //Set
-            [_serviceButton setTitle:[[ContentManager sharedManager] services][row]
+            [_serviceButton setTitle:((NSDictionary*)[[ContentManager sharedManager] services][row])[@"name"]
                             forState:UIControlStateNormal];
+            
+            _selectedService = nil;
+            _selectedService = [[ContentManager sharedManager] services][row];
+            
+            //Hide
+            NSArray* providers = [[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]];
+            if(![providers count])
+            {
+           //     _selectProviderTitleHeightConstraint.constant = 0.0;
+                _selectedProviderNameHeightConstraint.constant = 0.0;
+                [_providerButton layoutIfNeeded];
+               // _providerTitle.hidden = YES;
+//                _providerButton.hidden = YES;
+            }
+            else
+            {
+                _selectProviderTitleHeightConstraint.constant = 21.0;
+                _selectedProviderNameHeightConstraint.constant = 30.0;
+                [self.view layoutIfNeeded];
+            }
+        }
+            break;
+        case 2:
+        {
+            [_providerButton setTitle:((NSDictionary*)[[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]][row])[@"name"]
+                             forState:UIControlStateNormal];
+            
+            _selectedProvider = nil;
+            _selectedProvider = [[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]][row];
         }
             break;
             
@@ -133,11 +179,31 @@
 }
 - (IBAction)showCategoryPicker:(id)sender {
     
+    NSUInteger index = indexOfItemFor([[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]],
+                                      @"name",
+                                      _providerButton.titleLabel.text);
     
+    _pickerView = nil;
+    _pickerView = [ActionSheetCustomPicker showPickerWithTitle:@"Select Provider"
+                                                      delegate:self
+                                              showCancelButton:NO
+                                                        origin:self.view
+                                             initialSelections:nil
+                                                        andTag:2];
+    
+    
+    
+    [(UIPickerView*)(_pickerView.pickerView) selectRow:index
+                                           inComponent:0
+                                              animated:YES];
     
     
 }
 - (IBAction)showServicePicker:(id)sender {
+    
+    NSUInteger index = indexOfItemFor([[ContentManager sharedManager] services],
+                                      @"name",
+                                      _serviceButton.titleLabel.text);
     
     _pickerView = nil;
     _pickerView = [ActionSheetCustomPicker showPickerWithTitle:@"Select Service"
@@ -146,6 +212,10 @@
                                                         origin:self.view
                                              initialSelections:nil
                                                         andTag:1];
-    _pickerView.tag = 1;
+    
+    
+    [(UIPickerView*)(_pickerView.pickerView) selectRow:index
+                                           inComponent:0
+                                              animated:YES];
 }
 @end

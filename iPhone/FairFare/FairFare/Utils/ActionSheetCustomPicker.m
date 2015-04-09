@@ -89,6 +89,7 @@
 
     if ( self.initialSelections )
     {
+        
         NSAssert(pv.numberOfComponents == self.initialSelections.count, @"Number of sections not match");
         for (NSUInteger i = 0; i < [self.initialSelections count]; i++)
         {

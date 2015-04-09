@@ -222,6 +222,9 @@ CG_INLINE BOOL isIPhone4()
     }
     [masterView addSubview:_pickerView];
     [self presentPickerForView:masterView];
+    
+    
+    
 
     switch (self.tapDismissAction)
     {

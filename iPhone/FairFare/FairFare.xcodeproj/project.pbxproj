@@ -18,6 +18,8 @@
 		504C734E1AD2EF1B00661F5D /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 504C734D1AD2EF1B00661F5D /* AbstractActionSheetPicker.m */; };
 		504C73511AD2EF3F00661F5D /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 504C73501AD2EF3F00661F5D /* SWActionSheet.m */; };
 		5060593B1AD264B200EDB895 /* FareCalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5060593A1AD264B200EDB895 /* FareCalculatorViewController.m */; };
+		5065FF881AD53E24004E21C2 /* Services.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5065FF871AD53E24004E21C2 /* Services.plist */; };
+		5079E2EA1AD6390C00ED9293 /* Providers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5079E2E91AD6390C00ED9293 /* Providers.plist */; };
 		507ACDC71ACBAC2500B743C0 /* LayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 507ACDC61ACBAC2500B743C0 /* LayoutManager.m */; };
 		507B20801ACD4D4D0087A966 /* Locations.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 507B207F1ACD4D480087A966 /* Locations.gpx */; };
 		50874DD11AD3F2D80060AB57 /* ContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50874DD01AD3F2D80060AB57 /* ContentManager.m */; };
@@ -76,8 +78,10 @@
 		504C73501AD2EF3F00661F5D /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWActionSheet.m; sourceTree = "<group>"; };
 		506059391AD264B200EDB895 /* FareCalculatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareCalculatorViewController.h; sourceTree = "<group>"; };
 		5060593A1AD264B200EDB895 /* FareCalculatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FareCalculatorViewController.m; sourceTree = "<group>"; };
+		5065FF871AD53E24004E21C2 /* Services.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Services.plist; sourceTree = "<group>"; };
 		506813B61ACB00D500E79ADB /* FairFare-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FairFare-Prefix.pch"; sourceTree = "<group>"; };
 		506813B71ACB012400E79ADB /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		5079E2E91AD6390C00ED9293 /* Providers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Providers.plist; sourceTree = "<group>"; };
 		507ACDC51ACBAC2500B743C0 /* LayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutManager.h; sourceTree = "<group>"; };
 		507ACDC61ACBAC2500B743C0 /* LayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutManager.m; sourceTree = "<group>"; };
 		507B207F1ACD4D480087A966 /* Locations.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Locations.gpx; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 		50C9EC1D1AC9B06C00D34A0B /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				5065FF871AD53E24004E21C2 /* Services.plist */,
+				5079E2E91AD6390C00ED9293 /* Providers.plist */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -382,7 +388,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5065FF881AD53E24004E21C2 /* Services.plist in Resources */,
 				507B20801ACD4D4D0087A966 /* Locations.gpx in Resources */,
+				5079E2EA1AD6390C00ED9293 /* Providers.plist in Resources */,
 				501BB53D1AC4012E0066CA3D /* Main.storyboard in Resources */,
 				501BB5421AC4012E0066CA3D /* LaunchScreen.xib in Resources */,
 				501BB53F1AC4012E0066CA3D /* Images.xcassets in Resources */,
@@ -576,6 +584,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chandrashekar Sivaram (32N7DN84JK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FairFare",
@@ -585,6 +594,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -595,6 +605,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chandrashekar Sivaram (32N7DN84JK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FairFare",
@@ -604,6 +615,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

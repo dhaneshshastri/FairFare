@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -10,6 +11,8 @@
             <objects>
                 <navigationController id="6PG-1R-RqC" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0fv-Yx-vzc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -36,6 +39,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Fair Fare" id="eYa-bm-9WS"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nSL-C9-5CA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -54,7 +59,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="History goes here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGj-aW-SnZ">
-                                <rect key="frame" x="110" y="273" width="135" height="21"/>
+                                <rect key="frame" x="93" y="273" width="135" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -63,6 +68,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6g-7H-DjG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -80,13 +87,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnC-cc-Hm7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnC-cc-Hm7">
                                 <rect key="frame" x="16" y="72" width="110" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtR-kW-zIV">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtR-kW-zIV">
                                 <rect key="frame" x="16" y="101" width="108" height="30"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,14 +102,21 @@
                                     <action selector="showServicePicker:" destination="BMQ-dc-wAU" eventType="touchUpInside" id="Tbj-xr-K5z"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Provider" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUa-2j-71j">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Provider" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUa-2j-71j">
                                 <rect key="frame" x="16" y="158" width="117" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="21" id="a0K-mh-ROW"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQX-U0-pdF">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQX-U0-pdF">
                                 <rect key="frame" x="16" y="187" width="115" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="115" id="LAy-zu-0A5"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" priority="250" constant="20" id="hei-Cc-QLP"/>
+                                </constraints>
                                 <state key="normal" title="Meru">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -110,14 +124,17 @@
                                     <action selector="showCategoryPicker:" destination="BMQ-dc-wAU" eventType="touchUpInside" id="9dO-xh-G0G"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select City" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RiQ-vr-bIj">
-                                <rect key="frame" x="16" y="267" width="108" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RiQ-vr-bIj">
+                                <rect key="frame" x="16" y="250" width="108" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="108" id="E55-r7-mbC"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Th-u8-cIZ">
-                                <rect key="frame" x="16" y="296" width="108" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Th-u8-cIZ">
+                                <rect key="frame" x="16" y="279" width="108" height="30"/>
                                 <state key="normal" title="Hyderabad">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -126,16 +143,38 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJW-Qh-gtR">
-                                <rect key="frame" x="139" y="477" width="105" height="30"/>
+                                <rect key="frame" x="108" y="477" width="105" height="30"/>
                                 <state key="normal" title="Calulate Fare">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eUa-2j-71j" firstAttribute="top" secondItem="vtR-kW-zIV" secondAttribute="bottom" constant="27" id="28i-Uy-08G"/>
+                            <constraint firstItem="eUa-2j-71j" firstAttribute="top" secondItem="OwU-t8-tZe" secondAttribute="top" constant="158" id="PDd-IP-rgj"/>
+                            <constraint firstItem="mQX-U0-pdF" firstAttribute="leading" secondItem="eUa-2j-71j" secondAttribute="leading" id="Qgk-Po-JUp"/>
+                            <constraint firstItem="RiQ-vr-bIj" firstAttribute="trailing" secondItem="1Th-u8-cIZ" secondAttribute="trailing" id="W1F-e7-mKV"/>
+                            <constraint firstItem="mQX-U0-pdF" firstAttribute="top" secondItem="eUa-2j-71j" secondAttribute="bottom" constant="8" id="XgY-vS-GPS"/>
+                            <constraint firstItem="RiQ-vr-bIj" firstAttribute="top" secondItem="vtR-kW-zIV" secondAttribute="bottom" constant="119" id="YZG-V2-bsH"/>
+                            <constraint firstItem="eUa-2j-71j" firstAttribute="leading" secondItem="OwU-t8-tZe" secondAttribute="leadingMargin" id="hz4-o2-FDh"/>
+                            <constraint firstItem="eUa-2j-71j" firstAttribute="leading" secondItem="vtR-kW-zIV" secondAttribute="leading" id="iwI-PG-CUP"/>
+                            <constraint firstItem="RiQ-vr-bIj" firstAttribute="trailing" secondItem="vtR-kW-zIV" secondAttribute="trailing" id="pNv-Bv-an3"/>
+                            <constraint firstItem="eUa-2j-71j" firstAttribute="leading" secondItem="1Th-u8-cIZ" secondAttribute="leading" id="q1q-5a-ls6"/>
+                            <constraint firstItem="nnC-cc-Hm7" firstAttribute="top" secondItem="dE8-82-S46" secondAttribute="bottom" constant="8" symbolic="YES" id="sbc-XC-rbQ"/>
+                            <constraint firstItem="eUa-2j-71j" firstAttribute="leading" secondItem="RiQ-vr-bIj" secondAttribute="leading" id="ucV-pe-Kuj"/>
+                            <constraint firstItem="eUa-2j-71j" firstAttribute="leading" secondItem="nnC-cc-Hm7" secondAttribute="leading" id="uky-eg-EtD"/>
+                            <constraint firstItem="1Th-u8-cIZ" firstAttribute="top" secondItem="RiQ-vr-bIj" secondAttribute="bottom" constant="8" symbolic="YES" id="wWB-zv-pD8"/>
+                        </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
+                        <outlet property="_providerButton" destination="mQX-U0-pdF" id="shR-fh-jgl"/>
+                        <outlet property="_providerTitle" destination="eUa-2j-71j" id="Qkx-mF-yfy"/>
+                        <outlet property="_selectProviderTitleHeightConstraint" destination="a0K-mh-ROW" id="XAc-QQ-qev"/>
+                        <outlet property="_selectedProviderNameHeightConstraint" destination="hei-Cc-QLP" id="1cY-V4-JvB"/>
                         <outlet property="_serviceButton" destination="vtR-kW-zIV" id="IbJ-Ka-j6Y"/>
                     </connections>
                 </viewController>

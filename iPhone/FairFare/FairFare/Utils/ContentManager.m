@@ -32,17 +32,16 @@
 }
 - (NSArray*)services
 {
-    return @[@"Cab",@"Auto Rickshaw"];
+    NSArray* services = dataFromPlistFile(@"Services.plist");
+    return services;
 }
-- (NSArray*)categoriesForServiceId:(NSString*)serviceId
+- (NSArray*)providersForServiceId:(NSString*)serviceId
 {
-    if([serviceId  isEqual: @"1"])
-    {
-        return @[@"Meru",@"Dot Cabs"];
-    }
-    else
-    {
+    if(!serviceId)
         return nil;
-    }
+    NSArray* services = dataFromPlistFile(@"Providers.plist");
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"(serviceId == %@)", serviceId];
+    NSArray* array = [services filteredArrayUsingPredicate:predicate];
+    return array;
 }
 @end

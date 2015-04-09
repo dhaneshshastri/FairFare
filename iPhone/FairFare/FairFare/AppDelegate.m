@@ -64,7 +64,7 @@
             
             [[self shareModel] initiateWithDelegate:self];
             self.shareModel.anotherLocationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-            self.shareModel.anotherLocationManager.activityType = CLActivityTypeOtherNavigation;
+            self.shareModel.anotherLocationManager.activityType = CLActivityTypeAutomotiveNavigation;
             
             if(IS_OS_8_OR_LATER) {
                 [self.shareModel.anotherLocationManager requestAlwaysAuthorization];
@@ -87,15 +87,25 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kLocationUpdated
                                                         object:locations];
     
-    [[[self shareModel] anotherLocationManager] allowDeferredLocationUpdatesUntilTraveled:10.0
-                                                                                  timeout:CLTimeIntervalMax];
+    
+//    [[[self shareModel] anotherLocationManager] allowDeferredLocationUpdatesUntilTraveled:10.0
+//                                                                                  timeout:CLTimeIntervalMax];
+    
+    
 }
 - (void)locationManager:(CLLocationManager *)manager
 didFinishDeferredUpdatesWithError:(NSError *)error
 {
+    NSLog(@"%@",[error description]);
+//    
+//    manager.deferringUpdates
     
 }
-
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error
+{
+    NSLog(@"%@",[error description]);
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
