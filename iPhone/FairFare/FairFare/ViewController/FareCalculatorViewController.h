@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "ActionSheetCustomPicker.h"
 @interface FareCalculatorViewController : UIViewController <UIPickerViewDataSource,ActionSheetCustomPickerDelegate,UIPickerViewDataSource>
-
+- (void)setData:(NSDictionary*)dict;
 @end

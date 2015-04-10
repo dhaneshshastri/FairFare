@@ -8,6 +8,7 @@
 
 #import "FareCalculatorViewController.h"
 
+
 @interface FareCalculatorViewController ()
 {
     ActionSheetCustomPicker* _pickerView;
@@ -18,6 +19,10 @@
     __weak IBOutlet UILabel *_providerTitle;
     __weak IBOutlet NSLayoutConstraint *_selectProviderTitleHeightConstraint;
     __weak IBOutlet NSLayoutConstraint *_selectedProviderNameHeightConstraint;
+    __weak IBOutlet NSLayoutConstraint *_topPaddingConstraint;
+    __weak IBOutlet UILabel *_cityLabel;
+    
+    NSDictionary* _data;
 }
 @end
 
@@ -30,21 +35,44 @@
     
     //Select first
     _selectedService = [[ContentManager sharedManager] services][0];
-    
-    
     NSArray* providers = [[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]];
     if(!providers)
     {
         _providerButton.hidden = YES;
     }
-    
     [_providerButton setTitle:((NSDictionary*)[[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]][0])[@"name"]
                      forState:UIControlStateNormal];
-    
 }
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    id address = _data[@"addressOrLocation"];
+    if([address isKindOfClass:[GMSAddress class]])
+    {
+        //Address
+        [_cityLabel setText:[NSString stringWithFormat:@"In %@",((GMSAddress*)address).locality]];
+        [_cityLabel setFont:[UIFont boldSystemFontOfSize:14.0]];
+    }
+    //Else fetch the address and show
+    id location = _data[@"addressOrLocation"];
+    
+    if([location isKindOfClass:[CLLocation class]])
+    {
+        GMSGeocoder* geocoder = [GMSGeocoder geocoder];
+        
+        [geocoder reverseGeocodeCoordinate:[((CLLocation*)location) coordinate]
+                         completionHandler:^(GMSReverseGeocodeResponse *geocodeResponse, NSError *erroe){
+                             
+                       
+                             GMSAddress* address = geocodeResponse.firstResult;
+                             
+                             //Address
+                             [_cityLabel setText:[NSString stringWithFormat:@"In %@",address.locality]];
+                         }];
+        
+    }
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -146,16 +174,40 @@
             if(![providers count])
             {
            //     _selectProviderTitleHeightConstraint.constant = 0.0;
-                _selectedProviderNameHeightConstraint.constant = 0.0;
-                [_providerButton layoutIfNeeded];
-               // _providerTitle.hidden = YES;
-//                _providerButton.hidden = YES;
+                
+                [UIView animateWithDuration:1.0
+                                 animations:^{
+                                     
+                                    _topPaddingConstraint.constant = 10.0;
+                                     [self.view layoutIfNeeded];
+                                     
+                                 } completion:^(BOOL finished){
+                                     
+                                     _providerTitle.hidden = YES;
+                                     _providerButton.hidden = YES;
+                                     
+                                 }];
             }
             else
             {
-                _selectProviderTitleHeightConstraint.constant = 21.0;
-                _selectedProviderNameHeightConstraint.constant = 30.0;
-                [self.view layoutIfNeeded];
+                [UIView animateWithDuration:1.0
+                                 animations:^{
+                                     
+                                     _providerTitle.hidden = NO;
+                                     _providerButton.hidden = NO;
+                    
+                                     
+                                     
+                                 }completion:^(BOOL finished){
+                                    
+                                     [UIView animateWithDuration:1.0
+                                                      animations:^{
+                                                          
+                                                          _topPaddingConstraint.constant = 119.0;
+                                                          [self.view layoutIfNeeded];
+                                                          
+                                                      }];
+                                 }];
             }
         }
             break;
@@ -217,5 +269,10 @@
     [(UIPickerView*)(_pickerView.pickerView) selectRow:index
                                            inComponent:0
                                               animated:YES];
+}
+- (void)setData:(NSDictionary*)dict
+{
+    _data = nil;
+    _data = dict;
 }
 @end

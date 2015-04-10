@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6PG-1R-RqC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6PG-1R-RqC">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -89,12 +89,16 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnC-cc-Hm7">
                                 <rect key="frame" x="16" y="72" width="110" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="OAW-h4-Xl9"/>
+                                    <constraint firstAttribute="height" constant="21" id="mW3-Pl-kPl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtR-kW-zIV">
-                                <rect key="frame" x="16" y="101" width="108" height="30"/>
+                                <rect key="frame" x="16" y="101" width="197" height="30"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -105,9 +109,10 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Provider" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUa-2j-71j">
                                 <rect key="frame" x="16" y="158" width="117" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="21" id="a0K-mh-ROW"/>
+                                    <constraint firstAttribute="width" constant="117" id="2BK-ih-pk0"/>
+                                    <constraint firstAttribute="height" constant="21" id="I9w-Ia-Wrj"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -115,7 +120,7 @@
                                 <rect key="frame" x="16" y="187" width="115" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="115" id="LAy-zu-0A5"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" priority="250" constant="20" id="hei-Cc-QLP"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" priority="250" constant="30" id="hei-Cc-QLP"/>
                                 </constraints>
                                 <state key="normal" title="Meru">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -124,25 +129,17 @@
                                     <action selector="showCategoryPicker:" destination="BMQ-dc-wAU" eventType="touchUpInside" id="9dO-xh-G0G"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RiQ-vr-bIj">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RiQ-vr-bIj">
                                 <rect key="frame" x="16" y="250" width="108" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="108" id="E55-r7-mbC"/>
+                                    <constraint firstAttribute="height" constant="21" id="EN2-v2-Yhn"/>
+                                    <constraint firstAttribute="width" constant="108" id="xNd-pf-B2D"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Th-u8-cIZ">
-                                <rect key="frame" x="16" y="279" width="108" height="30"/>
-                                <state key="normal" title="Hyderabad">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showCityPicker:" destination="BMQ-dc-wAU" eventType="touchUpInside" id="IBZ-lK-EBC"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJW-Qh-gtR">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJW-Qh-gtR">
                                 <rect key="frame" x="108" y="477" width="105" height="30"/>
                                 <state key="normal" title="Calulate Fare">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -151,31 +148,32 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="eUa-2j-71j" firstAttribute="top" secondItem="vtR-kW-zIV" secondAttribute="bottom" constant="27" id="28i-Uy-08G"/>
-                            <constraint firstItem="eUa-2j-71j" firstAttribute="top" secondItem="OwU-t8-tZe" secondAttribute="top" constant="158" id="PDd-IP-rgj"/>
-                            <constraint firstItem="mQX-U0-pdF" firstAttribute="leading" secondItem="eUa-2j-71j" secondAttribute="leading" id="Qgk-Po-JUp"/>
-                            <constraint firstItem="RiQ-vr-bIj" firstAttribute="trailing" secondItem="1Th-u8-cIZ" secondAttribute="trailing" id="W1F-e7-mKV"/>
-                            <constraint firstItem="mQX-U0-pdF" firstAttribute="top" secondItem="eUa-2j-71j" secondAttribute="bottom" constant="8" id="XgY-vS-GPS"/>
-                            <constraint firstItem="RiQ-vr-bIj" firstAttribute="top" secondItem="vtR-kW-zIV" secondAttribute="bottom" constant="119" id="YZG-V2-bsH"/>
-                            <constraint firstItem="eUa-2j-71j" firstAttribute="leading" secondItem="OwU-t8-tZe" secondAttribute="leadingMargin" id="hz4-o2-FDh"/>
-                            <constraint firstItem="eUa-2j-71j" firstAttribute="leading" secondItem="vtR-kW-zIV" secondAttribute="leading" id="iwI-PG-CUP"/>
-                            <constraint firstItem="RiQ-vr-bIj" firstAttribute="trailing" secondItem="vtR-kW-zIV" secondAttribute="trailing" id="pNv-Bv-an3"/>
-                            <constraint firstItem="eUa-2j-71j" firstAttribute="leading" secondItem="1Th-u8-cIZ" secondAttribute="leading" id="q1q-5a-ls6"/>
-                            <constraint firstItem="nnC-cc-Hm7" firstAttribute="top" secondItem="dE8-82-S46" secondAttribute="bottom" constant="8" symbolic="YES" id="sbc-XC-rbQ"/>
-                            <constraint firstItem="eUa-2j-71j" firstAttribute="leading" secondItem="RiQ-vr-bIj" secondAttribute="leading" id="ucV-pe-Kuj"/>
-                            <constraint firstItem="eUa-2j-71j" firstAttribute="leading" secondItem="nnC-cc-Hm7" secondAttribute="leading" id="uky-eg-EtD"/>
-                            <constraint firstItem="1Th-u8-cIZ" firstAttribute="top" secondItem="RiQ-vr-bIj" secondAttribute="bottom" constant="8" symbolic="YES" id="wWB-zv-pD8"/>
+                            <constraint firstItem="nnC-cc-Hm7" firstAttribute="top" secondItem="dE8-82-S46" secondAttribute="bottom" constant="8" symbolic="YES" id="0XF-be-Amp"/>
+                            <constraint firstItem="eUa-2j-71j" firstAttribute="top" secondItem="OwU-t8-tZe" secondAttribute="top" constant="158" id="4Az-vu-Lc9"/>
+                            <constraint firstItem="RiQ-vr-bIj" firstAttribute="top" secondItem="vtR-kW-zIV" secondAttribute="bottom" constant="119" id="C0p-hV-z6f"/>
+                            <constraint firstItem="RiQ-vr-bIj" firstAttribute="leading" secondItem="mQX-U0-pdF" secondAttribute="leading" id="Df0-se-esg"/>
+                            <constraint firstItem="mQX-U0-pdF" firstAttribute="top" secondItem="eUa-2j-71j" secondAttribute="bottom" constant="8" symbolic="YES" id="E6u-9P-QQj"/>
+                            <constraint firstItem="eUa-2j-71j" firstAttribute="leading" secondItem="mQX-U0-pdF" secondAttribute="leading" id="HLA-jf-hyX"/>
+                            <constraint firstItem="eUa-2j-71j" firstAttribute="leading" secondItem="OwU-t8-tZe" secondAttribute="leadingMargin" id="LBW-WI-vlC"/>
+                            <constraint firstItem="RJW-Qh-gtR" firstAttribute="centerX" secondItem="OwU-t8-tZe" secondAttribute="centerX" id="NpL-Ot-HiE"/>
+                            <constraint firstItem="vtR-kW-zIV" firstAttribute="trailing" secondItem="RJW-Qh-gtR" secondAttribute="trailing" id="Oe2-5C-fQy"/>
+                            <constraint firstItem="ueI-dE-uoI" firstAttribute="top" secondItem="RJW-Qh-gtR" secondAttribute="bottom" constant="61" id="WqA-PO-qSR"/>
+                            <constraint firstItem="vtR-kW-zIV" firstAttribute="leading" secondItem="nnC-cc-Hm7" secondAttribute="leading" id="eq9-kg-5sH"/>
+                            <constraint firstItem="RJW-Qh-gtR" firstAttribute="leading" secondItem="OwU-t8-tZe" secondAttribute="leadingMargin" constant="92" id="ffA-sd-vpm"/>
+                            <constraint firstItem="vtR-kW-zIV" firstAttribute="top" secondItem="nnC-cc-Hm7" secondAttribute="bottom" constant="8" symbolic="YES" id="q0d-3a-sMv"/>
+                            <constraint firstItem="vtR-kW-zIV" firstAttribute="leading" secondItem="eUa-2j-71j" secondAttribute="leading" id="r5A-wf-Jgc"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
+                        <outlet property="_cityLabel" destination="RiQ-vr-bIj" id="4fe-MT-lPO"/>
                         <outlet property="_providerButton" destination="mQX-U0-pdF" id="shR-fh-jgl"/>
                         <outlet property="_providerTitle" destination="eUa-2j-71j" id="Qkx-mF-yfy"/>
-                        <outlet property="_selectProviderTitleHeightConstraint" destination="a0K-mh-ROW" id="XAc-QQ-qev"/>
                         <outlet property="_selectedProviderNameHeightConstraint" destination="hei-Cc-QLP" id="1cY-V4-JvB"/>
                         <outlet property="_serviceButton" destination="vtR-kW-zIV" id="IbJ-Ka-j6Y"/>
+                        <outlet property="_topPaddingConstraint" destination="C0p-hV-z6f" id="MPD-4F-TQy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZWy-jw-hVm" userLabel="First Responder" sceneMemberID="firstResponder"/>

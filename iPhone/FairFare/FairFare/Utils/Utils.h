@@ -10,6 +10,7 @@
 #define FairFare_Utils_h
 
 #define kLocationUpdated @"kLocationUpdated"
+#define kHeadingUpdated @"kHeadingUpdated"
 
 
 UIViewController* viewControllerFromStoryboard(NSString* storyBoardName,NSString* controllerId);

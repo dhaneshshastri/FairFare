@@ -73,6 +73,9 @@
             [self.shareModel.anotherLocationManager startMonitoringSignificantLocationChanges];
         }
     }
+    
+    //Disable lock
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
     return YES;
 }
 
@@ -88,9 +91,6 @@
                                                         object:locations];
     
     
-//    [[[self shareModel] anotherLocationManager] allowDeferredLocationUpdatesUntilTraveled:10.0
-//                                                                                  timeout:CLTimeIntervalMax];
-    
     
 }
 - (void)locationManager:(CLLocationManager *)manager
@@ -100,6 +100,13 @@ didFinishDeferredUpdatesWithError:(NSError *)error
 //    
 //    manager.deferringUpdates
     
+}
+- (void) locationManager:(CLLocationManager *)manager
+        didUpdateHeading:(CLHeading *)newHeading
+{
+    //Notify to other parts of the application that location is updated
+    [[NSNotificationCenter defaultCenter] postNotificationName:kHeadingUpdated
+                                                        object:newHeading];
 }
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error

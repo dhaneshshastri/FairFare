@@ -12,6 +12,7 @@
 #import "HistoryViewController.h"
 #import "M13Checkbox.h"
 #import "FareCalculatorViewController.h"
+#import <MapKit/MapKit.h>
 
 
 @interface ViewController ()
@@ -21,8 +22,15 @@
     UIButton* _closeButton;
     BOOL _reachedDestinationChecked;
     CLLocation* _currentLocation;
+    CLLocation* _previousLocation;
     GMSMutablePath* _travelPath;
     BOOL _reverseGeocodeStartLocation;
+    BOOL _isNavigating;
+    GMSMarker* _navigationMarker;
+    UILabel* _travelledDistanceLabel;
+    CLLocationDistance _travelledDistance;
+    BOOL _journeyStarted;
+    GMSAddress* _startAddress;
 }
 @property (nonatomic,readonly,strong) LFGlassView* glassView;
 @end
@@ -36,6 +44,12 @@
                                              selector:@selector(locationUpdatedNotification:)
                                                  name:kLocationUpdated
                                                object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(headingUpdatedNotification:)
+                                                 name:kHeadingUpdated
+                                               object:nil];
+    
     // coordinate -33.86,151.20 at zoom level 6.
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:0.0
                                                             longitude:0.0
@@ -59,6 +73,7 @@
     [self.view insertSubview:_mapView atIndex:0];
     
     [self createAndAddControlsView];
+    
 }
 - (void)removeControlsView
 {
@@ -179,6 +194,50 @@
                              withAlignmentOption:NSLayoutAttributeCenterY
                            andRefAlignmentOption:NSLayoutAttributeCenterY];
     }
+    //Add the distance travelled text
+    _travelledDistanceLabel = nil;
+    _travelledDistanceLabel = [[UILabel alloc] init];
+    [_travelledDistanceLabel setFont:[UIFont fontWithName:@"LetsgoDigital-Regular"
+                                                size:24.0]];
+    
+    [_travelledDistanceLabel setBackgroundColor:[UIColor colorWithRed:1.0
+                                                           green:1.0
+                                                            blue:1.0
+                                                           alpha:0.8]];
+    [_travelledDistanceLabel.layer setCornerRadius:4.0];
+    [_travelledDistanceLabel setClipsToBounds:YES];
+    [_travelledDistanceLabel setTextColor:[UIColor colorWithRed:9 / 255.0
+                                                     green:126 / 255.0
+                                                      blue:254 / 255.0
+                                                     alpha:1.0]];
+    
+    {
+        [_travelledDistanceLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [_mapView addSubview:_travelledDistanceLabel];
+        [[LayoutManager layoutManager] setHeight:24.0
+                                          ofView:_travelledDistanceLabel
+                                          inView:_mapView
+                                     andRelation:NSLayoutRelationEqual];
+        
+        [[LayoutManager layoutManager] setWidth:10.0
+                                          ofView:_travelledDistanceLabel
+                                          inView:_mapView
+                                     andRelation:NSLayoutRelationGreaterThanOrEqual];
+        
+        [[LayoutManager layoutManager] alignView:_travelledDistanceLabel
+                                       toRefView:_mapView
+                                      withOffset:CGPointMake(65.0, 0)
+                                          inView:_mapView
+                             withAlignmentOption:NSLayoutAttributeTop
+                           andRefAlignmentOption:NSLayoutAttributeTop];
+        
+        [[LayoutManager layoutManager] alignView:_travelledDistanceLabel
+                                       toRefView:_mapView
+                                      withOffset:CGPointMake(5.0, 0)
+                                          inView:_mapView
+                             withAlignmentOption:NSLayoutAttributeLeft
+                           andRefAlignmentOption:NSLayoutAttributeLeft];
+    }
 }
 - (void)stopJourney
 {
@@ -190,6 +249,9 @@
     _travelPath = nil;
     [_mapView clear];
     [[LocationShareModel sharedModel] stopUpdatingLocation];
+    _isNavigating = NO;
+    _travelledDistance = 0.0;
+    _journeyStarted = NO;
 }
 - (void)createOnTravelControls
 {
@@ -232,8 +294,6 @@
                                       inView:_mapView
                          withAlignmentOption:NSLayoutAttributeTop
                        andRefAlignmentOption:NSLayoutAttributeTop];
-    
-    
 }
 
 - (LFGlassView *) glassView {
@@ -263,21 +323,70 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-#pragma Location
+#pragma Location Delegates
+- (void)headingUpdatedNotification:(NSNotification*)notification
+{
+    CLHeading* heading = notification.object;
+    [_mapView animateToBearing:heading.magneticHeading];
+}
 - (void)locationUpdatedNotification:(NSNotification*)notification
 {
     id locations = notification.object;
     CLLocation* newLocation = [locations lastObject];
     CLLocationCoordinate2D theLocation = newLocation.coordinate;
-    
+
+    [_mapView animateToBearing:newLocation.course];
     
     [_mapView animateToLocation:theLocation];
-    [_mapView animateToZoom:15];
+    [_mapView animateToZoom:16];
 
-    _currentLocation = nil;
+    if(!_journeyStarted)
+        return;
+    
+    if(_currentLocation)
+    {
+        _previousLocation = nil;
+        _previousLocation = _currentLocation;
+    }
+    
     _currentLocation = newLocation;
     
-    [self updatePathWithCoordinate:theLocation];
+    CLLocationDistance minThresholdDistance = [_previousLocation distanceFromLocation:_currentLocation];
+    
+    
+    
+    if(minThresholdDistance < 20.0)
+    {
+        _isNavigating = NO;
+    }
+    else{
+        NSLog(@"THreshold reached, Navigating %f",minThresholdDistance);
+        _isNavigating = YES;
+    }
+    if(_isNavigating)
+    {
+        //Append distance
+        if(_previousLocation)
+            _travelledDistance += [_previousLocation distanceFromLocation:_currentLocation];
+        //Show the navigating icon
+        // Creates a marker in the center of the map.
+        _navigationMarker.map = nil;
+        _navigationMarker = nil;
+        _navigationMarker = [[GMSMarker alloc] init];
+        _navigationMarker.icon = [UIImage imageNamed:@"NavigationArrow.png"];
+        _navigationMarker.position = theLocation;
+        _navigationMarker.zIndex = 1000;
+        _navigationMarker.map = _mapView;
+        _navigationMarker.groundAnchor = CGPointMake(0.5, 0.5);
+        
+        //Update the distance metre
+        MKDistanceFormatter *df = [[MKDistanceFormatter alloc] init];
+        df.unitStyle = MKDistanceFormatterUnitStyleDefault;
+        
+        [_travelledDistanceLabel setText:[df stringFromDistance: _travelledDistance]];
+        
+        [self updatePathWithCoordinate:theLocation];
+    }
     
     if(_reverseGeocodeStartLocation)//First one
     {
@@ -285,14 +394,15 @@
         
         [geocoder reverseGeocodeCoordinate:theLocation
                          completionHandler:^(GMSReverseGeocodeResponse *geocodeResponse, NSError *erroe){
-                         //    NSArray* results = geocodeResponse.results;
-                             GMSAddress* firstResult = geocodeResponse.firstResult;
+                             
+                             _startAddress = nil;
+                             _startAddress = geocodeResponse.firstResult;
 
                              // Creates a marker in the center of the map.
                              GMSMarker *marker = [[GMSMarker alloc] init];
-                             marker.position = firstResult.coordinate;
-                             marker.title = firstResult.thoroughfare;
-                             marker.snippet = firstResult.subLocality;
+                             marker.position = _startAddress.coordinate;
+                             marker.title = _startAddress.thoroughfare;
+                             marker.snippet = _startAddress.subLocality;
                              marker.map = _mapView;
                          }];
         _reverseGeocodeStartLocation = NO;
@@ -307,6 +417,7 @@
 }
 - (void)startJourney:(UIButton*)sender
 {
+    _journeyStarted = YES;
     _reverseGeocodeStartLocation = YES;
     _currentLocation = nil;
     [self removeControlsView];
@@ -380,6 +491,7 @@
             {
                 //Take to FareCalculator screen
                 FareCalculatorViewController* fareCalculatorVC = (FareCalculatorViewController*)viewControllerFromStoryboard(@"Main",@"fareCalculatorController");
+                [fareCalculatorVC setData:@{@"addressOrLocation":_startAddress ? : _currentLocation,@"travelledDistance":@(_travelledDistance)}];
                 [self.navigationController pushViewController:fareCalculatorVC
                                                      animated:YES];
             }

@@ -15,5 +15,6 @@
 #import "LayoutManager.h"
 #import "LocationShareModel.h"
 #import "ContentManager.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 #endif

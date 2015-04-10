@@ -11,7 +11,6 @@
 @interface ContentManager : NSObject
 - (NSArray*)cities;
 - (NSArray*)services;
-- (NSArray*)categories;
 - (NSArray*)providersForServiceId:(NSString*)serviceId;
 + (id)sharedManager;
 @end
