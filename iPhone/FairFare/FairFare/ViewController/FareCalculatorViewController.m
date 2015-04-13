@@ -7,6 +7,7 @@
 //
 
 #import "FareCalculatorViewController.h"
+#import <MapKit/MapKit.h>
 
 
 @interface FareCalculatorViewController ()
@@ -22,6 +23,7 @@
     __weak IBOutlet NSLayoutConstraint *_topPaddingConstraint;
     __weak IBOutlet UILabel *_cityLabel;
     
+    __weak IBOutlet UILabel *_distanceTravelledLabel;
     NSDictionary* _data;
 }
 @end
@@ -42,10 +44,25 @@
     }
     [_providerButton setTitle:((NSDictionary*)[[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]][0])[@"name"]
                      forState:UIControlStateNormal];
+    
+    
 }
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    CLLocationDistance distanceTravelled = [_data[@"travelledDistance"] doubleValue];
+    
+    //Update the distance metre
+    MKDistanceFormatter *df = [[MKDistanceFormatter alloc] init];
+    df.unitStyle = MKDistanceFormatterUnitStyleDefault;
+    
+    if(distanceTravelled > 0)
+    {
+        [_distanceTravelledLabel setText:[NSString stringWithFormat:@"You have travelled %@.",[df stringFromDistance: distanceTravelled]]];
+    }
+    
+    
     
     id address = _data[@"addressOrLocation"];
     if([address isKindOfClass:[GMSAddress class]])

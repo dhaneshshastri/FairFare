@@ -145,11 +145,21 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wW8-KH-Tzd">
+                                <rect key="frame" x="16" y="450" width="288" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="RBq-Jm-pIp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="nnC-cc-Hm7" firstAttribute="top" secondItem="dE8-82-S46" secondAttribute="bottom" constant="8" symbolic="YES" id="0XF-be-Amp"/>
                             <constraint firstItem="eUa-2j-71j" firstAttribute="top" secondItem="OwU-t8-tZe" secondAttribute="top" constant="158" id="4Az-vu-Lc9"/>
+                            <constraint firstItem="wW8-KH-Tzd" firstAttribute="centerX" secondItem="RJW-Qh-gtR" secondAttribute="centerX" id="8ma-fw-17Q"/>
                             <constraint firstItem="RiQ-vr-bIj" firstAttribute="top" secondItem="vtR-kW-zIV" secondAttribute="bottom" constant="119" id="C0p-hV-z6f"/>
                             <constraint firstItem="RiQ-vr-bIj" firstAttribute="leading" secondItem="mQX-U0-pdF" secondAttribute="leading" id="Df0-se-esg"/>
                             <constraint firstItem="mQX-U0-pdF" firstAttribute="top" secondItem="eUa-2j-71j" secondAttribute="bottom" constant="8" symbolic="YES" id="E6u-9P-QQj"/>
@@ -158,10 +168,12 @@
                             <constraint firstItem="RJW-Qh-gtR" firstAttribute="centerX" secondItem="OwU-t8-tZe" secondAttribute="centerX" id="NpL-Ot-HiE"/>
                             <constraint firstItem="vtR-kW-zIV" firstAttribute="trailing" secondItem="RJW-Qh-gtR" secondAttribute="trailing" id="Oe2-5C-fQy"/>
                             <constraint firstItem="ueI-dE-uoI" firstAttribute="top" secondItem="RJW-Qh-gtR" secondAttribute="bottom" constant="61" id="WqA-PO-qSR"/>
+                            <constraint firstItem="wW8-KH-Tzd" firstAttribute="leading" secondItem="RiQ-vr-bIj" secondAttribute="leading" id="dc4-9E-KmV"/>
                             <constraint firstItem="vtR-kW-zIV" firstAttribute="leading" secondItem="nnC-cc-Hm7" secondAttribute="leading" id="eq9-kg-5sH"/>
                             <constraint firstItem="RJW-Qh-gtR" firstAttribute="leading" secondItem="OwU-t8-tZe" secondAttribute="leadingMargin" constant="92" id="ffA-sd-vpm"/>
                             <constraint firstItem="vtR-kW-zIV" firstAttribute="top" secondItem="nnC-cc-Hm7" secondAttribute="bottom" constant="8" symbolic="YES" id="q0d-3a-sMv"/>
                             <constraint firstItem="vtR-kW-zIV" firstAttribute="leading" secondItem="eUa-2j-71j" secondAttribute="leading" id="r5A-wf-Jgc"/>
+                            <constraint firstItem="RJW-Qh-gtR" firstAttribute="top" secondItem="wW8-KH-Tzd" secondAttribute="bottom" constant="6" id="ut3-vr-hnb"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -169,6 +181,7 @@
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="_cityLabel" destination="RiQ-vr-bIj" id="4fe-MT-lPO"/>
+                        <outlet property="_distanceTravelledLabel" destination="wW8-KH-Tzd" id="rrd-zf-Aef"/>
                         <outlet property="_providerButton" destination="mQX-U0-pdF" id="shR-fh-jgl"/>
                         <outlet property="_providerTitle" destination="eUa-2j-71j" id="Qkx-mF-yfy"/>
                         <outlet property="_selectedProviderNameHeightConstraint" destination="hei-Cc-QLP" id="1cY-V4-JvB"/>

@@ -39,16 +39,6 @@
 @synthesize glassView = _glassView;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //Register Notification
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(locationUpdatedNotification:)
-                                                 name:kLocationUpdated
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(headingUpdatedNotification:)
-                                                 name:kHeadingUpdated
-                                               object:nil];
     
     // coordinate -33.86,151.20 at zoom level 6.
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:0.0
@@ -56,7 +46,6 @@
                                                                  zoom:18
                                                               bearing:30
                                                          viewingAngle:30];
-    
     
     _mapView = [GMSMapView mapWithFrame:CGRectMake(0,
                                                    0,
@@ -71,9 +60,6 @@
     
     [self.view addSubview:_mapView];
     [self.view insertSubview:_mapView atIndex:0];
-    
-    [self createAndAddControlsView];
-    
 }
 - (void)removeControlsView
 {
@@ -98,8 +84,6 @@
                             _glassView = nil;
                         }
                     }];
-    
-    
 }
 - (void)createAndAddControlsView
 {
@@ -250,7 +234,6 @@
     [_mapView clear];
     [[LocationShareModel sharedModel] stopUpdatingLocation];
     _isNavigating = NO;
-    _travelledDistance = 0.0;
     _journeyStarted = NO;
 }
 - (void)createOnTravelControls
@@ -313,6 +296,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //Register Notification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(locationUpdatedNotification:)
+                                                 name:kLocationUpdated
+                                               object:nil];
+    [self createAndAddControlsView];
+}
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -353,14 +346,12 @@
     
     CLLocationDistance minThresholdDistance = [_previousLocation distanceFromLocation:_currentLocation];
     
-    
-    
-    if(minThresholdDistance < 20.0)
+    if(minThresholdDistance < 20.0 && !_isNavigating)
     {
         _isNavigating = NO;
     }
     else{
-        NSLog(@"THreshold reached, Navigating %f",minThresholdDistance);
+        NSLog(@"Threshold reached, Navigating %f",minThresholdDistance);
         _isNavigating = YES;
     }
     if(_isNavigating)
@@ -387,7 +378,6 @@
         
         [self updatePathWithCoordinate:theLocation];
     }
-    
     if(_reverseGeocodeStartLocation)//First one
     {
         GMSGeocoder* geocoder = [GMSGeocoder geocoder];
@@ -420,6 +410,7 @@
     _journeyStarted = YES;
     _reverseGeocodeStartLocation = YES;
     _currentLocation = nil;
+    _travelledDistance = 0.0;
     [self removeControlsView];
     //start updating the location
     [[LocationShareModel sharedModel] startUpdatingLocation];
@@ -469,9 +460,11 @@
                 
                 [checkBox.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0]];
             }
+            _reachedDestinationChecked = checkBox.checkState == M13CheckboxStateChecked;
         }
         [alert setValue:view forKey:@"accessoryView"];
     }
+    
     [alert show];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
