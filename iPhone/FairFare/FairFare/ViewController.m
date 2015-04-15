@@ -178,50 +178,6 @@
                              withAlignmentOption:NSLayoutAttributeCenterY
                            andRefAlignmentOption:NSLayoutAttributeCenterY];
     }
-    //Add the distance travelled text
-    _travelledDistanceLabel = nil;
-    _travelledDistanceLabel = [[UILabel alloc] init];
-    [_travelledDistanceLabel setFont:[UIFont fontWithName:@"LetsgoDigital-Regular"
-                                                size:24.0]];
-    
-    [_travelledDistanceLabel setBackgroundColor:[UIColor colorWithRed:1.0
-                                                           green:1.0
-                                                            blue:1.0
-                                                           alpha:0.8]];
-    [_travelledDistanceLabel.layer setCornerRadius:4.0];
-    [_travelledDistanceLabel setClipsToBounds:YES];
-    [_travelledDistanceLabel setTextColor:[UIColor colorWithRed:9 / 255.0
-                                                     green:126 / 255.0
-                                                      blue:254 / 255.0
-                                                     alpha:1.0]];
-    
-    {
-        [_travelledDistanceLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [_mapView addSubview:_travelledDistanceLabel];
-        [[LayoutManager layoutManager] setHeight:24.0
-                                          ofView:_travelledDistanceLabel
-                                          inView:_mapView
-                                     andRelation:NSLayoutRelationEqual];
-        
-        [[LayoutManager layoutManager] setWidth:10.0
-                                          ofView:_travelledDistanceLabel
-                                          inView:_mapView
-                                     andRelation:NSLayoutRelationGreaterThanOrEqual];
-        
-        [[LayoutManager layoutManager] alignView:_travelledDistanceLabel
-                                       toRefView:_mapView
-                                      withOffset:CGPointMake(65.0, 0)
-                                          inView:_mapView
-                             withAlignmentOption:NSLayoutAttributeTop
-                           andRefAlignmentOption:NSLayoutAttributeTop];
-        
-        [[LayoutManager layoutManager] alignView:_travelledDistanceLabel
-                                       toRefView:_mapView
-                                      withOffset:CGPointMake(5.0, 0)
-                                          inView:_mapView
-                             withAlignmentOption:NSLayoutAttributeLeft
-                           andRefAlignmentOption:NSLayoutAttributeLeft];
-    }
 }
 - (void)stopJourney
 {
@@ -277,6 +233,55 @@
                                       inView:_mapView
                          withAlignmentOption:NSLayoutAttributeTop
                        andRefAlignmentOption:NSLayoutAttributeTop];
+    
+    
+    //Add the distance travelled text
+    [_travelledDistanceLabel removeFromSuperview];
+    _travelledDistanceLabel = nil;
+    _travelledDistanceLabel = [[UILabel alloc] init];
+    [_travelledDistanceLabel setFont:[UIFont fontWithName:@"LetsgoDigital-Regular"
+                                                     size:24.0]];
+    
+    [_travelledDistanceLabel setBackgroundColor:[UIColor colorWithRed:1.0
+                                                                green:1.0
+                                                                 blue:1.0
+                                                                alpha:0.8]];
+    [_travelledDistanceLabel.layer setCornerRadius:4.0];
+    [_travelledDistanceLabel setClipsToBounds:YES];
+    [_travelledDistanceLabel setTextColor:[UIColor colorWithRed:9 / 255.0
+                                                          green:126 / 255.0
+                                                           blue:254 / 255.0
+                                                          alpha:1.0]];
+    
+    [_travelledDistanceLabel setHidden:YES];
+    
+    {
+        [_travelledDistanceLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [_mapView addSubview:_travelledDistanceLabel];
+        [[LayoutManager layoutManager] setHeight:24.0
+                                          ofView:_travelledDistanceLabel
+                                          inView:_mapView
+                                     andRelation:NSLayoutRelationEqual];
+        
+        [[LayoutManager layoutManager] setWidth:10.0
+                                         ofView:_travelledDistanceLabel
+                                         inView:_mapView
+                                    andRelation:NSLayoutRelationGreaterThanOrEqual];
+        
+        [[LayoutManager layoutManager] alignView:_travelledDistanceLabel
+                                       toRefView:_mapView
+                                      withOffset:CGPointMake(65.0, 0)
+                                          inView:_mapView
+                             withAlignmentOption:NSLayoutAttributeTop
+                           andRefAlignmentOption:NSLayoutAttributeTop];
+        
+        [[LayoutManager layoutManager] alignView:_travelledDistanceLabel
+                                       toRefView:_mapView
+                                      withOffset:CGPointMake(5.0, 0)
+                                          inView:_mapView
+                             withAlignmentOption:NSLayoutAttributeLeft
+                           andRefAlignmentOption:NSLayoutAttributeLeft];
+    }
 }
 
 - (LFGlassView *) glassView {
@@ -375,6 +380,7 @@
         df.unitStyle = MKDistanceFormatterUnitStyleDefault;
         
         [_travelledDistanceLabel setText:[df stringFromDistance: _travelledDistance]];
+        [_travelledDistanceLabel setHidden:NO];
         
         [self updatePathWithCoordinate:theLocation];
     }
@@ -484,7 +490,7 @@
             {
                 //Take to FareCalculator screen
                 FareCalculatorViewController* fareCalculatorVC = (FareCalculatorViewController*)viewControllerFromStoryboard(@"Main",@"fareCalculatorController");
-                [fareCalculatorVC setData:@{@"addressOrLocation":_startAddress ? : _currentLocation,@"travelledDistance":@(_travelledDistance)}];
+                [fareCalculatorVC setData:@{@"addressOrLocation":_startAddress ? : (_currentLocation ? : [NSNull null]),@"travelledDistance":@(_travelledDistance)}];
                 [self.navigationController pushViewController:fareCalculatorVC
                                                      animated:YES];
             }

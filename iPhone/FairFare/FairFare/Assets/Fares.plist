@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>subCategoryId</key>
+		<string>0</string>
+		<key>providerId</key>
+		<string>0</string>
+		<key>serviceId</key>
+		<string>0</string>
+		<key>selfId</key>
+		<string>0</string>
+		<key>dayTimings</key>
+		<string>5:00-23:00 </string>
+		<key>nightTimings</key>
+		<string>23:00-5:00</string>
+		<key>dayFareId</key>
+		<string>0</string>
+		<key>nightFareId</key>
+		<string>0</string>
+	</dict>
+	<string></string>
+</array>
+</plist>
