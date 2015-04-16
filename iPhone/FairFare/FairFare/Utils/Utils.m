@@ -74,3 +74,11 @@ NSUInteger indexOfItemFor(NSArray* array,NSString* matchingKey,NSString* matchin
     }];
     return index;
 }
+NSArray* safeArray(NSArray* array)
+{
+    return (array.count ? array : nil);
+}
+BOOL isArraySafe(NSArray* array)
+{
+    return array && [array count] > 0;
+}

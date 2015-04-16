@@ -30,18 +30,31 @@
 {
     return @[@"Hyderabad",@"Bangalore",@"Chennai"];
 }
+//Returns safe array
 - (NSArray*)services
 {
     NSArray* services = dataFromPlistFile(@"Services.plist");
-    return services;
+    return safeArray(services);
 }
+//Returns safe array with configured Predicate applied
 - (NSArray*)providersForServiceId:(NSString*)serviceId
 {
     if(!serviceId)
         return nil;
     NSArray* services = dataFromPlistFile(@"Providers.plist");
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"(serviceId == %@)", serviceId];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"serviceId == %@", serviceId];
     NSArray* array = [services filteredArrayUsingPredicate:predicate];
-    return array;
+    return safeArray(array);
+}
+//Returns safe array with configured Predicate applied
+- (NSArray*)subCategoriesForServiceId:(NSString*)serviceId
+                        andProviderId:(NSString*)providerId
+{
+    if(!serviceId || !providerId)
+        return nil;
+    NSArray* services = dataFromPlistFile(@"SubCategories.plist");
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"serviceId == %@ AND providerId == %@", serviceId,providerId];
+    NSArray* array = [services filteredArrayUsingPredicate:predicate];
+    return safeArray(array);
 }
 @end

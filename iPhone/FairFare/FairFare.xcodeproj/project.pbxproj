@@ -10,7 +10,6 @@
 		5015FB5F1ADCD26B00D849DA /* Fares.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5015FB5E1ADCD26B00D849DA /* Fares.plist */; };
 		5015FB611ADCE78D00D849DA /* DayFares.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5015FB601ADCE78D00D849DA /* DayFares.plist */; };
 		5015FB631ADCE79D00D849DA /* NightFares.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5015FB621ADCE79D00D849DA /* NightFares.plist */; };
-		5015FB651ADCED7F00D849DA /* SubCategories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5015FB641ADCED7F00D849DA /* SubCategories.plist */; };
 		501BB5341AC4012E0066CA3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BB5331AC4012E0066CA3D /* main.m */; };
 		501BB5371AC4012E0066CA3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BB5361AC4012E0066CA3D /* AppDelegate.m */; };
 		501BB53A1AC4012E0066CA3D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BB5391AC4012E0066CA3D /* ViewController.m */; };
@@ -30,6 +29,7 @@
 		50874DD11AD3F2D80060AB57 /* ContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50874DD01AD3F2D80060AB57 /* ContentManager.m */; };
 		5088D47C1AD7A29200A626E8 /* NavigationArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5088D47B1AD7A29200A626E8 /* NavigationArrow.png */; };
 		5088D47E1AD7ADC500A626E8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D47D1AD7ADC500A626E8 /* MapKit.framework */; };
+		5090D9CD1ADF884200D518C4 /* SubCategories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5090D9CC1ADF884200D518C4 /* SubCategories.plist */; };
 		50C9EC211AC9C6F000D34A0B /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC201AC9C6F000D34A0B /* GoogleMaps.framework */; };
 		50C9EC231AC9C78400D34A0B /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50C9EC221AC9C78400D34A0B /* GoogleMaps.bundle */; };
 		50C9EC251AC9C8B600D34A0B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C9EC241AC9C8B600D34A0B /* AVFoundation.framework */; };
@@ -66,7 +66,6 @@
 		5015FB5E1ADCD26B00D849DA /* Fares.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Fares.plist; sourceTree = "<group>"; };
 		5015FB601ADCE78D00D849DA /* DayFares.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DayFares.plist; sourceTree = "<group>"; };
 		5015FB621ADCE79D00D849DA /* NightFares.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NightFares.plist; sourceTree = "<group>"; };
-		5015FB641ADCED7F00D849DA /* SubCategories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SubCategories.plist; sourceTree = "<group>"; };
 		501BB52E1AC4012E0066CA3D /* FairFare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FairFare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		501BB5321AC4012E0066CA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		501BB5331AC4012E0066CA3D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -101,6 +100,7 @@
 		50874DD01AD3F2D80060AB57 /* ContentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentManager.m; sourceTree = "<group>"; };
 		5088D47B1AD7A29200A626E8 /* NavigationArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationArrow.png; sourceTree = "<group>"; };
 		5088D47D1AD7ADC500A626E8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		5090D9CC1ADF884200D518C4 /* SubCategories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SubCategories.plist; sourceTree = "<group>"; };
 		50C9EC201AC9C6F000D34A0B /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = FairFare/GoogleMaps.framework; sourceTree = "<group>"; };
 		50C9EC221AC9C78400D34A0B /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = FairFare/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		50C9EC241AC9C8B600D34A0B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -240,6 +240,7 @@
 		50C9EC1D1AC9B06C00D34A0B /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				5090D9CC1ADF884200D518C4 /* SubCategories.plist */,
 				5088D47B1AD7A29200A626E8 /* NavigationArrow.png */,
 				505E877D1AD789400068D6A9 /* Let's go Digital Regular.ttf */,
 				5065FF871AD53E24004E21C2 /* Services.plist */,
@@ -247,7 +248,6 @@
 				5015FB5E1ADCD26B00D849DA /* Fares.plist */,
 				5015FB601ADCE78D00D849DA /* DayFares.plist */,
 				5015FB621ADCE79D00D849DA /* NightFares.plist */,
-				5015FB641ADCED7F00D849DA /* SubCategories.plist */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -403,8 +403,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				505E877F1AD789F90068D6A9 /* Let's go Digital Regular.ttf in Resources */,
-				5015FB651ADCED7F00D849DA /* SubCategories.plist in Resources */,
 				5015FB631ADCE79D00D849DA /* NightFares.plist in Resources */,
+				5090D9CD1ADF884200D518C4 /* SubCategories.plist in Resources */,
 				5065FF881AD53E24004E21C2 /* Services.plist in Resources */,
 				5015FB5F1ADCD26B00D849DA /* Fares.plist in Resources */,
 				507B20801ACD4D4D0087A966 /* Locations.gpx in Resources */,

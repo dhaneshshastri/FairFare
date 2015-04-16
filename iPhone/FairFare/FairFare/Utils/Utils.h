@@ -16,5 +16,6 @@
 UIViewController* viewControllerFromStoryboard(NSString* storyBoardName,NSString* controllerId);
 id dataFromPlistFile(NSString* fileName);
 NSUInteger indexOfItemFor(NSArray* array,NSString* matchingKey,NSString* matchingText);
-
+NSArray* safeArray(NSArray* array);
+BOOL isArraySafe(NSArray* array);
 #endif

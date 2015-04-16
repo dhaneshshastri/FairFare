@@ -430,10 +430,12 @@
                                          cancelButtonTitle:@"No"
                                          otherButtonTitles:@"Yes", nil];
 
+    if(_travelledDistance > 0)
     {
         UIView* view = [[UIView alloc] init];
         [view setBackgroundColor:[UIColor clearColor]];
         [view setFrame:CGRectMake(0, 0, 0, 40.0)];
+        if(_travelledDistance > 0)
         {
             //Add checkbox
             M13Checkbox *checkBox = [[M13Checkbox alloc] initWithTitle:@"Reached Destination?"];
@@ -470,7 +472,6 @@
         }
         [alert setValue:view forKey:@"accessoryView"];
     }
-    
     [alert show];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

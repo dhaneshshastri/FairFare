@@ -12,5 +12,6 @@
 - (NSArray*)cities;
 - (NSArray*)services;
 - (NSArray*)providersForServiceId:(NSString*)serviceId;
+- (NSArray*)subCategoriesForServiceId:(NSString*)serviceId andProviderId:(NSString*)providerId;
 + (id)sharedManager;
 @end

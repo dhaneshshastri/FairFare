@@ -9,6 +9,8 @@
 #import "FareCalculatorViewController.h"
 #import <MapKit/MapKit.h>
 
+
+
 @interface ButtonOptionView : UIView
 {
     UILabel* _headerLabel;
@@ -16,6 +18,7 @@
 }
 @property (nonatomic,readonly) NSString* title;
 @property (nonatomic,readonly) NSString* buttonTitle;
+@property (nonatomic,weak) id <ButtonOptionViewDelegate> delegate;
 @end
 @implementation ButtonOptionView
 - (id)initWithTitle:(NSString*)title
@@ -51,33 +54,41 @@
 }
 - (void)layoutViews
 {
+    //Add subviews
+    _headerLabel = [UILabel new];
+    [_headerLabel setText:_title];
+    [_headerLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_headerLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
+    [self addSubview:_headerLabel];
+    //
+    _optionButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_optionButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addSubview:_optionButton];
     {
-        //Add subviews
-        _headerLabel = [UILabel new];
-        [_headerLabel setText:_title];
-        [_headerLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [_headerLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
-        [self addSubview:_headerLabel];
-        //
-        _optionButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [_optionButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self addSubview:_optionButton];
-        {
-            [[LayoutManager layoutManager] layoutWithFormat:@"H:|-[_headerLabel]-|"
-                                               toParentView:self
-                                                  withViews:NSDictionaryOfVariableBindings(_headerLabel)];
-            
-            [[LayoutManager layoutManager] layoutWithFormat:@"H:|-[_optionButton]"
-                                               toParentView:self
-                                                  withViews:NSDictionaryOfVariableBindings(_optionButton)];
-            
-            //align
-            [[LayoutManager layoutManager] layoutWithFormat:@"V:|-[_headerLabel]-[_optionButton]-|"
-                                               toParentView:self
-                                                  withViews:NSDictionaryOfVariableBindings(_headerLabel,_optionButton)];
-        }
-        [_optionButton setTitle:_buttonTitle
-                      forState:UIControlStateNormal];
+        [[LayoutManager layoutManager] layoutWithFormat:@"H:|-[_headerLabel]-|"
+                                           toParentView:self
+                                              withViews:NSDictionaryOfVariableBindings(_headerLabel)];
+        
+        [[LayoutManager layoutManager] layoutWithFormat:@"H:|-[_optionButton]"
+                                           toParentView:self
+                                              withViews:NSDictionaryOfVariableBindings(_optionButton)];
+        
+        //align
+        [[LayoutManager layoutManager] layoutWithFormat:@"V:|-[_headerLabel]-[_optionButton]-|"
+                                           toParentView:self
+                                              withViews:NSDictionaryOfVariableBindings(_headerLabel,_optionButton)];
+    }
+    [_optionButton setTitle:_buttonTitle
+                   forState:UIControlStateNormal];
+    [_optionButton addTarget:self
+                      action:@selector(buttonAction:)
+            forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)buttonAction:(UIButton*)button
+{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(buttonOptionTappedFor:)])
+    {
+        [self.delegate buttonOptionTappedFor:self];
     }
 }
 @end
@@ -122,14 +133,16 @@
     _services = [[ContentManager sharedManager] services];
     _selectedService = _services[0];
     _providers = [[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]];
-    //Categories
-    _subCategories = nil;
-    //Select first
-    _selectedService = [[ContentManager sharedManager] services][0];
-    _providerOptionView.hidden = !_providers || [_providers count] == 0;
+    _selectedProvider = _providers[0];
+    _subCategories = [[ContentManager sharedManager] subCategoriesForServiceId:_selectedService[@"selfId"]
+                                                                 andProviderId:_selectedProvider[@"selfId"]];
+    _selectedSubCategory = _subCategories[0];
+    _providerOptionView.hidden = !isArraySafe(_providers);
+    _subCategoryOptionView.hidden = !isArraySafe(_subCategories);
     /////////
-    [_providerOptionView setButtonTitle:(_providers[0])[@"name"]];
-    [_servicesOptionView setButtonTitle:(_services[0])[@"name"]];
+    [_providerOptionView setButtonTitle:_selectedProvider[@"name"]];
+    [_servicesOptionView setButtonTitle:_selectedService[@"name"]];
+    [_subCategoryOptionView setButtonTitle:_selectedSubCategory[@"name"]];
 }
 - (void)createOptions
 {
@@ -143,6 +156,11 @@
     [_subCategoryOptionView setTitle:@"Select Category"
                    andButtonTitle:@""];
 
+    //
+    _servicesOptionView.delegate = self;
+    _providerOptionView.delegate = self;
+    _subCategoryOptionView.delegate = self;
+    
     /////
     _servicesOptionView.tag = 1000;
     _providerOptionView.tag = 2000;
@@ -152,6 +170,8 @@
 - (void)updateOptions
 {
     //Set selected
+    _providerOptionView.hidden = !isArraySafe(_providers);
+    _subCategoryOptionView.hidden = !isArraySafe(_subCategories);
 }
 - (void)resetOptionsForService:(NSDictionary*)service
 {
@@ -181,9 +201,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
     CLLocationDistance distanceTravelled = [_data[@"travelledDistance"] doubleValue];
-    
     //Update the distance metre
     MKDistanceFormatter *df = [[MKDistanceFormatter alloc] init];
     df.unitStyle = MKDistanceFormatterUnitStyleDefault;
@@ -202,7 +220,6 @@
     }
     //Else fetch the address and show
     id location = _data[@"addressOrLocation"];
-    
     if([location isKindOfClass:[CLLocation class]])
     {
         GMSGeocoder* geocoder = [GMSGeocoder geocoder];
@@ -216,18 +233,6 @@
                              [_cityLabel setText:[NSString stringWithFormat:@"In %@",address.locality]];
                          }];
     }
-    //////
-//    UIView* view = [self createButtonOptionViewWithTitle:@"Select Service" buttonTitle:@"Meru"];
-//    [view setBackgroundColor:[UIColor redColor]];
-//    [view setTranslatesAutoresizingMaskIntoConstraints:NO];
-//    [self.view addSubview:view];
-//    [[LayoutManager layoutManager] fillView:view
-//                                     inView:self.view isHorizontal:YES];
-//    
-//    [[LayoutManager layoutManager] positionSubview:view
-//                                            toView:self.view
-//                                        withOffset:CGPointZero
-//                                 andPositionOption:POS_CENTER];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -271,9 +276,11 @@
     // Returns
     switch (pickerView.tag) {
         case 1:
-            return [[[ContentManager sharedManager] services] count];
+            return [_services count];
         case 2:
-            return [[[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]] count];
+            return [_providers count];
+        case 3:
+            return [_subCategories count];
         default:break;
     }
     return 0;
@@ -300,9 +307,11 @@
 {
     switch (pickerView.tag) {
         case 1:
-            return ((NSDictionary*)[[ContentManager sharedManager] services][row])[@"name"];
+            return ((NSDictionary*)_services[row])[@"name"];
         case 2:
-            return ((NSDictionary*)[[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]][row])[@"name"];
+            return ((NSDictionary*)_providers[row])[@"name"];
+        case 3:
+            return ((NSDictionary*)_subCategories[row])[@"name"];
         default:break;
     }
     return nil;
@@ -320,9 +329,10 @@
             _selectedService = [[ContentManager sharedManager] services][row];
             //Set
             [_servicesOptionView setButtonTitle:_selectedService[@"name"]];
-            //Hide
-            NSArray* providers = [[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]];
-            if(![providers count])
+            //Reset the provider and subcategory
+            _providers = nil;
+            _subCategories = nil;
+            if(![_providers count])
             {
 //                [UIView animateWithDuration:1.0
 //                                 animations:^{
@@ -362,25 +372,44 @@
             break;
         case 2:
         {
+            _subCategories = nil;
             _selectedProvider = nil;
-            _selectedProvider = [[ContentManager sharedManager]
-                                 providersForServiceId:_selectedService[@"selfId"]][row];
+            _selectedProvider = _providers[row];
             [_providerOptionView setButtonTitle:_selectedProvider[@"name"]];
+        }
+            break;
+        case 3:
+        {
+            _selectedSubCategory = nil;
+            _selectedSubCategory = _subCategories[row];
+            [_subCategoryOptionView setButtonTitle:_selectedSubCategory[@"name"]];
         }
             break;
             
         default:
             break;
     }
-    
+    if(!_providers)
+    {
+        //Set both
+        _providers = [[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]];
+        _selectedProvider = _providers[0];
+        [_providerOptionView setButtonTitle:_selectedProvider[@"name"]];
+    }
+    if(!_subCategories)
+    {
+        _subCategories = [[ContentManager sharedManager] subCategoriesForServiceId:_selectedService[@"selfId"]
+                                                                     andProviderId:_selectedProvider[@"selfId"]];
+        _selectedSubCategory = _subCategories[0];
+        [_subCategoryOptionView setButtonTitle:_selectedSubCategory[@"name"]];
+
+    }
+    [self updateOptions];
 }
-- (IBAction)showCityPicker:(id)sender
-{
+
+- (void)showProvidersPicker {
     
-}
-- (IBAction)showProvidersPicker:(id)sender {
-    
-    NSUInteger index = indexOfItemFor([[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]],
+    NSUInteger index = indexOfItemFor(_providers,
                                       @"name",
                                       _providerOptionView.buttonTitle);
     
@@ -392,25 +421,32 @@
                                              initialSelections:nil
                                                         andTag:2];
     
-    
-    
     [(UIPickerView*)(_pickerView.pickerView) selectRow:index
                                            inComponent:0
                                               animated:YES];
     
-    
 }
-- (IBAction)showSubCategoriesPicker:(id)sender {
+- (void)showSubCategoriesPicker {
     
-    
-    
+    NSUInteger index = indexOfItemFor(_subCategories,
+                                      @"name",
+                                      _subCategoryOptionView.buttonTitle);
+    _pickerView = nil;
+    _pickerView = [ActionSheetCustomPicker showPickerWithTitle:@"Select Category"
+                                                      delegate:self
+                                              showCancelButton:NO
+                                                        origin:self.view
+                                             initialSelections:nil
+                                                        andTag:3];
+    [(UIPickerView*)(_pickerView.pickerView) selectRow:index
+                                           inComponent:0
+                                              animated:YES];
 }
-- (IBAction)showServicePicker:(id)sender {
+- (void)showServicePicker {
     
     NSUInteger index = indexOfItemFor([[ContentManager sharedManager] services],
                                       @"name",
                                       _servicesOptionView.buttonTitle);
-    
     _pickerView = nil;
     _pickerView = [ActionSheetCustomPicker showPickerWithTitle:@"Select Service"
                                                       delegate:self
@@ -418,8 +454,6 @@
                                                         origin:self.view
                                              initialSelections:nil
                                                         andTag:1];
-    
-    
     [(UIPickerView*)(_pickerView.pickerView) selectRow:index
                                            inComponent:0
                                               animated:YES];
@@ -428,6 +462,23 @@
 {
     _data = nil;
     _data = dict;
+}
+#pragma mark ButtonOptionView Delegates
+- (void)buttonOptionTappedFor:(ButtonOptionView*)buttonOptionView
+{
+    switch (buttonOptionView.tag) {
+        case 1000://Service
+            [self showServicePicker];
+            break;
+        case 2000://Provider
+            [self showProvidersPicker];
+            break;
+        case 3000://SubCategory
+            [self showSubCategoriesPicker];
+            break;
+        default:
+            break;
+    }
 }
 
 @end

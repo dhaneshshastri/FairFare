@@ -9,7 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "ActionSheetCustomPicker.h"
 
-@interface FareCalculatorViewController : UIViewController <UIPickerViewDataSource,ActionSheetCustomPickerDelegate,UIPickerViewDataSource>
+@class ButtonOptionView;
+@protocol ButtonOptionViewDelegate <NSObject>
+@optional
+- (void)buttonOptionTappedFor:(ButtonOptionView*)buttonOptionView;
+@end
+
+@interface FareCalculatorViewController : UIViewController <UIPickerViewDataSource,ActionSheetCustomPickerDelegate,UIPickerViewDataSource,ButtonOptionViewDelegate>
 - (void)setData:(NSDictionary*)dict;
 - (void)initialize;
 @end

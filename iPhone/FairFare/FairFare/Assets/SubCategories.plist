@@ -10,6 +10,26 @@
 		<key>providerId</key>
 		<string>0</string>
 		<key>name</key>
+		<string>Meru Flexi</string>
+	</dict>
+	<dict>
+		<key>selfId</key>
+		<string>1</string>
+		<key>serviceId</key>
+		<string>0</string>
+		<key>providerId</key>
+		<string>1</string>
+		<key>name</key>
+		<string>Economy Sedan</string>
+	</dict>
+	<dict>
+		<key>selfId</key>
+		<string>2</string>
+		<key>serviceId</key>
+		<string>0</string>
+		<key>providerId</key>
+		<string>0</string>
+		<key>name</key>
 		<string>Meru Cabs</string>
 	</dict>
 </array>
