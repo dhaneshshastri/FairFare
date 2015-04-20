@@ -8,6 +8,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
 
 UIViewController* viewControllerFromStoryboard(NSString* storyBoardName,NSString* controllerId)
@@ -81,4 +82,34 @@ NSArray* safeArray(NSArray* array)
 BOOL isArraySafe(NSArray* array)
 {
     return array && [array count] > 0;
+}
+BOOL isDateBetweenDates(NSDate* date,NSDate* beginDate,NSDate* endDate)
+{
+    int startTime   = minutesSinceMidnight(beginDate);
+    int endTime  = minutesSinceMidnight(endDate);
+    int nowTime     = minutesSinceMidnight(date);
+    
+    return startTime <= nowTime && nowTime <= endTime;
+}
+int minutesSinceMidnight(NSDate* date)
+{
+    NSCalendar* calender = [NSCalendar currentCalendar];
+    [calender setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+    NSDateComponents *components = [calender components:NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:date];
+    return 60 * (int)[components hour] + (int)[components minute];
+}
+NSString* formatCurrency(float amount)
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+    NSString *numberAsString = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:amount]];
+    return numberAsString;
+}
+NSString* formatDistance(double distance)
+{
+    //Update the distance metre
+    MKDistanceFormatter *df = [[MKDistanceFormatter alloc] init];
+    df.unitStyle = MKDistanceFormatterUnitStyleDefault;
+    
+    return [df stringFromDistance: distance];
 }

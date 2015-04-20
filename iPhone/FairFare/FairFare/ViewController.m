@@ -477,7 +477,6 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
-            
         case 1:
         {
             //Stop
@@ -497,7 +496,6 @@
             }
         }
             break;
-            
         default:
             break;
     }
@@ -521,8 +519,5 @@
     polyline.geodesic = YES;
     polyline.map = _mapView;
     polyline = nil;
-    
-    NSLog(@"Plotting >>>>>> ");
 }
-
 @end

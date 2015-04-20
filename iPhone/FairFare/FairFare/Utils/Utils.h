@@ -18,4 +18,8 @@ id dataFromPlistFile(NSString* fileName);
 NSUInteger indexOfItemFor(NSArray* array,NSString* matchingKey,NSString* matchingText);
 NSArray* safeArray(NSArray* array);
 BOOL isArraySafe(NSArray* array);
+BOOL isDateBetweenDates(NSDate* date,NSDate* beginDate,NSDate* endDate);
+int minutesSinceMidnight(NSDate* date);
+NSString* formatCurrency(float amount);
+NSString* formatDistance(double distance);
 #endif

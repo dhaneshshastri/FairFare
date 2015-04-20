@@ -3,8 +3,22 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>afterFreeWaitTimeCharges</key>
+		<string>2</string>
+		<key>minFreeWaitTime</key>
+		<string>10</string>
+		<key>afterMinDistanceCharges</key>
+		<string>14</string>
 		<key>selfId</key>
 		<string>0</string>
+		<key>minDistance</key>
+		<string>6</string>
+		<key>minDistanceFare</key>
+		<string>150</string>
+	</dict>
+	<dict>
+		<key>selfId</key>
+		<string>1</string>
 		<key>minDistance</key>
 		<string>2</string>
 		<key>minDistanceFare</key>

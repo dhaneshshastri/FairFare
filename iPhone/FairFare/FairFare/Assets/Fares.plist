@@ -3,6 +3,20 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>city</key>
+		<string>Hyderabad</string>
+		<key>subCategoryId</key>
+		<string>1</string>
+		<key>providerId</key>
+		<string>1</string>
+		<key>serviceId</key>
+		<string>0</string>
+		<key>selfId</key>
+		<string>0</string>
+		<key>dayFareId</key>
+		<string>1</string>
+	</dict>
+	<dict>
 		<key>subCategoryId</key>
 		<string>0</string>
 		<key>providerId</key>
@@ -10,16 +24,15 @@
 		<key>serviceId</key>
 		<string>0</string>
 		<key>selfId</key>
-		<string>0</string>
+		<string>1</string>
 		<key>dayTimings</key>
-		<string>5:00-23:00 </string>
+		<string>05:00-23:00 </string>
 		<key>nightTimings</key>
-		<string>23:00-5:00</string>
+		<string>23:00-05:00</string>
 		<key>dayFareId</key>
 		<string>0</string>
 		<key>nightFareId</key>
 		<string>0</string>
 	</dict>
-	<string></string>
 </array>
 </plist>

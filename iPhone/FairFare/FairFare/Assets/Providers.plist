@@ -3,6 +3,8 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>url</key>
+		<string>http://www.merucabs.com/fares/</string>
 		<key>selfId</key>
 		<string>0</string>
 		<key>serviceId</key>
@@ -11,6 +13,8 @@
 		<string>Meru</string>
 	</dict>
 	<dict>
+		<key>url</key>
+		<string>https://www.olacabs.com/fares/</string>
 		<key>selfId</key>
 		<string>1</string>
 		<key>serviceId</key>

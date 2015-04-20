@@ -8,7 +8,7 @@
 
 #import "FareCalculatorViewController.h"
 #import <MapKit/MapKit.h>
-
+#import "YouPayViewController.h"
 
 
 @interface ButtonOptionView : UIView
@@ -458,6 +458,41 @@
                                            inComponent:0
                                               animated:YES];
 }
+- (IBAction)calculateFare:(UIButton *)sender
+{
+    //Take to FareCalculator screen
+    YouPayViewController* youPayVC = (YouPayViewController*)viewControllerFromStoryboard(@"Main",@"youPayViewController");
+//    [fareCalculatorVC setData:@{@"",@"travelledDistance":@(_travelledDistance)}];
+    //Create dict with
+    //Service
+    //Provider
+    //SubCategory
+    //TravelledDistance
+    NSMutableDictionary* data = [NSMutableDictionary new];
+    if(_selectedService[@"selfId"])
+    {
+        [data setObject:_selectedService[@"selfId"]
+              forKey:@"serviceId"];
+    }
+    if(_selectedProvider[@"selfId"])
+    {
+        [data setObject:_selectedProvider[@"selfId"]
+                 forKey:@"providerId"];
+    }
+    if(_selectedSubCategory[@"selfId"])
+    {
+        [data setObject:_selectedProvider[@"selfId"]
+                 forKey:@"subCategoryId"];
+    }
+    if(_data[@"travelledDistance"])
+    {
+        [data setObject:_data[@"travelledDistance"]
+                 forKey:@"travelledDistance"];
+    }
+    [youPayVC setData:data];
+    [self.navigationController pushViewController:youPayVC
+                                         animated:YES];
+}
 - (void)setData:(NSDictionary*)dict
 {
     _data = nil;
@@ -480,5 +515,4 @@
             break;
     }
 }
-
 @end
