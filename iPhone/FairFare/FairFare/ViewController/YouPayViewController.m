@@ -95,8 +95,9 @@
     }
     //After Min distance
     {
-        [_afterMinDistanceLabel setText:[NSString stringWithFormat:@"Fare after min. distance (For %d Km)",
-                                    [extraDistanceInKm unsignedIntegerValue]]];
+        [_afterMinDistanceLabel setText:
+         [NSString stringWithFormat:@"Fare after min. distance (For %@ at %@ per %@)",
+                                    formatDistance([extraDistance doubleValue]),formatCurrency([afterMinDistanceFare floatValue]),distanceUnit()]];
         [_afterMinDistanceFareLabel setText:formatCurrency([extraDistanceChargedAmount floatValue])];
     }
     //After Min distance
@@ -137,7 +138,6 @@
                    withObject:nil
                    afterDelay:1.0];
     }
-    
 }
 - (void)goBack
 {

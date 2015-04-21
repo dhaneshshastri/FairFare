@@ -110,6 +110,10 @@ NSString* formatDistance(double distance)
     //Update the distance metre
     MKDistanceFormatter *df = [[MKDistanceFormatter alloc] init];
     df.unitStyle = MKDistanceFormatterUnitStyleDefault;
-    
     return [df stringFromDistance: distance];
+}
+NSString* distanceUnit()//will return Mi or Km
+{
+    NSString* formattedString = formatDistance(1000);
+    return safeArray([formattedString componentsSeparatedByString:@" "])[1];
 }

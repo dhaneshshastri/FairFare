@@ -60,6 +60,7 @@
     [_headerLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_headerLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
     [self addSubview:_headerLabel];
+    
     //
     _optionButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [_optionButton setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -74,7 +75,7 @@
                                               withViews:NSDictionaryOfVariableBindings(_optionButton)];
         
         //align
-        [[LayoutManager layoutManager] layoutWithFormat:@"V:|-[_headerLabel]-[_optionButton]-|"
+        [[LayoutManager layoutManager] layoutWithFormat:@"V:|-[_headerLabel(25@20)]-[_optionButton]-|"
                                            toParentView:self
                                               withViews:NSDictionaryOfVariableBindings(_headerLabel,_optionButton)];
     }
@@ -184,7 +185,6 @@
     //Categories
     _subCategories = nil;
     //Select first
-  //  _selectedService = [[ContentManager sharedManager] services][0];
     _providerOptionView.hidden = !_providers || [_providers count] == 0;
     _subCategoryOptionView.hidden = !_subCategories || [_subCategories count] == 0;
     ////
@@ -332,42 +332,6 @@
             //Reset the provider and subcategory
             _providers = nil;
             _subCategories = nil;
-            if(![_providers count])
-            {
-//                [UIView animateWithDuration:1.0
-//                                 animations:^{
-//                                     
-//                                     _topPaddingConstraint.constant = 10.0;
-//                                     [self.view layoutIfNeeded];
-//                                     
-//                                 } completion:^(BOOL finished){
-//                                     
-//                                     _providerTitle.hidden = YES;
-//                                     _providerButton.hidden = YES;
-//                                     
-//                                 }];
-            }
-            else
-            {
-//                [UIView animateWithDuration:1.0
-//                                 animations:^{
-//                                     
-//                                     _providerTitle.hidden = NO;
-//                                     _providerButton.hidden = NO;
-//                                     
-//                                     
-//                                     
-//                                 }completion:^(BOOL finished){
-//                                     
-//                                     [UIView animateWithDuration:1.0
-//                                                      animations:^{
-//                                                          
-//                                                          _topPaddingConstraint.constant = 119.0;
-//                                                          [self.view layoutIfNeeded];
-//                                                          
-//                                                      }];
-//                                 }];
-            }
         }
             break;
         case 2:
@@ -424,7 +388,6 @@
     [(UIPickerView*)(_pickerView.pickerView) selectRow:index
                                            inComponent:0
                                               animated:YES];
-    
 }
 - (void)showSubCategoriesPicker {
     
@@ -462,7 +425,6 @@
 {
     //Take to FareCalculator screen
     YouPayViewController* youPayVC = (YouPayViewController*)viewControllerFromStoryboard(@"Main",@"youPayViewController");
-//    [fareCalculatorVC setData:@{@"",@"travelledDistance":@(_travelledDistance)}];
     //Create dict with
     //Service
     //Provider

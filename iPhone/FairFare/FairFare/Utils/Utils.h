@@ -22,4 +22,5 @@ BOOL isDateBetweenDates(NSDate* date,NSDate* beginDate,NSDate* endDate);
 int minutesSinceMidnight(NSDate* date);
 NSString* formatCurrency(float amount);
 NSString* formatDistance(double distance);
+NSString* distanceUnit();//will return Mi or Km
 #endif
