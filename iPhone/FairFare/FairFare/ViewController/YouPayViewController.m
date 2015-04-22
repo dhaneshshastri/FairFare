@@ -56,10 +56,10 @@
     NSString* providerId = _data[@"providerId"];
     NSString* subCategoryId = _data[@"subCategoryId"];
     NSDictionary* subCategory = nil;
-    NSNumber* minDistance = @([_selectedDetailedFare[@"minDistance"] integerValue] * 1000.0);//In meters
+    NSNumber* minDistance = @([_selectedDetailedFare[@"minDistance"] floatValue] * 1000.0);//In meters
     NSNumber* minDistanceFare = @([_selectedDetailedFare[@"minDistanceFare"] integerValue]);
     NSNumber* distanceTravelled = @([_data[@"travelledDistance"] doubleValue]);
-    NSNumber* extraDistance = @([distanceTravelled doubleValue] - [minDistance doubleValue]);
+    NSNumber* extraDistance = @(([distanceTravelled doubleValue] - [minDistance doubleValue] >= 0) ? : 0);
     NSNumber* extraDistanceInKm = @([extraDistance unsignedLongValue] / 1000.0);
     NSNumber* afterMinDistanceFare = @([_selectedDetailedFare[@"afterMinDistanceCharges"] integerValue]);
     NSNumber* extraDistanceChargedAmount = @([extraDistanceInKm doubleValue] * [afterMinDistanceFare integerValue]);
@@ -68,9 +68,6 @@
     NSNumber* waitingTimeFare = @([_selectedDetailedFare[@"afterFreeWaitTimeCharges"] integerValue]);//Per min
     NSNumber* waitingTimeCharged = @([waitingTimeFare integerValue] * [waitingTime integerValue]);
     NSNumber* totalAmount = @([waitingTimeCharged floatValue] + [extraDistanceChargedAmount floatValue] + [minDistanceFare floatValue]);
-    
-    
-    
     
     if(serviceId)
     {
@@ -152,13 +149,11 @@
     // Pass the selected object to the new view controller.
 }
 */
-- (IBAction)showInfo:(id)sender {
+- (IBAction)showInfo:(id)sender
+{
     InfoViewController* infoVC = [[InfoViewController alloc] init];
-    
- 
     NSString* providerId = _data[@"providerId"];
     NSDictionary* service = [[ContentManager sharedManager] providerWithProviderId:providerId];
- 
     [infoVC setUrl:service[@"url"]];
     [self.navigationController pushViewController:infoVC
                                          animated:YES];

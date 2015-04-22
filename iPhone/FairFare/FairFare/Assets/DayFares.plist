@@ -3,6 +3,28 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>selfId</key>
+		<string>0</string>
+		<key>minDistance</key>
+		<string>2</string>
+		<key>minDistanceFare</key>
+		<string>40</string>
+	</dict>
+	<dict>
+		<key>afterFreeWaitTimeCharges</key>
+		<string>0.3333</string>
+		<key>minFreeWaitTime</key>
+		<string>15</string>
+		<key>afterMinDistanceCharges</key>
+		<string>11</string>
+		<key>selfId</key>
+		<string>1</string>
+		<key>minDistance</key>
+		<string>1.6</string>
+		<key>minDistanceFare</key>
+		<string>20</string>
+	</dict>
+	<dict>
 		<key>afterFreeWaitTimeCharges</key>
 		<string>2</string>
 		<key>minFreeWaitTime</key>
@@ -10,19 +32,11 @@
 		<key>afterMinDistanceCharges</key>
 		<string>14</string>
 		<key>selfId</key>
-		<string>0</string>
+		<string>2</string>
 		<key>minDistance</key>
 		<string>6</string>
 		<key>minDistanceFare</key>
 		<string>150</string>
-	</dict>
-	<dict>
-		<key>selfId</key>
-		<string>1</string>
-		<key>minDistance</key>
-		<string>2</string>
-		<key>minDistanceFare</key>
-		<string>40</string>
 	</dict>
 </array>
 </plist>
