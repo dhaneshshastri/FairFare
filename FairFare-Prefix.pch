@@ -1,0 +1,20 @@
+//
+//  FairFare-Prefix.pch
+//  FairFare
+//
+//  Created by dhaneshs on 3/31/15.
+//  Copyright (c) 2015 dhaneshs. All rights reserved.
+//
+
+#ifndef FairFare_FairFare_Prefix_pch
+#define FairFare_FairFare_Prefix_pch
+#import <UIKit/UIKit.h>
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import "Utils.h"
+#import "LayoutManager.h"
+#import "LocationShareModel.h"
+#import "ContentManager.h"
+#import <GoogleMaps/GoogleMaps.h>
+
+#endif
