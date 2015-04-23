@@ -1,6 +1,0 @@
-#include "Pods-LiveFrost.xcconfig"
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/LiveFrost" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/LiveFrost"
-OTHER_LDFLAGS = ${PODS_LIVEFROST_OTHER_LDFLAGS} -ObjC
-PODS_ROOT = ${SRCROOT}
-SKIP_INSTALL = YES
