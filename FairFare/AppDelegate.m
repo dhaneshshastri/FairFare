@@ -75,7 +75,7 @@
             [self.shareModel.anotherLocationManager startMonitoringSignificantLocationChanges];
         }
     }
-    
+    [DataBaseManager dataBaseManager];
     //Disable lock
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     return YES;

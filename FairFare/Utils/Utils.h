@@ -23,4 +23,6 @@ int minutesSinceMidnight(NSDate* date);
 NSString* formatCurrency(float amount);
 NSString* formatDistance(double distance);
 NSString* distanceUnit();//will return Mi or Km
+NSComparisonResult compareStringDates(NSString* dateStr1,NSString* dateStr2);
+NSString* getCurrentDetailedDateAndTime();
 #endif

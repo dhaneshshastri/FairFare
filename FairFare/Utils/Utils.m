@@ -117,3 +117,38 @@ NSString* distanceUnit()//will return Mi or Km
     NSString* formattedString = formatDistance(1000);
     return safeArray([formattedString componentsSeparatedByString:@" "])[1];
 }
+NSComparisonResult compareStringDates(NSString* dateStr1,NSString* dateStr2)
+{
+    if(!dateStr1 || [dateStr1 length] == 0)
+    {
+        dateStr1 = @"2000-01-01 00:00:00";
+    }
+    if(!dateStr2  || [dateStr2 length] == 0)
+    {
+        dateStr2 = @"2000-01-01 00:00:00";
+    }
+    //Date object
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSDate* date1 = [dateFormatter dateFromString:dateStr1];
+    NSDate* date2 = [dateFormatter dateFromString:dateStr2];
+    //    logToConsole([date1 string]);
+    //   logToConsole([date2 string]);
+    return [date1 compare:date2];
+}
+NSString* getCurrentDetailedDateAndTime()
+{
+    NSDate *now = [NSDate date];
+    
+    NSTimeZone *sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    NSTimeZone *destTimeZone = [NSTimeZone systemTimeZone];
+    
+    NSInteger sourceGMToffset = [sourceTimeZone secondsFromGMTForDate:now];
+    NSInteger destGMToffset = [destTimeZone secondsFromGMTForDate:now];
+    
+    NSTimeInterval interval = destGMToffset - sourceGMToffset;
+    
+    NSDate *destDate = [[NSDate alloc] initWithTimeInterval:interval sinceDate:now];
+    // logToConsole([destDate stringWithFormat:@"yyyy-MM-dd HH:mm:ss.SSS"]);
+    return [destDate stringWithFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+}

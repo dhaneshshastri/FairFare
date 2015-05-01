@@ -16,5 +16,8 @@
 #import "LocationShareModel.h"
 #import "ContentManager.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "DataBaseManager.h"
+#import "NSManagedObject+Data.h"
+#import "NSDate+Helper.h"
 
 #endif

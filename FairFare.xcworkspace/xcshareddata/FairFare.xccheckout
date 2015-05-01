@@ -14,11 +14,11 @@
 		<string>https://github.com/dhaneshshastri/FairFare.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>iPhone/FairFare/FairFare.xcworkspace</string>
+	<string>FairFare.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>AC024C2A82A6EDA89C22C4F15AF363D2ABE65AA8</key>
-		<string>../../..</string>
+		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/dhaneshshastri/FairFare.git</string>

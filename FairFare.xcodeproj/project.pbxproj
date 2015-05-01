@@ -23,6 +23,13 @@
 		504C73511AD2EF3F00661F5D /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 504C73501AD2EF3F00661F5D /* SWActionSheet.m */; };
 		505E877F1AD789F90068D6A9 /* Let's go Digital Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 505E877D1AD789400068D6A9 /* Let's go Digital Regular.ttf */; };
 		5060593B1AD264B200EDB895 /* FareCalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5060593A1AD264B200EDB895 /* FareCalculatorViewController.m */; };
+		50639BA31AF236EC00477E24 /* FairFare.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50639BA11AF236EC00477E24 /* FairFare.xcdatamodeld */; };
+		50639BAF1AF23F3100477E24 /* Journey.m in Sources */ = {isa = PBXBuildFile; fileRef = 50639BAC1AF23F3100477E24 /* Journey.m */; };
+		50639BB01AF23F3100477E24 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 50639BAE1AF23F3100477E24 /* Address.m */; };
+		50639BB61AF240A700477E24 /* DataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50639BB31AF240A700477E24 /* DataBaseManager.m */; };
+		50639BB71AF240A700477E24 /* NSManagedObject+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 50639BB51AF240A700477E24 /* NSManagedObject+Data.m */; };
+		50639BBA1AF245C800477E24 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 50639BB91AF245C800477E24 /* NSDate+Helper.m */; };
+		50639BBD1AF247A400477E24 /* NSOBject+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 50639BBC1AF247A400477E24 /* NSOBject+Utility.m */; };
 		5065FF881AD53E24004E21C2 /* Services.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5065FF871AD53E24004E21C2 /* Services.plist */; };
 		5079E2EA1AD6390C00ED9293 /* Providers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5079E2E91AD6390C00ED9293 /* Providers.plist */; };
 		507ACDC71ACBAC2500B743C0 /* LayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 507ACDC61ACBAC2500B743C0 /* LayoutManager.m */; };
@@ -94,6 +101,19 @@
 		505E877D1AD789400068D6A9 /* Let's go Digital Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Let's go Digital Regular.ttf"; sourceTree = "<group>"; };
 		506059391AD264B200EDB895 /* FareCalculatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareCalculatorViewController.h; sourceTree = "<group>"; };
 		5060593A1AD264B200EDB895 /* FareCalculatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FareCalculatorViewController.m; sourceTree = "<group>"; };
+		50639BA21AF236EC00477E24 /* FairFare.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FairFare.xcdatamodel; sourceTree = "<group>"; };
+		50639BAB1AF23F3100477E24 /* Journey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Journey.h; path = DBClasses/Journey.h; sourceTree = "<group>"; };
+		50639BAC1AF23F3100477E24 /* Journey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Journey.m; path = DBClasses/Journey.m; sourceTree = "<group>"; };
+		50639BAD1AF23F3100477E24 /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Address.h; path = DBClasses/Address.h; sourceTree = "<group>"; };
+		50639BAE1AF23F3100477E24 /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Address.m; path = DBClasses/Address.m; sourceTree = "<group>"; };
+		50639BB21AF240A700477E24 /* DataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataBaseManager.h; path = DBHandlers/DataBaseManager.h; sourceTree = "<group>"; };
+		50639BB31AF240A700477E24 /* DataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataBaseManager.m; path = DBHandlers/DataBaseManager.m; sourceTree = "<group>"; };
+		50639BB41AF240A700477E24 /* NSManagedObject+Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+Data.h"; path = "DBHandlers/NSManagedObject+Data.h"; sourceTree = "<group>"; };
+		50639BB51AF240A700477E24 /* NSManagedObject+Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+Data.m"; path = "DBHandlers/NSManagedObject+Data.m"; sourceTree = "<group>"; };
+		50639BB81AF245C800477E24 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
+		50639BB91AF245C800477E24 /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
+		50639BBB1AF247A400477E24 /* NSOBject+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOBject+Utility.h"; sourceTree = "<group>"; };
+		50639BBC1AF247A400477E24 /* NSOBject+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOBject+Utility.m"; sourceTree = "<group>"; };
 		5065FF871AD53E24004E21C2 /* Services.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Services.plist; sourceTree = "<group>"; };
 		506813B61ACB00D500E79ADB /* FairFare-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FairFare-Prefix.pch"; sourceTree = "<group>"; };
 		506813B71ACB012400E79ADB /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
@@ -205,6 +225,8 @@
 		501BB5301AC4012E0066CA3D /* FairFare */ = {
 			isa = PBXGroup;
 			children = (
+				50639BA41AF23E3500477E24 /* DBClasses */,
+				50639BA11AF236EC00477E24 /* FairFare.xcdatamodeld */,
 				50E0BE7C1ACC405300F7D67B /* ViewController */,
 				50CB10761ACAA907007CEF1A /* Utils */,
 				50C9EC1D1AC9B06C00D34A0B /* Assets */,
@@ -246,6 +268,28 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		50639BA41AF23E3500477E24 /* DBClasses */ = {
+			isa = PBXGroup;
+			children = (
+				50639BAB1AF23F3100477E24 /* Journey.h */,
+				50639BAC1AF23F3100477E24 /* Journey.m */,
+				50639BAD1AF23F3100477E24 /* Address.h */,
+				50639BAE1AF23F3100477E24 /* Address.m */,
+			);
+			name = DBClasses;
+			sourceTree = "<group>";
+		};
+		50639BB11AF2404600477E24 /* DBHandlers */ = {
+			isa = PBXGroup;
+			children = (
+				50639BB21AF240A700477E24 /* DataBaseManager.h */,
+				50639BB31AF240A700477E24 /* DataBaseManager.m */,
+				50639BB41AF240A700477E24 /* NSManagedObject+Data.h */,
+				50639BB51AF240A700477E24 /* NSManagedObject+Data.m */,
+			);
+			name = DBHandlers;
+			sourceTree = "<group>";
+		};
 		50C9EC1D1AC9B06C00D34A0B /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +310,11 @@
 		50CB10761ACAA907007CEF1A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				50639BBB1AF247A400477E24 /* NSOBject+Utility.h */,
+				50639BBC1AF247A400477E24 /* NSOBject+Utility.m */,
+				50639BB81AF245C800477E24 /* NSDate+Helper.h */,
+				50639BB91AF245C800477E24 /* NSDate+Helper.m */,
+				50639BB11AF2404600477E24 /* DBHandlers */,
 				504C734F1AD2EF3F00661F5D /* SWActionSheet.h */,
 				504C73501AD2EF3F00661F5D /* SWActionSheet.m */,
 				504C734C1AD2EF1B00661F5D /* AbstractActionSheetPicker.h */,
@@ -485,13 +534,20 @@
 			files = (
 				501BB53A1AC4012E0066CA3D /* ViewController.m in Sources */,
 				501BB5371AC4012E0066CA3D /* AppDelegate.m in Sources */,
+				50639BB71AF240A700477E24 /* NSManagedObject+Data.m in Sources */,
 				504C734B1AD2ED1500661F5D /* ActionSheetCustomPicker.m in Sources */,
+				50639BB01AF23F3100477E24 /* Address.m in Sources */,
+				50639BB61AF240A700477E24 /* DataBaseManager.m in Sources */,
 				504C734E1AD2EF1B00661F5D /* AbstractActionSheetPicker.m in Sources */,
+				50639BAF1AF23F3100477E24 /* Journey.m in Sources */,
 				50FD9EA91AD11F07002519A7 /* M13Checkbox.m in Sources */,
 				501BB5341AC4012E0066CA3D /* main.m in Sources */,
+				50639BA31AF236EC00477E24 /* FairFare.xcdatamodeld in Sources */,
 				50E0BE811ACC463A00F7D67B /* Utils.m in Sources */,
 				507ACDC71ACBAC2500B743C0 /* LayoutManager.m in Sources */,
+				50639BBD1AF247A400477E24 /* NSOBject+Utility.m in Sources */,
 				5060593B1AD264B200EDB895 /* FareCalculatorViewController.m in Sources */,
+				50639BBA1AF245C800477E24 /* NSDate+Helper.m in Sources */,
 				50874DD11AD3F2D80060AB57 /* ContentManager.m in Sources */,
 				50AD89101AE58A9200F70956 /* InfoViewController.m in Sources */,
 				50CB10AE1ACAA907007CEF1A /* Reachability.m in Sources */,
@@ -725,6 +781,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		50639BA11AF236EC00477E24 /* FairFare.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				50639BA21AF236EC00477E24 /* FairFare.xcdatamodel */,
+			);
+			currentVersion = 50639BA21AF236EC00477E24 /* FairFare.xcdatamodel */;
+			path = FairFare.xcdatamodeld;
+			sourceTree = SOURCE_ROOT;
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 501BB5261AC4012E0066CA3D /* Project object */;
 }
