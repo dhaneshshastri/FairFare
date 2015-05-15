@@ -181,7 +181,6 @@ void StoreManagedObjectContextForCurrentThread( NSManagedObjectContext * context
                       sortKey:(NSString *)key 
               andSearchformat:(NSString *)predicateFormat, ...
 {
-    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setReturnsObjectsAsFaults:NO];
     NSEntityDescription *entity = [NSEntityDescription entityForName:stringModelNAme inManagedObjectContext:[self managedObjectContextFor:stringModelNAme]];
@@ -535,8 +534,21 @@ void StoreManagedObjectContextForCurrentThread( NSManagedObjectContext * context
         }
     }
 }
-
-
+- (void)deleteEntityWithName:(NSString*)entityName
+                   andSelfId:(NSString*)selfId
+{
+    if(!selfId)
+        return;
+    NSArray* array = [self fetchedResultsFor:entityName
+                                     sortKey:nil
+                             andSearchformat:@"selfId == %@",selfId];
+    if(!isArraySafe(array))
+    {
+        return;
+    }
+    NSManagedObject* entity = array[0];
+    [self deleteEntity:&entity];
+}
 - (void)contextChanged:(NSNotification*)notification
 {
     if (![NSThread isMainThread]) {

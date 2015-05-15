@@ -73,9 +73,13 @@
 
 
 - (void)deleteEntity:(NSManagedObject*)entity withType:(NSString*)type;
+
 - (void)deleteAllFrom:(NSString*)entity
         withModelName:(NSString*)modelName
       andSearchFormat:(NSString *)predicateFormat, ...;
+
+- (void)deleteEntityWithName:(NSString*)entityName
+                   andSelfId:(NSString*)selfId;
 
 - (NSManagedObject*)createUniqueDataEntryFor:(NSString*)entityName matchFormat:(NSString *)predicateFormat, ...;
 - (NSManagedObject*)createDataEntryFor:(NSString*)entityNAme;

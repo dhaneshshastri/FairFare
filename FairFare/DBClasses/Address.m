@@ -2,7 +2,7 @@
 //  Address.m
 //  
 //
-//  Created by dhaneshs on 30/04/15.
+//  Created by dhaneshs on 13/05/15.
 //
 //
 
@@ -11,11 +11,19 @@
 
 @implementation Address
 
-@dynamic selfId;
-@dynamic lat;
-@dynamic lon;
-@dynamic address;
+@dynamic addressLine1;
+@dynamic addressLine2;
+@dynamic administrativeArea;
+@dynamic country;
 @dynamic isDestination;
 @dynamic isSource;
+@dynamic journeyId;
+@dynamic lat;
+@dynamic locality;
+@dynamic lon;
+@dynamic postalCode;
+@dynamic selfId;
+@dynamic subLocality;
+@dynamic thoroughfare;
 
 @end

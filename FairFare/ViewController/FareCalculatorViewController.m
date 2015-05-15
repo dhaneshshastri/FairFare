@@ -112,6 +112,7 @@
     __weak IBOutlet UILabel *_distanceTravelledLabel;
     ///////
     NSDictionary* _data;
+    NSString* _activeJourneyId;
 }
 @end
 
@@ -198,6 +199,7 @@
     [self createOptions];
     [self initialize];
 }
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -232,6 +234,18 @@
                              //Address
                              [_cityLabel setText:[NSString stringWithFormat:@"In %@",address.locality]];
                          }];
+    }
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    //Check whether we have tapped 'CalculateFare'
+    Journey* journey = [[AppDataBaseManager appDataBaseManager] journeyWithId:_activeJourneyId];
+    if(![NSObject isValidObject:journey.serviceId])
+    {
+        //We have not pressed 'CalculateFare'
+        //Delete the journey
+        [[AppDataBaseManager appDataBaseManager] deleteJourneyWithId:_activeJourneyId];
     }
 }
 - (void)didReceiveMemoryWarning {
@@ -430,7 +444,7 @@
     //Provider
     //SubCategory
     //TravelledDistance
-    NSMutableDictionary* data = [NSMutableDictionary new];
+    NSMutableDictionary* data = [NSMutableDictionary dictionaryWithDictionary:_data];
     if(_selectedService[@"selfId"])
     {
         [data setObject:_selectedService[@"selfId"]
@@ -454,11 +468,18 @@
     [youPayVC setData:data];
     [self.navigationController pushViewController:youPayVC
                                          animated:YES];
+    
+    //Set the active journey
+    Journey* journey = [[AppDataBaseManager appDataBaseManager] journeyWithId:_data[@"activeJourneyId"]];
+    journey.serviceId = _selectedService[@"selfId"];
+    journey.providerId = _selectedProvider[@"selfId"];
+    [[AppDataBaseManager appDataBaseManager] saveContext:nil];
 }
 - (void)setData:(NSDictionary*)dict
 {
     _data = nil;
     _data = dict;
+    _activeJourneyId = _data[@"activeJourneyId"];
 }
 #pragma mark ButtonOptionView Delegates
 - (void)buttonOptionTappedFor:(ButtonOptionView*)buttonOptionView

@@ -2,7 +2,7 @@
 //  Journey.m
 //  
 //
-//  Created by dhaneshs on 30/04/15.
+//  Created by dhaneshs on 14/05/15.
 //
 //
 
@@ -11,9 +11,14 @@
 
 @implementation Journey
 
-@dynamic selfId;
-@dynamic journeyDate;
-@dynamic startLocationId;
 @dynamic endLocationId;
+@dynamic journeyDate;
+@dynamic providerId;
+@dynamic selfId;
+@dynamic serviceId;
+@dynamic startLocationId;
+@dynamic subCategoryId;
+@dynamic distanceTravelled;
+@dynamic calculatedFare;
 
 @end

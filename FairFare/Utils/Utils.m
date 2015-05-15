@@ -79,9 +79,17 @@ NSArray* safeArray(NSArray* array)
 {
     return (array.count ? array : nil);
 }
+NSDictionary* safeDictionary(NSDictionary* dict)
+{
+    return (dict.count ? dict : nil);
+}
 BOOL isArraySafe(NSArray* array)
 {
     return array && [array count] > 0;
+}
+BOOL isDictionarySafe(NSDictionary* dict)
+{
+    return dict && [dict count] > 0;
 }
 BOOL isDateBetweenDates(NSDate* date,NSDate* beginDate,NSDate* endDate)
 {
@@ -151,4 +159,20 @@ NSString* getCurrentDetailedDateAndTime()
     NSDate *destDate = [[NSDate alloc] initWithTimeInterval:interval sinceDate:now];
     // logToConsole([destDate stringWithFormat:@"yyyy-MM-dd HH:mm:ss.SSS"]);
     return [destDate stringWithFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+}
+NSString* getCurrentDateAndTime()
+{
+    NSDate *now = [NSDate date];
+    
+    NSTimeZone *sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    NSTimeZone *destTimeZone = [NSTimeZone systemTimeZone];
+    
+    NSInteger sourceGMToffset = [sourceTimeZone secondsFromGMTForDate:now];
+    NSInteger destGMToffset = [destTimeZone secondsFromGMTForDate:now];
+    
+    NSTimeInterval interval = destGMToffset - sourceGMToffset;
+    
+    NSDate *destDate = [[NSDate alloc] initWithTimeInterval:interval sinceDate:now];
+    // logToConsole([destDate stringWithFormat:@"yyyy-MM-dd HH:mm:ss.SSS"]);
+    return [destDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
 }

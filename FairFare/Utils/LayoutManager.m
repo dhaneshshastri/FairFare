@@ -846,6 +846,19 @@ static LayoutManager* layoutManager;
     
     [parentView addConstraints:constraints];
 }
+- (void)layoutWithFormat:(NSString*)format
+            toParentView:(UIView*)parentView
+             withOptions:(NSLayoutFormatOptions)options
+               withViews:(NSDictionary*)dict
+{
+    NSArray* constraints =
+    [NSLayoutConstraint constraintsWithVisualFormat:format
+                                            options:options
+                                            metrics:nil
+                                              views:dict];
+    
+    [parentView addConstraints:constraints];
+}
 - (void)fluidConstraintWithItems:(NSDictionary *) dictViews
                         asString:(NSArray *) stringViews
                        alignAxis:(NSString *) axis

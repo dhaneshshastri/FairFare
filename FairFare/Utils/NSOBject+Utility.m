@@ -98,7 +98,6 @@ extern UIInterfaceOrientation currentDeviceOrientation;
 }
 - (void)delayedOrientationNotification:(NSNumber*)orientation
 {
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"orientationChangeNotification" object:orientation];
 }
 - (void)removeOrientationNotification
@@ -118,5 +117,13 @@ extern UIInterfaceOrientation currentDeviceOrientation;
     @catch (NSException *exception) {
         NSLog(@"%@",exception.debugDescription);
     }
+}
+- (BOOL)isNull
+{
+    return [self isKindOfClass:[[NSNull null] class]];
+}
++ (BOOL)isValidObject:(id)object
+{
+    return (object && ![object isNull]);
 }
 @end

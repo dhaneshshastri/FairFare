@@ -41,6 +41,7 @@
 }
 - (void)setData:(NSDictionary*)data
 {
+    _data = nil;
     _data = data;
 }
 - (void)viewWillAppear:(BOOL)animated
@@ -109,6 +110,10 @@
     {
         [_totalAmount setText:formatCurrency([totalAmount floatValue])];
     }
+    //Set the active journey
+    Journey* journey = [[AppDataBaseManager appDataBaseManager] journeyWithId:_data[@"activeJourneyId"]];
+    journey.calculatedFare = [totalAmount doubleValue];
+    [[AppDataBaseManager appDataBaseManager] saveContext:nil];
 }
 - (void)calculateFare
 {

@@ -21,4 +21,6 @@ UIInterfaceOrientation previousDeviceOrientation;
 - (void)prepareForOrientationNotification;
 - (void)orientationChanged:(UIInterfaceOrientation)orientation;
 - (NSString*)pathForResourceForFileName:(NSString*)fileName;
+- (BOOL)isNull;
++ (BOOL)isValidObject:(id)object;
 @end

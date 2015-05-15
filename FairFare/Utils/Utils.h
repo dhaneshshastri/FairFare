@@ -17,7 +17,9 @@ UIViewController* viewControllerFromStoryboard(NSString* storyBoardName,NSString
 id dataFromPlistFile(NSString* fileName);
 NSUInteger indexOfItemFor(NSArray* array,NSString* matchingKey,NSString* matchingText);
 NSArray* safeArray(NSArray* array);
+NSDictionary* safeDictionary(NSDictionary* dict);
 BOOL isArraySafe(NSArray* array);
+BOOL isDictionarySafe(NSDictionary* dict);
 BOOL isDateBetweenDates(NSDate* date,NSDate* beginDate,NSDate* endDate);
 int minutesSinceMidnight(NSDate* date);
 NSString* formatCurrency(float amount);
@@ -25,4 +27,5 @@ NSString* formatDistance(double distance);
 NSString* distanceUnit();//will return Mi or Km
 NSComparisonResult compareStringDates(NSString* dateStr1,NSString* dateStr2);
 NSString* getCurrentDetailedDateAndTime();
+NSString* getCurrentDateAndTime();
 #endif

@@ -83,6 +83,12 @@ typedef enum
 - (void)layoutWithFormat:(NSString*)format
             toParentView:(UIView*)parentView
                withViews:(NSDictionary*)dict;
+- (void)layoutWithFormat:(NSString*)format
+            toParentView:(UIView*)parentView
+             withOptions:(NSLayoutFormatOptions)options
+               withViews:(NSDictionary*)dict;
+
+
 - (NSLayoutConstraint*)setCenterOfView:(UIView*)view
                                 inView:(UIView*)superView
                               constant:(CGFloat)centerValue

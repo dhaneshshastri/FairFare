@@ -31,6 +31,10 @@
     CLLocationDistance _travelledDistance;
     BOOL _journeyStarted;
     GMSAddress* _startAddress;
+    GMSAddress* _destinationAddress;
+    CLLocation* _startLocation;
+    CLLocation* _endLocation;
+    NSString* _activeJourneyId;
 }
 @property (nonatomic,readonly,strong) LFGlassView* glassView;
 @end
@@ -181,6 +185,9 @@
 }
 - (void)stopJourney
 {
+    //Record
+    _endLocation = nil;
+    _endLocation = _currentLocation;
     if(_closeButton)
     {
         [_closeButton removeFromSuperview];
@@ -191,6 +198,74 @@
     [[LocationShareModel sharedModel] stopUpdatingLocation];
     _isNavigating = NO;
     _journeyStarted = NO;
+    
+    //Now Update the created journey object
+    Journey* journey = [[AppDataBaseManager appDataBaseManager] fetchedResultsFor:@"Journey"
+                                                                          sortKey:nil
+                                                                  andSearchformat:@"selfId == %@",_activeJourneyId][0];
+    
+    if(!journey)
+    {
+        return;
+    }
+    journey.distanceTravelled = _travelledDistance;
+    //If source address
+    if(_startAddress)
+    {
+        Address* address = [[AppDataBaseManager appDataBaseManager] createAddressEntryWith:@{@"lat":@(_startLocation.coordinate.latitude),
+                                                                                             @"lon":
+                                                                                                 @(_startLocation.coordinate.longitude),@"isSource":@(YES),@"journeyId":journey.selfId,@"address":[NSDictionary dictionaryWithPropertiesOfObject:_startAddress]}];
+        journey.startLocationId = address.selfId;
+        
+        [[AppDataBaseManager appDataBaseManager] saveContext:nil];
+    }
+    else
+    {
+        //Update
+        GMSGeocoder* geocoder = [GMSGeocoder geocoder];
+        [geocoder reverseGeocodeCoordinate:_startLocation.coordinate
+                         completionHandler:^(GMSReverseGeocodeResponse *geocodeResponse, NSError *erroe){
+                             
+                             _startAddress = nil;
+                             _startAddress = geocodeResponse.firstResult;
+
+                             
+                             Address* address = [[AppDataBaseManager appDataBaseManager] createAddressEntryWith:@{@"lat":@(_startLocation.coordinate.latitude),
+                                                                                                                  @"lon":
+                                                                                                                      @(_startLocation.coordinate.longitude),@"isSource":@(YES),@"journeyId":journey.selfId,@"address":[NSDictionary dictionaryWithPropertiesOfObject:_startAddress]}];
+                             journey.startLocationId = address.selfId;
+                             
+                             [[AppDataBaseManager appDataBaseManager] saveContext:nil];
+                         }];
+    }
+    //If dest address
+    if(_destinationAddress)
+    {
+        Address* address = [[AppDataBaseManager appDataBaseManager] createAddressEntryWith:@{@"lat":@(_endLocation.coordinate.latitude),
+                                                                                             @"lon":
+                                                                                                 @(_endLocation.coordinate.longitude),@"isDestination":@(YES),@"journeyId":journey.selfId,@"address":[NSDictionary dictionaryWithPropertiesOfObject:_destinationAddress]}];
+        journey.startLocationId = address.selfId;
+     
+        [[AppDataBaseManager appDataBaseManager] saveContext:nil];
+    }
+    else
+    {
+        //Update
+        GMSGeocoder* geocoder = [GMSGeocoder geocoder];
+        [geocoder reverseGeocodeCoordinate:_endLocation.coordinate
+                         completionHandler:^(GMSReverseGeocodeResponse *geocodeResponse, NSError *erroe){
+                             
+                             _destinationAddress = nil;
+                             _destinationAddress = geocodeResponse.firstResult;
+                             
+                             Address* address = [[AppDataBaseManager appDataBaseManager] createAddressEntryWith:@{@"lat":@(_endLocation.coordinate.latitude),
+                                                                                                                  @"lon":
+                                                                                                                      @(_endLocation.coordinate.longitude),@"isDestination":@(YES),@"journeyId":journey.selfId,@"address":[NSDictionary dictionaryWithPropertiesOfObject:_destinationAddress]}];
+                             journey.endLocationId = address.selfId;
+                             
+                             [[AppDataBaseManager appDataBaseManager] saveContext:nil];
+                         }];
+    }
 }
 - (void)createOnTravelControls
 {
@@ -233,7 +308,6 @@
                                       inView:_mapView
                          withAlignmentOption:NSLayoutAttributeTop
                        andRefAlignmentOption:NSLayoutAttributeTop];
-    
     
     //Add the distance travelled text
     [_travelledDistanceLabel removeFromSuperview];
@@ -309,6 +383,8 @@
                                              selector:@selector(locationUpdatedNotification:)
                                                  name:kLocationUpdated
                                                object:nil];
+    
+    
     [self createAndAddControlsView];
 }
 - (void)viewDidAppear:(BOOL)animated
@@ -332,12 +408,12 @@
     id locations = notification.object;
     CLLocation* newLocation = [locations lastObject];
     CLLocationCoordinate2D theLocation = newLocation.coordinate;
-
+    
     [_mapView animateToBearing:newLocation.course];
     
     [_mapView animateToLocation:theLocation];
     [_mapView animateToZoom:16];
-
+    
     if(!_journeyStarted)
         return;
     
@@ -386,20 +462,28 @@
     }
     if(_reverseGeocodeStartLocation)//First one
     {
-        GMSGeocoder* geocoder = [GMSGeocoder geocoder];
+        _startLocation = nil;
+        _startLocation = _currentLocation;
         
+        //Start Journey
+        Journey* journey = [[AppDataBaseManager appDataBaseManager] createJourneyEntryWith:nil];
+        _activeJourneyId = journey.selfId;
+        
+        
+        GMSGeocoder* geocoder = [GMSGeocoder geocoder];
         [geocoder reverseGeocodeCoordinate:theLocation
                          completionHandler:^(GMSReverseGeocodeResponse *geocodeResponse, NSError *erroe){
                              
                              _startAddress = nil;
                              _startAddress = geocodeResponse.firstResult;
-
+                             
                              // Creates a marker in the center of the map.
                              GMSMarker *marker = [[GMSMarker alloc] init];
                              marker.position = _startAddress.coordinate;
                              marker.title = _startAddress.thoroughfare;
                              marker.snippet = _startAddress.subLocality;
                              marker.map = _mapView;
+                             
                          }];
         _reverseGeocodeStartLocation = NO;
     }
@@ -429,7 +513,7 @@
                                                   delegate:self
                                          cancelButtonTitle:@"No"
                                          otherButtonTitles:@"Yes", nil];
-
+    
     if(_travelledDistance > 0)
     {
         UIView* view = [[UIView alloc] init];
@@ -456,10 +540,10 @@
                                                   andRelation:NSLayoutRelationEqual];
                 
                 [[LayoutManager layoutManager] setHeightOfView:checkBox
-                                                   sameAsView:view
-                                                       inView:view
-                                                   multiplier:1.0
-                                                  andRelation:NSLayoutRelationEqual];
+                                                    sameAsView:view
+                                                        inView:view
+                                                    multiplier:1.0
+                                                   andRelation:NSLayoutRelationEqual];
                 
                 [[LayoutManager layoutManager] positionSubview:checkBox
                                                         toView:view
@@ -485,15 +569,25 @@
             [self stopJourney];
             //Recreate
             [self createAndAddControlsView];
+            
             //If reached destination, then use the journey data collected and use to calculate the terrif
             if(_reachedDestinationChecked)
             {
                 //Take to FareCalculator screen
                 FareCalculatorViewController* fareCalculatorVC = (FareCalculatorViewController*)viewControllerFromStoryboard(@"Main",@"fareCalculatorController");
-                [fareCalculatorVC setData:@{@"addressOrLocation":_startAddress ? : (_currentLocation ? : [NSNull null]),@"travelledDistance":@(_travelledDistance)}];
+                
+                [fareCalculatorVC setData:@{@"addressOrLocation":_startAddress ? : (_currentLocation ? : [NSNull null]),
+                                            @"travelledDistance":@(_travelledDistance),
+                                            @"activeJourneyId":_activeJourneyId}];
+                
                 [self.navigationController pushViewController:fareCalculatorVC
                                                      animated:YES];
             }
+            else
+            {
+                [[AppDataBaseManager appDataBaseManager] deleteJourneyWithId:_activeJourneyId];
+            }
+            _activeJourneyId = nil;
         }
             break;
         default:
@@ -519,5 +613,10 @@
     polyline.geodesic = YES;
     polyline.map = _mapView;
     polyline = nil;
+    
+    //Add the path to DB
+    [[AppDataBaseManager appDataBaseManager] addLocationToJourneyWithId:_activeJourneyId
+                                                                    lat:location.latitude
+                                                                 andLon:location.longitude];
 }
 @end

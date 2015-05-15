@@ -19,5 +19,9 @@
 #import "DataBaseManager.h"
 #import "NSManagedObject+Data.h"
 #import "NSDate+Helper.h"
-
+#import "Address.h"
+#import "Journey.h"
+#import "AppDataBaseManager.h"
+#import "NSDictionary+Helper.h"
+#import "NSOBject+Utility.h"
 #endif
