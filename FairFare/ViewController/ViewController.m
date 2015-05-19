@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import <LiveFrost/LiveFrost.h>
+#import "LiveFrost.h"
 #import "HistoryViewController.h"
 #import "M13Checkbox.h"
 #import "FareCalculatorViewController.h"
