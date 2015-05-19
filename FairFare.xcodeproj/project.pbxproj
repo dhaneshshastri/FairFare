@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		500C5ECC1B0B5B71004D568E /* libPods-LiveFrost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 500C5ECB1B0B5B71004D568E /* libPods-LiveFrost.a */; };
 		5015FB5F1ADCD26B00D849DA /* Fares.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5015FB5E1ADCD26B00D849DA /* Fares.plist */; };
 		5015FB611ADCE78D00D849DA /* DayFares.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5015FB601ADCE78D00D849DA /* DayFares.plist */; };
 		5015FB631ADCE79D00D849DA /* NightFares.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5015FB621ADCE79D00D849DA /* NightFares.plist */; };
@@ -76,6 +77,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		500C5ECB1B0B5B71004D568E /* libPods-LiveFrost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-LiveFrost.a"; path = "Pods/../build/Release-iphoneos/libPods-LiveFrost.a"; sourceTree = "<group>"; };
 		5015FB5E1ADCD26B00D849DA /* Fares.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Fares.plist; sourceTree = "<group>"; };
 		5015FB601ADCE78D00D849DA /* DayFares.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DayFares.plist; sourceTree = "<group>"; };
 		5015FB621ADCE79D00D849DA /* NightFares.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NightFares.plist; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				500C5ECC1B0B5B71004D568E /* libPods-LiveFrost.a in Frameworks */,
 				5088D47E1AD7ADC500A626E8 /* MapKit.framework in Frameworks */,
 				50C9EC3B1AC9C96300D34A0B /* SystemConfiguration.framework in Frameworks */,
 				50C9EC391AC9C95B00D34A0B /* QuartzCore.framework in Frameworks */,
@@ -367,6 +370,7 @@
 		8E049CFCBC1D7663B3EE9037 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				500C5ECB1B0B5B71004D568E /* libPods-LiveFrost.a */,
 				50C9EC221AC9C78400D34A0B /* GoogleMaps.bundle */,
 				50C9EC201AC9C6F000D34A0B /* GoogleMaps.framework */,
 				50C9EC3A1AC9C96300D34A0B /* SystemConfiguration.framework */,
@@ -703,6 +707,10 @@
 				INFOPLIST_FILE = FairFare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6fed44fb-be9e-407a-9a36-43c7aa8ea117";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -725,6 +733,10 @@
 				INFOPLIST_FILE = FairFare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6fed44fb-be9e-407a-9a36-43c7aa8ea117";
 				TARGETED_DEVICE_FAMILY = 1;
