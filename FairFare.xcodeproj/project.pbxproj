@@ -697,7 +697,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chandrashekar Sivaram (32N7DN84JK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/FairFare",
+					"$(PROJECT_DIR)/**",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/FairFare-Prefix.pch";
 				INFOPLIST_FILE = FairFare/Info.plist;
@@ -719,7 +719,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chandrashekar Sivaram (32N7DN84JK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/FairFare",
+					"$(PROJECT_DIR)/**",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/FairFare-Prefix.pch";
 				INFOPLIST_FILE = FairFare/Info.plist;
