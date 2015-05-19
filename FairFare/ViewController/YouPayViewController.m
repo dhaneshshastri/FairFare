@@ -39,6 +39,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (void)dealloc
+{
+    _data = nil;
+}
 - (void)setData:(NSDictionary*)data
 {
     _data = nil;

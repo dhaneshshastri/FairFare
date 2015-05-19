@@ -125,32 +125,27 @@
     NSString* dayTimings = firstFareObject[@"dayTimings"];
     NSString* nightTimings = firstFareObject[@"nightTimings"];
     NSString* dayOrNightFareId = nil;
-    BOOL isDay = NO;
     if((!dayTimings && !nightTimings) || (dayTimings && !nightTimings))
     {
         dayOrNightFareId = firstFareObject[@"dayFareId"];//Only one entry for day
-        isDay = YES;
     }
     else if(!dayTimings && nightTimings)
     {
         dayOrNightFareId = firstFareObject[@"nightFareId"];
-        isDay = NO;
     }
     else
     {
         if([self isNowBewteenDates:dayTimings])
         {
             //Day
-            NSLog(@"Day Journey");
+            //NSLog(@"Day Journey");
             dayOrNightFareId = firstFareObject[@"dayFareId"];
-            isDay = YES;
         }
         else if([self isNowBewteenDates:nightTimings])
         {
             //Night
-            NSLog(@"Night Journey");
+          //  NSLog(@"Night Journey");
             dayOrNightFareId = firstFareObject[@"nightFareId"];
-            isDay = NO;
         }
     }
     //As now we have the dayOrNightFareId, fetch the curresponding data from plist

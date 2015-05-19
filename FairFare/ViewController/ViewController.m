@@ -208,7 +208,7 @@
     {
         return;
     }
-    journey.distanceTravelled = _travelledDistance;
+    journey.travelledDistance = _travelledDistance;
     //If source address
     if(_startAddress)
     {

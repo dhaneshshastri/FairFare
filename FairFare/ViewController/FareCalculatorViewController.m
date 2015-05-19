@@ -473,6 +473,7 @@
     Journey* journey = [[AppDataBaseManager appDataBaseManager] journeyWithId:_data[@"activeJourneyId"]];
     journey.serviceId = _selectedService[@"selfId"];
     journey.providerId = _selectedProvider[@"selfId"];
+    journey.subCategoryId = _selectedSubCategory[@"selfId"];
     [[AppDataBaseManager appDataBaseManager] saveContext:nil];
 }
 - (void)setData:(NSDictionary*)dict

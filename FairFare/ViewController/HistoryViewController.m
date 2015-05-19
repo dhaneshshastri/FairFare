@@ -7,6 +7,7 @@
 //
 
 #import "HistoryViewController.h"
+#import "YouPayViewController.h"
 @interface HistoryCell : UITableViewCell
 {
     UILabel* _mediumNameLabel;
@@ -192,8 +193,8 @@
                                                   withViews:NSDictionaryOfVariableBindings(toLabel,distanceLabel)];
             
             
-            [distanceLabel setText:[_data[@"distanceTravelled"] doubleValue] > 0 ?
-             formatDistance([_data[@"distanceTravelled"] doubleValue]) : @""];
+            [distanceLabel setText:[_data[@"travelledDistance"] doubleValue] > 0 ?
+             formatDistance([_data[@"travelledDistance"] doubleValue]) : @""];
             
             
             _mediumNameLabel = [UILabel new];
@@ -393,6 +394,23 @@
     cell.data = [_journeys[[indexPath row]] dictionary];//Call layout
     
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath
+                             animated:YES];
+    Journey* journey = _journeys[[indexPath row]];
+    //Take to FareCalculator screen
+    YouPayViewController* youPayVC = (YouPayViewController*)viewControllerFromStoryboard(@"Main",@"youPayViewController");
+    //Create dict with
+    //Service
+    //Provider
+    //SubCategory
+    //TravelledDistance
+    NSMutableDictionary* data = [NSMutableDictionary dictionaryWithDictionary:[journey dictionary]];
+    [youPayVC setData:data];
+    [self.navigationController pushViewController:youPayVC
+                                         animated:YES];
 }
 #pragma Class Methods
 - (void)configureCell:(UITableViewCell*)cell
