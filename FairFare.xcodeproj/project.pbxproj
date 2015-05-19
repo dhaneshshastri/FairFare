@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		500C5ECC1B0B5B71004D568E /* libPods-LiveFrost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 500C5ECB1B0B5B71004D568E /* libPods-LiveFrost.a */; };
 		5015FB5F1ADCD26B00D849DA /* Fares.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5015FB5E1ADCD26B00D849DA /* Fares.plist */; };
 		5015FB611ADCE78D00D849DA /* DayFares.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5015FB601ADCE78D00D849DA /* DayFares.plist */; };
 		5015FB631ADCE79D00D849DA /* NightFares.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5015FB621ADCE79D00D849DA /* NightFares.plist */; };
@@ -172,7 +171,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				500C5ECC1B0B5B71004D568E /* libPods-LiveFrost.a in Frameworks */,
 				5088D47E1AD7ADC500A626E8 /* MapKit.framework in Frameworks */,
 				50C9EC3B1AC9C96300D34A0B /* SystemConfiguration.framework in Frameworks */,
 				50C9EC391AC9C95B00D34A0B /* QuartzCore.framework in Frameworks */,
@@ -647,7 +645,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -683,7 +681,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
@@ -697,7 +695,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chandrashekar Sivaram (32N7DN84JK)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chandrashekar Sivaram (32N7DN84JK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -723,7 +721,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chandrashekar Sivaram (32N7DN84JK)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chandrashekar Sivaram (32N7DN84JK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -745,6 +743,7 @@
 		};
 		501BB5551AC4012E0066CA3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B174152F6DFB203BD452E124 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -764,6 +763,7 @@
 		};
 		501BB5561AC4012E0066CA3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88452E494A482A709562740A /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

@@ -4,10 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-LiveFrost.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>Pods-LiveFrost.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
 			<true/>
+		</dict>
+		<key>Pods.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
 		</dict>
 		<key>Pods.xcscheme_^#shared#^_</key>
 		<dict>
