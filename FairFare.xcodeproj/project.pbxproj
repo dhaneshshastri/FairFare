@@ -16,6 +16,9 @@
 		501BB53F1AC4012E0066CA3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 501BB53E1AC4012E0066CA3D /* Images.xcassets */; };
 		501BB5421AC4012E0066CA3D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 501BB5401AC4012E0066CA3D /* LaunchScreen.xib */; };
 		501BB54E1AC4012E0066CA3D /* FairFareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BB54D1AC4012E0066CA3D /* FairFareTests.m */; };
+		5020511E1B183E1E007F2560 /* libTestFairy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5020511C1B183E1E007F2560 /* libTestFairy.a */; };
+		502051201B18429B007F2560 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5020511F1B18429B007F2560 /* CoreMedia.framework */; };
+		502051221B1842A7007F2560 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 502051211B1842A7007F2560 /* CoreMotion.framework */; };
 		502238041B05A1BE00105448 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502238031B05A1BE00105448 /* ViewController.m */; };
 		503388E91AE51BAF007AA5ED /* Locations.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 503388E81AE51BAF007AA5ED /* Locations.gpx */; };
 		5040199F1AF73EBD0011BC56 /* NSDictionary+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5040199E1AF73EBD0011BC56 /* NSDictionary+Helper.m */; };
@@ -91,6 +94,10 @@
 		501BB5471AC4012E0066CA3D /* FairFareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FairFareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		501BB54C1AC4012E0066CA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		501BB54D1AC4012E0066CA3D /* FairFareTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FairFareTests.m; sourceTree = "<group>"; };
+		5020511C1B183E1E007F2560 /* libTestFairy.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFairy.a; sourceTree = "<group>"; };
+		5020511D1B183E1E007F2560 /* TestFairy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFairy.h; sourceTree = "<group>"; };
+		5020511F1B18429B007F2560 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		502051211B1842A7007F2560 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		502238021B05A1BE00105448 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		502238031B05A1BE00105448 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		503388E81AE51BAF007AA5ED /* Locations.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Locations.gpx; path = FairFare/Locations.gpx; sourceTree = SOURCE_ROOT; };
@@ -173,6 +180,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				502051221B1842A7007F2560 /* CoreMotion.framework in Frameworks */,
+				502051201B18429B007F2560 /* CoreMedia.framework in Frameworks */,
 				5088D47E1AD7ADC500A626E8 /* MapKit.framework in Frameworks */,
 				50C9EC3B1AC9C96300D34A0B /* SystemConfiguration.framework in Frameworks */,
 				50C9EC391AC9C95B00D34A0B /* QuartzCore.framework in Frameworks */,
@@ -186,6 +195,7 @@
 				50C9EC291AC9C8CE00D34A0B /* CoreLocation.framework in Frameworks */,
 				50C9EC271AC9C8C400D34A0B /* CoreData.framework in Frameworks */,
 				50C9EC251AC9C8B600D34A0B /* AVFoundation.framework in Frameworks */,
+				5020511E1B183E1E007F2560 /* libTestFairy.a in Frameworks */,
 				50C9EC211AC9C6F000D34A0B /* GoogleMaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,6 +241,7 @@
 		501BB5301AC4012E0066CA3D /* FairFare */ = {
 			isa = PBXGroup;
 			children = (
+				5020511B1B183E1E007F2560 /* TestFairy */,
 				50639BA41AF23E3500477E24 /* DBClasses */,
 				50639BA11AF236EC00477E24 /* FairFare.xcdatamodeld */,
 				50E0BE7C1ACC405300F7D67B /* ViewController */,
@@ -270,6 +281,15 @@
 				501BB54C1AC4012E0066CA3D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5020511B1B183E1E007F2560 /* TestFairy */ = {
+			isa = PBXGroup;
+			children = (
+				5020511C1B183E1E007F2560 /* libTestFairy.a */,
+				5020511D1B183E1E007F2560 /* TestFairy.h */,
+			);
+			path = TestFairy;
 			sourceTree = "<group>";
 		};
 		50639BA41AF23E3500477E24 /* DBClasses */ = {
@@ -380,6 +400,8 @@
 		8E049CFCBC1D7663B3EE9037 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				502051211B1842A7007F2560 /* CoreMotion.framework */,
+				5020511F1B18429B007F2560 /* CoreMedia.framework */,
 				50C9EC221AC9C78400D34A0B /* GoogleMaps.bundle */,
 				50C9EC201AC9C6F000D34A0B /* GoogleMaps.framework */,
 				50C9EC3A1AC9C96300D34A0B /* SystemConfiguration.framework */,
@@ -605,7 +627,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chandrashekar Sivaram (32N7DN84JK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chandrashekar Sivaram (32N7DN84JK)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -626,6 +649,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
+				PROVISIONING_PROFILE = "3bf876f4-a689-43d0-96c5-83d074286a44";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -647,7 +671,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chandrashekar Sivaram (32N7DN84JK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chandrashekar Sivaram (32N7DN84JK)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -661,6 +686,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ObjC";
+				PROVISIONING_PROFILE = "3bf876f4-a689-43d0-96c5-83d074286a44";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -671,7 +697,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chandrashekar Sivaram (32N7DN84JK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chandrashekar Sivaram (32N7DN84JK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -684,9 +710,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/FairFare/TestFairy",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6fed44fb-be9e-407a-9a36-43c7aa8ea117";
+				PROVISIONING_PROFILE = "3bf876f4-a689-43d0-96c5-83d074286a44";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -696,7 +723,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chandrashekar Sivaram (32N7DN84JK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chandrashekar Sivaram (32N7DN84JK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -709,9 +736,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/FairFare/TestFairy",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6fed44fb-be9e-407a-9a36-43c7aa8ea117";
+				PROVISIONING_PROFILE = "3bf876f4-a689-43d0-96c5-83d074286a44";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

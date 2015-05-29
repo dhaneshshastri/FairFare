@@ -351,6 +351,25 @@
     [super viewWillAppear:animated];
     _journeys = nil;
     _journeys = [[AppDataBaseManager appDataBaseManager] journeys];
+    
+    if(!_journeys)
+    {
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@""
+                                                       message:@"Oops, you havn't travelled with us yet!"
+                                                      delegate:nil
+                                             cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        
+        [alert show];
+        alert = nil;
+        
+        [self performSelector:@selector(goBack)
+                   withObject:nil
+                   afterDelay:1.0];
+    }
+}
+- (void)goBack
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

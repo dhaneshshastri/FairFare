@@ -199,8 +199,10 @@
     _isNavigating = NO;
     _journeyStarted = NO;
     
+    if(!_activeJourneyId)
+        return;
     //Now Update the created journey object
-    Journey* journey = [[AppDataBaseManager appDataBaseManager] fetchedResultsFor:@"Journey"
+    __block Journey* journey = [[AppDataBaseManager appDataBaseManager] fetchedResultsFor:@"Journey"
                                                                           sortKey:nil
                                                                   andSearchformat:@"selfId == %@",_activeJourneyId][0];
     
@@ -227,8 +229,13 @@
                          completionHandler:^(GMSReverseGeocodeResponse *geocodeResponse, NSError *erroe){
                              
                              _startAddress = nil;
+                             if(!_activeJourneyId)
+                                 return ;
                              _startAddress = geocodeResponse.firstResult;
 
+                             Journey* journey = [[AppDataBaseManager appDataBaseManager] fetchedResultsFor:@"Journey"
+                                                                                                   sortKey:nil
+                                                                                           andSearchformat:@"selfId == %@",_activeJourneyId][0];
                              
                              Address* address = [[AppDataBaseManager appDataBaseManager] createAddressEntryWith:@{@"lat":@(_startLocation.coordinate.latitude),
                                                                                                                   @"lon":
@@ -256,11 +263,21 @@
                          completionHandler:^(GMSReverseGeocodeResponse *geocodeResponse, NSError *erroe){
                              
                              _destinationAddress = nil;
+                             if(!_activeJourneyId)
+                                 return ;
                              _destinationAddress = geocodeResponse.firstResult;
                              
-                             Address* address = [[AppDataBaseManager appDataBaseManager] createAddressEntryWith:@{@"lat":@(_endLocation.coordinate.latitude),
-                                                                                                                  @"lon":
-                                                                                                                      @(_endLocation.coordinate.longitude),@"isDestination":@(YES),@"journeyId":journey.selfId,@"address":[NSDictionary dictionaryWithPropertiesOfObject:_destinationAddress]}];
+                             
+                             
+                             Journey* journey = [[AppDataBaseManager appDataBaseManager] fetchedResultsFor:@"Journey"
+                                                                                                   sortKey:nil
+                                                                                           andSearchformat:@"selfId == %@",_activeJourneyId][0];
+                             
+                             NSDictionary* dict = @{@"lat":@(_endLocation.coordinate.latitude),
+                                                    @"lon":
+                                                        @(_endLocation.coordinate.longitude),@"isDestination":@(YES),@"journeyId":journey.selfId,@"address":[NSDictionary dictionaryWithPropertiesOfObject:_destinationAddress]};
+                             
+                             Address* address = [[AppDataBaseManager appDataBaseManager] createAddressEntryWith:dict];
                              journey.endLocationId = address.selfId;
                              
                              [[AppDataBaseManager appDataBaseManager] saveContext:nil];
@@ -586,8 +603,8 @@
             else
             {
                 [[AppDataBaseManager appDataBaseManager] deleteJourneyWithId:_activeJourneyId];
+                _activeJourneyId = nil;
             }
-            _activeJourneyId = nil;
         }
             break;
         default:

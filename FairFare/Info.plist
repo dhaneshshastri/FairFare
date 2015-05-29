@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Let&apos;s go Digital Regular.ttf</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -34,6 +30,10 @@
 	<string>Your location is needed for this app.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location is needed for this app.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Let's go Digital Regular.ttf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

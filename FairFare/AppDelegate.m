@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "TestFairy.h"
 
 @interface AppDelegate ()
 
@@ -16,9 +17,10 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
 
+    [TestFairy begin:@"a63c9055361701b3ccaf2d5d8873db62c4fc5bfa"];
     [GMSServices provideAPIKey:@"AIzaSyCG3BKzz4y1FoeNyDHV_Wysg21ueglRnLw"];
     // Override point for customization after application launch.
     NSLog(@"didFinishLaunchingWithOptions");
