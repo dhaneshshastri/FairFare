@@ -745,7 +745,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3bf876f4-a689-43d0-96c5-83d074286a44";
+				PROVISIONING_PROFILE = "775fafe9-c44e-4a0a-8082-01dcfe6b0dcf";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -774,7 +774,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3bf876f4-a689-43d0-96c5-83d074286a44";
+				PROVISIONING_PROFILE = "775fafe9-c44e-4a0a-8082-01dcfe6b0dcf";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
