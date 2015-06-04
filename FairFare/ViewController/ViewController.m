@@ -155,7 +155,7 @@
                           action:@selector(showHistory:)
                 forControlEvents:UIControlEventTouchUpInside];
         
-        [historyButton setTitle:@"History"
+        [historyButton setTitle:@"Hello"
                        forState:UIControlStateNormal];
         
         [[LayoutManager layoutManager] setWidth:100.0
