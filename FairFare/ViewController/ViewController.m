@@ -35,6 +35,7 @@
     CLLocation* _startLocation;
     CLLocation* _endLocation;
     NSString* _activeJourneyId;
+    UIImageView* _backgroundImageView;
 }
 @property (nonatomic,readonly,strong) LFGlassView* glassView;
 @end
@@ -73,6 +74,7 @@
                     animations:^{
                         [_controlsView setAlpha:0.0];
                         [_glassView setAlpha:0.0];
+                        [_backgroundImageView setAlpha:0.0];
                     }
                     completion:^(BOOL finished){
                         //Remove the _controlsView
@@ -87,6 +89,8 @@
                             [_glassView removeFromSuperview];
                             _glassView = nil;
                         }
+                        [_backgroundImageView removeFromSuperview];
+                        _backgroundImageView = nil;
                     }];
 }
 - (void)createAndAddControlsView
@@ -101,6 +105,22 @@
         [_controlsView removeFromSuperview];
         _controlsView = nil;
     }
+    if(_backgroundImageView)
+    {
+        [_backgroundImageView removeFromSuperview];
+        _backgroundImageView = nil;
+    }
+    //Add background Image view
+    {
+        
+        _backgroundImageView = [[UIImageView alloc] init];
+        [_backgroundImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [_backgroundImageView setBackgroundColor:[UIColor redColor]];
+        [self.view addSubview:_backgroundImageView];
+        [[LayoutManager layoutManager] fillView:_backgroundImageView
+                                         inView:self.view];
+        [_backgroundImageView setImage:[UIImage imageNamed:@"Default.png"]];
+    }
     [self.view addSubview:self.glassView];
     _controlsView = [[UIView alloc] init];
     [_controlsView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -112,23 +132,23 @@
     //Adding controls
     //Add the Buttons
     {
-        UIButton* startButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        UIButton* startButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [startButton setTranslatesAutoresizingMaskIntoConstraints:NO];
         [_controlsView addSubview:startButton];
         
-        [startButton setTitle:@"Start Journey"
+        [startButton setImage:[UIImage imageNamed:@"startjourney.png"]
                      forState:UIControlStateNormal];
         
         [startButton addTarget:self
                         action:@selector(startJourney:)
               forControlEvents:UIControlEventTouchUpInside];
         
-        [[LayoutManager layoutManager] setWidth:100.0
+        [[LayoutManager layoutManager] setWidth:389.0 / 2.0
                                          ofView:startButton
                                          inView:_controlsView
                                     andRelation:NSLayoutRelationEqual];
         
-        [[LayoutManager layoutManager] setHeight:100.0
+        [[LayoutManager layoutManager] setHeight:88.0 / 2.0
                                           ofView:startButton
                                           inView:_controlsView
                                      andRelation:NSLayoutRelationEqual];
@@ -148,7 +168,7 @@
                            andRefAlignmentOption:NSLayoutAttributeCenterY];
         
         /////
-        UIButton* historyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        UIButton* historyButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [historyButton setTranslatesAutoresizingMaskIntoConstraints:NO];
         [_controlsView addSubview:historyButton];
         [historyButton addTarget:self
@@ -158,12 +178,15 @@
         [historyButton setTitle:@"History"
                        forState:UIControlStateNormal];
         
-        [[LayoutManager layoutManager] setWidth:100.0
+        [historyButton setImage:[UIImage imageNamed:@"history.png"]
+                     forState:UIControlStateNormal];
+        
+        [[LayoutManager layoutManager] setWidth:389.0 / 2.0
                                          ofView:historyButton
                                          inView:_controlsView
                                     andRelation:NSLayoutRelationEqual];
         
-        [[LayoutManager layoutManager] setHeight:100.0
+        [[LayoutManager layoutManager] setHeight:88.0 / 2.0
                                           ofView:historyButton
                                           inView:_controlsView
                                      andRelation:NSLayoutRelationEqual];
@@ -286,45 +309,82 @@
 }
 - (void)createOnTravelControls
 {
+    //Master panel view
+    UIView* view = [[UIView alloc] init];
+    {
+        
+        [view setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [_mapView addSubview:view];
+        [view.layer setCornerRadius:((43.0 / 1.5) + 4) / 2.0];
+        [view setBackgroundColor:[UIColor colorWithRed:0.0 / 255.0
+                                                 green:0.0 / 255.0
+                                                  blue:0.0 / 255.0
+                                                 alpha:0.8]];
+        
+        [[LayoutManager layoutManager] setWidthOfView:view
+                                           sameAsView:_mapView
+                                               inView:_mapView
+                                           multiplier:0.99
+                                          andRelation:NSLayoutRelationEqual];
+        
+        [[LayoutManager layoutManager] setHeight:(43.0 / 1.5) + 4
+                                          ofView:view
+                                          inView:_mapView
+                                     andRelation:NSLayoutRelationEqual];
+        
+        [[LayoutManager layoutManager] alignView:view
+                                       toRefView:_mapView
+                                      withOffset:CGPointZero
+                                          inView:_mapView
+                             withAlignmentOption:NSLayoutAttributeCenterX
+                           andRefAlignmentOption:NSLayoutAttributeCenterX];
+        
+        [[LayoutManager layoutManager] alignView:view
+                                       toRefView:_mapView
+                                      withOffset:CGPointMake(-2, 0)
+                                          inView:_mapView
+                             withAlignmentOption:NSLayoutAttributeBottom
+                           andRefAlignmentOption:NSLayoutAttributeBottom];
+        
+        
+    }
     if(_closeButton)
     {
         [_closeButton removeFromSuperview];
         _closeButton = nil;
     }
-    _closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_closeButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_mapView addSubview:_closeButton];
+    [view addSubview:_closeButton];
     [_closeButton addTarget:self
                      action:@selector(stopJourney:)
            forControlEvents:UIControlEventTouchUpInside];
     
-    [_closeButton setTitle:@"X"
+    [_closeButton setImage:[UIImage imageNamed:@"stopbutton.png"]
                   forState:UIControlStateNormal];
     
-    [_closeButton setBackgroundColor:[UIColor colorWithRed:1.0
-                                                     green:1.0
-                                                      blue:1.0
-                                                     alpha:0.5]];
+    [[LayoutManager layoutManager] setSize:CGSizeMake(43.0 / 1.5, 43.0 / 1.5)
+                                    ofView:_closeButton
+                                    inView:view];
     
     [_closeButton setContentCompressionResistancePriority:500
                                                   forAxis:UILayoutConstraintAxisHorizontal];
     
-    
-    [_closeButton.layer setCornerRadius:15.0];
+
     
     [[LayoutManager layoutManager] alignView:_closeButton
-                                   toRefView:_mapView
-                                  withOffset:CGPointZero
-                                      inView:_mapView
+                                   toRefView:view
+                                  withOffset:CGPointMake(-2, 0)
+                                      inView:view
                          withAlignmentOption:NSLayoutAttributeRight
                        andRefAlignmentOption:NSLayoutAttributeRight];
     
     [[LayoutManager layoutManager] alignView:_closeButton
-                                   toRefView:_mapView
-                                  withOffset:CGPointMake(65, 0)
-                                      inView:_mapView
-                         withAlignmentOption:NSLayoutAttributeTop
-                       andRefAlignmentOption:NSLayoutAttributeTop];
+                                   toRefView:view
+                                  withOffset:CGPointMake(0, 0)
+                                      inView:view
+                         withAlignmentOption:NSLayoutAttributeCenterY
+                       andRefAlignmentOption:NSLayoutAttributeCenterY];
     
     //Add the distance travelled text
     [_travelledDistanceLabel removeFromSuperview];
@@ -333,43 +393,40 @@
     [_travelledDistanceLabel setFont:[UIFont fontWithName:@"LetsgoDigital-Regular"
                                                      size:24.0]];
     
-    [_travelledDistanceLabel setBackgroundColor:[UIColor colorWithRed:1.0
-                                                                green:1.0
-                                                                 blue:1.0
-                                                                alpha:0.8]];
     [_travelledDistanceLabel.layer setCornerRadius:4.0];
     [_travelledDistanceLabel setClipsToBounds:YES];
-    [_travelledDistanceLabel setTextColor:[UIColor colorWithRed:9 / 255.0
-                                                          green:126 / 255.0
-                                                           blue:254 / 255.0
-                                                          alpha:1.0]];
+    [_travelledDistanceLabel setTextColor:[UIColor colorWithRed:1.0
+                                                          green:1.0
+                                                           blue:1.0
+                                                          alpha:0.7]];
     
     [_travelledDistanceLabel setHidden:YES];
     
     {
         [_travelledDistanceLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [_mapView addSubview:_travelledDistanceLabel];
+        [view addSubview:_travelledDistanceLabel];
+        
         [[LayoutManager layoutManager] setHeight:24.0
                                           ofView:_travelledDistanceLabel
-                                          inView:_mapView
+                                          inView:view
                                      andRelation:NSLayoutRelationEqual];
         
         [[LayoutManager layoutManager] setWidth:10.0
                                          ofView:_travelledDistanceLabel
-                                         inView:_mapView
+                                         inView:view
                                     andRelation:NSLayoutRelationGreaterThanOrEqual];
         
         [[LayoutManager layoutManager] alignView:_travelledDistanceLabel
-                                       toRefView:_mapView
-                                      withOffset:CGPointMake(65.0, 0)
-                                          inView:_mapView
-                             withAlignmentOption:NSLayoutAttributeTop
-                           andRefAlignmentOption:NSLayoutAttributeTop];
+                                       toRefView:view
+                                      withOffset:CGPointMake(0, 0)
+                                          inView:view
+                             withAlignmentOption:NSLayoutAttributeCenterY
+                           andRefAlignmentOption:NSLayoutAttributeCenterY];
         
         [[LayoutManager layoutManager] alignView:_travelledDistanceLabel
-                                       toRefView:_mapView
-                                      withOffset:CGPointMake(5.0, 0)
-                                          inView:_mapView
+                                       toRefView:view
+                                      withOffset:CGPointMake(4.0, 0)
+                                          inView:view
                              withAlignmentOption:NSLayoutAttributeLeft
                            andRefAlignmentOption:NSLayoutAttributeLeft];
     }
@@ -545,6 +602,15 @@
             [checkBox setBackgroundColor:[UIColor clearColor]];
             
             [view addSubview:checkBox];
+            checkBox.strokeColor = [UIColor colorWithRed:149.0 / 255.0
+                                                   green:137.0 / 255.0
+                                                    blue:95.0 / 255.0
+                                                   alpha:1.0];
+            
+            checkBox.checkColor = [UIColor colorWithRed:149.0 / 255.0
+                                                   green:137.0 / 255.0
+                                                    blue:95.0 / 255.0
+                                                   alpha:1.0];
             
             //Layout
             {

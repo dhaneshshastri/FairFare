@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5015FB5F1ADCD26B00D849DA /* Fares.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5015FB5E1ADCD26B00D849DA /* Fares.plist */; };
-		5015FB611ADCE78D00D849DA /* DayFares.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5015FB601ADCE78D00D849DA /* DayFares.plist */; };
-		5015FB631ADCE79D00D849DA /* NightFares.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5015FB621ADCE79D00D849DA /* NightFares.plist */; };
 		501BB5341AC4012E0066CA3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BB5331AC4012E0066CA3D /* main.m */; };
 		501BB5371AC4012E0066CA3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BB5361AC4012E0066CA3D /* AppDelegate.m */; };
 		501BB53D1AC4012E0066CA3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 501BB53B1AC4012E0066CA3D /* Main.storyboard */; };
@@ -20,7 +17,6 @@
 		502051201B18429B007F2560 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5020511F1B18429B007F2560 /* CoreMedia.framework */; };
 		502051221B1842A7007F2560 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 502051211B1842A7007F2560 /* CoreMotion.framework */; };
 		502238041B05A1BE00105448 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502238031B05A1BE00105448 /* ViewController.m */; };
-		503388E91AE51BAF007AA5ED /* Locations.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 503388E81AE51BAF007AA5ED /* Locations.gpx */; };
 		5040199F1AF73EBD0011BC56 /* NSDictionary+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5040199E1AF73EBD0011BC56 /* NSDictionary+Helper.m */; };
 		50455CD31B1E201F00EB2415 /* libPods-LiveFrost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50455CD21B1E201F00EB2415 /* libPods-LiveFrost.a */; };
 		50455CD51B1E202400EB2415 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50455CD41B1E202400EB2415 /* libPods.a */; };
@@ -28,7 +24,6 @@
 		504C734B1AD2ED1500661F5D /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 504C73491AD2ED1500661F5D /* ActionSheetCustomPicker.m */; };
 		504C734E1AD2EF1B00661F5D /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 504C734D1AD2EF1B00661F5D /* AbstractActionSheetPicker.m */; };
 		504C73511AD2EF3F00661F5D /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 504C73501AD2EF3F00661F5D /* SWActionSheet.m */; };
-		505E877F1AD789F90068D6A9 /* Let's go Digital Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 505E877D1AD789400068D6A9 /* Let's go Digital Regular.ttf */; };
 		5060593B1AD264B200EDB895 /* FareCalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5060593A1AD264B200EDB895 /* FareCalculatorViewController.m */; };
 		50639BA31AF236EC00477E24 /* FairFare.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50639BA11AF236EC00477E24 /* FairFare.xcdatamodeld */; };
 		50639BAF1AF23F3100477E24 /* Journey.m in Sources */ = {isa = PBXBuildFile; fileRef = 50639BAC1AF23F3100477E24 /* Journey.m */; };
@@ -36,15 +31,28 @@
 		50639BB71AF240A700477E24 /* NSManagedObject+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 50639BB51AF240A700477E24 /* NSManagedObject+Data.m */; };
 		50639BBA1AF245C800477E24 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 50639BB91AF245C800477E24 /* NSDate+Helper.m */; };
 		50639BBD1AF247A400477E24 /* NSOBject+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 50639BBC1AF247A400477E24 /* NSOBject+Utility.m */; };
-		5065FF881AD53E24004E21C2 /* Services.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5065FF871AD53E24004E21C2 /* Services.plist */; };
-		5079E2EA1AD6390C00ED9293 /* Providers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5079E2E91AD6390C00ED9293 /* Providers.plist */; };
 		507ACDC71ACBAC2500B743C0 /* LayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 507ACDC61ACBAC2500B743C0 /* LayoutManager.m */; };
+		507FE5881B28C70800C7D4E4 /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 507FE5761B28C70700C7D4E4 /* checkbox.png */; };
+		507FE5891B28C70800C7D4E4 /* checkboxselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 507FE5771B28C70700C7D4E4 /* checkboxselected.png */; };
+		507FE58A1B28C70800C7D4E4 /* DayFares.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507FE5781B28C70700C7D4E4 /* DayFares.plist */; };
+		507FE58B1B28C70800C7D4E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 507FE5791B28C70700C7D4E4 /* Default.png */; };
+		507FE58C1B28C70800C7D4E4 /* Default_Ratina.png in Resources */ = {isa = PBXBuildFile; fileRef = 507FE57A1B28C70700C7D4E4 /* Default_Ratina.png */; };
+		507FE58D1B28C70800C7D4E4 /* Fares.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507FE57B1B28C70700C7D4E4 /* Fares.plist */; };
+		507FE58E1B28C70800C7D4E4 /* history.png in Resources */ = {isa = PBXBuildFile; fileRef = 507FE57C1B28C70700C7D4E4 /* history.png */; };
+		507FE58F1B28C70800C7D4E4 /* Let's go Digital Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 507FE57D1B28C70800C7D4E4 /* Let's go Digital Regular.ttf */; };
+		507FE5901B28C70800C7D4E4 /* Locations Test.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 507FE57E1B28C70800C7D4E4 /* Locations Test.gpx */; };
+		507FE5911B28C70800C7D4E4 /* Locations.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 507FE57F1B28C70800C7D4E4 /* Locations.gpx */; };
+		507FE5921B28C70800C7D4E4 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 507FE5801B28C70800C7D4E4 /* logo.png */; };
+		507FE5931B28C70800C7D4E4 /* NavigationArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 507FE5811B28C70800C7D4E4 /* NavigationArrow.png */; };
+		507FE5941B28C70800C7D4E4 /* NightFares.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507FE5821B28C70800C7D4E4 /* NightFares.plist */; };
+		507FE5951B28C70800C7D4E4 /* Providers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507FE5831B28C70800C7D4E4 /* Providers.plist */; };
+		507FE5961B28C70800C7D4E4 /* Services.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507FE5841B28C70800C7D4E4 /* Services.plist */; };
+		507FE5971B28C70800C7D4E4 /* startjourney.png in Resources */ = {isa = PBXBuildFile; fileRef = 507FE5851B28C70800C7D4E4 /* startjourney.png */; };
+		507FE5981B28C70800C7D4E4 /* stopbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 507FE5861B28C70800C7D4E4 /* stopbutton.png */; };
+		507FE5991B28C70800C7D4E4 /* SubCategories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507FE5871B28C70800C7D4E4 /* SubCategories.plist */; };
 		50874DD11AD3F2D80060AB57 /* ContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50874DD01AD3F2D80060AB57 /* ContentManager.m */; };
-		5088D47C1AD7A29200A626E8 /* NavigationArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5088D47B1AD7A29200A626E8 /* NavigationArrow.png */; };
 		5088D47E1AD7ADC500A626E8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D47D1AD7ADC500A626E8 /* MapKit.framework */; };
 		508B1EB01AE0E7AD00086AAB /* YouPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B1EAF1AE0E7AD00086AAB /* YouPayViewController.m */; };
-		5090D9CD1ADF884200D518C4 /* SubCategories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5090D9CC1ADF884200D518C4 /* SubCategories.plist */; };
-		50AD890C1AE57F2B00F70956 /* Locations Test.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 50AD890B1AE57F2B00F70956 /* Locations Test.gpx */; };
 		50AD89101AE58A9200F70956 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AD890E1AE58A9200F70956 /* InfoViewController.m */; };
 		50AD89111AE58A9200F70956 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50AD890F1AE58A9200F70956 /* InfoViewController.xib */; };
 		50BC46031B00B54300F81239 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BC46021B00B54300F81239 /* Address.m */; };
@@ -82,9 +90,6 @@
 
 /* Begin PBXFileReference section */
 		37E4AC61D3D0F475B7B47AB5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		5015FB5E1ADCD26B00D849DA /* Fares.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Fares.plist; sourceTree = "<group>"; };
-		5015FB601ADCE78D00D849DA /* DayFares.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DayFares.plist; sourceTree = "<group>"; };
-		5015FB621ADCE79D00D849DA /* NightFares.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NightFares.plist; sourceTree = "<group>"; };
 		501BB52E1AC4012E0066CA3D /* FairFare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FairFare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		501BB5321AC4012E0066CA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		501BB5331AC4012E0066CA3D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -102,7 +107,6 @@
 		502051211B1842A7007F2560 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		502238021B05A1BE00105448 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		502238031B05A1BE00105448 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		503388E81AE51BAF007AA5ED /* Locations.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Locations.gpx; path = FairFare/Locations.gpx; sourceTree = SOURCE_ROOT; };
 		5040199D1AF73EBD0011BC56 /* NSDictionary+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Helper.h"; sourceTree = "<group>"; };
 		5040199E1AF73EBD0011BC56 /* NSDictionary+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Helper.m"; sourceTree = "<group>"; };
 		50455CD21B1E201F00EB2415 /* libPods-LiveFrost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-LiveFrost.a"; path = "Pods/../build/Debug-iphoneos/libPods-LiveFrost.a"; sourceTree = "<group>"; };
@@ -115,7 +119,6 @@
 		504C734D1AD2EF1B00661F5D /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractActionSheetPicker.m; sourceTree = "<group>"; };
 		504C734F1AD2EF3F00661F5D /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWActionSheet.h; sourceTree = "<group>"; };
 		504C73501AD2EF3F00661F5D /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWActionSheet.m; sourceTree = "<group>"; };
-		505E877D1AD789400068D6A9 /* Let's go Digital Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Let's go Digital Regular.ttf"; sourceTree = "<group>"; };
 		506059391AD264B200EDB895 /* FareCalculatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareCalculatorViewController.h; sourceTree = "<group>"; };
 		5060593A1AD264B200EDB895 /* FareCalculatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FareCalculatorViewController.m; sourceTree = "<group>"; };
 		50639BA21AF236EC00477E24 /* FairFare.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FairFare.xcdatamodel; sourceTree = "<group>"; };
@@ -129,20 +132,33 @@
 		50639BB91AF245C800477E24 /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
 		50639BBB1AF247A400477E24 /* NSOBject+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOBject+Utility.h"; sourceTree = "<group>"; };
 		50639BBC1AF247A400477E24 /* NSOBject+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOBject+Utility.m"; sourceTree = "<group>"; };
-		5065FF871AD53E24004E21C2 /* Services.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Services.plist; sourceTree = "<group>"; };
 		506813B61ACB00D500E79ADB /* FairFare-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FairFare-Prefix.pch"; sourceTree = "<group>"; };
 		506813B71ACB012400E79ADB /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
-		5079E2E91AD6390C00ED9293 /* Providers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Providers.plist; sourceTree = "<group>"; };
 		507ACDC51ACBAC2500B743C0 /* LayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutManager.h; sourceTree = "<group>"; };
 		507ACDC61ACBAC2500B743C0 /* LayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutManager.m; sourceTree = "<group>"; };
+		507FE5761B28C70700C7D4E4 /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
+		507FE5771B28C70700C7D4E4 /* checkboxselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxselected.png; sourceTree = "<group>"; };
+		507FE5781B28C70700C7D4E4 /* DayFares.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DayFares.plist; sourceTree = "<group>"; };
+		507FE5791B28C70700C7D4E4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		507FE57A1B28C70700C7D4E4 /* Default_Ratina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_Ratina.png; sourceTree = "<group>"; };
+		507FE57B1B28C70700C7D4E4 /* Fares.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Fares.plist; sourceTree = "<group>"; };
+		507FE57C1B28C70700C7D4E4 /* history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history.png; sourceTree = "<group>"; };
+		507FE57D1B28C70800C7D4E4 /* Let's go Digital Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Let's go Digital Regular.ttf"; sourceTree = "<group>"; };
+		507FE57E1B28C70800C7D4E4 /* Locations Test.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Locations Test.gpx"; sourceTree = "<group>"; };
+		507FE57F1B28C70800C7D4E4 /* Locations.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Locations.gpx; sourceTree = "<group>"; };
+		507FE5801B28C70800C7D4E4 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		507FE5811B28C70800C7D4E4 /* NavigationArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationArrow.png; sourceTree = "<group>"; };
+		507FE5821B28C70800C7D4E4 /* NightFares.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NightFares.plist; sourceTree = "<group>"; };
+		507FE5831B28C70800C7D4E4 /* Providers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Providers.plist; sourceTree = "<group>"; };
+		507FE5841B28C70800C7D4E4 /* Services.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Services.plist; sourceTree = "<group>"; };
+		507FE5851B28C70800C7D4E4 /* startjourney.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startjourney.png; sourceTree = "<group>"; };
+		507FE5861B28C70800C7D4E4 /* stopbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopbutton.png; sourceTree = "<group>"; };
+		507FE5871B28C70800C7D4E4 /* SubCategories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SubCategories.plist; sourceTree = "<group>"; };
 		50874DCF1AD3F2D80060AB57 /* ContentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentManager.h; sourceTree = "<group>"; };
 		50874DD01AD3F2D80060AB57 /* ContentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentManager.m; sourceTree = "<group>"; };
-		5088D47B1AD7A29200A626E8 /* NavigationArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationArrow.png; sourceTree = "<group>"; };
 		5088D47D1AD7ADC500A626E8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		508B1EAE1AE0E7AD00086AAB /* YouPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouPayViewController.h; sourceTree = "<group>"; };
 		508B1EAF1AE0E7AD00086AAB /* YouPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouPayViewController.m; sourceTree = "<group>"; };
-		5090D9CC1ADF884200D518C4 /* SubCategories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SubCategories.plist; sourceTree = "<group>"; };
-		50AD890B1AE57F2B00F70956 /* Locations Test.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Locations Test.gpx"; path = "FairFare/Locations Test.gpx"; sourceTree = SOURCE_ROOT; };
 		50AD890D1AE58A9200F70956 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		50AD890E1AE58A9200F70956 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		50AD890F1AE58A9200F70956 /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
@@ -247,12 +263,12 @@
 		501BB5301AC4012E0066CA3D /* FairFare */ = {
 			isa = PBXGroup;
 			children = (
+				507FE5751B28C70700C7D4E4 /* Assets */,
 				5020511B1B183E1E007F2560 /* TestFairy */,
 				50639BA41AF23E3500477E24 /* DBClasses */,
 				50639BA11AF236EC00477E24 /* FairFare.xcdatamodeld */,
 				50E0BE7C1ACC405300F7D67B /* ViewController */,
 				50CB10761ACAA907007CEF1A /* Utils */,
-				50C9EC1D1AC9B06C00D34A0B /* Assets */,
 				501BB5351AC4012E0066CA3D /* AppDelegate.h */,
 				501BB5361AC4012E0066CA3D /* AppDelegate.m */,
 				501BB53B1AC4012E0066CA3D /* Main.storyboard */,
@@ -324,19 +340,27 @@
 			name = DBHandlers;
 			sourceTree = "<group>";
 		};
-		50C9EC1D1AC9B06C00D34A0B /* Assets */ = {
+		507FE5751B28C70700C7D4E4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				50AD890B1AE57F2B00F70956 /* Locations Test.gpx */,
-				503388E81AE51BAF007AA5ED /* Locations.gpx */,
-				5090D9CC1ADF884200D518C4 /* SubCategories.plist */,
-				5088D47B1AD7A29200A626E8 /* NavigationArrow.png */,
-				505E877D1AD789400068D6A9 /* Let's go Digital Regular.ttf */,
-				5065FF871AD53E24004E21C2 /* Services.plist */,
-				5079E2E91AD6390C00ED9293 /* Providers.plist */,
-				5015FB5E1ADCD26B00D849DA /* Fares.plist */,
-				5015FB601ADCE78D00D849DA /* DayFares.plist */,
-				5015FB621ADCE79D00D849DA /* NightFares.plist */,
+				507FE5761B28C70700C7D4E4 /* checkbox.png */,
+				507FE5771B28C70700C7D4E4 /* checkboxselected.png */,
+				507FE5781B28C70700C7D4E4 /* DayFares.plist */,
+				507FE5791B28C70700C7D4E4 /* Default.png */,
+				507FE57A1B28C70700C7D4E4 /* Default_Ratina.png */,
+				507FE57B1B28C70700C7D4E4 /* Fares.plist */,
+				507FE57C1B28C70700C7D4E4 /* history.png */,
+				507FE57D1B28C70800C7D4E4 /* Let's go Digital Regular.ttf */,
+				507FE57E1B28C70800C7D4E4 /* Locations Test.gpx */,
+				507FE57F1B28C70800C7D4E4 /* Locations.gpx */,
+				507FE5801B28C70800C7D4E4 /* logo.png */,
+				507FE5811B28C70800C7D4E4 /* NavigationArrow.png */,
+				507FE5821B28C70800C7D4E4 /* NightFares.plist */,
+				507FE5831B28C70800C7D4E4 /* Providers.plist */,
+				507FE5841B28C70800C7D4E4 /* Services.plist */,
+				507FE5851B28C70800C7D4E4 /* startjourney.png */,
+				507FE5861B28C70800C7D4E4 /* stopbutton.png */,
+				507FE5871B28C70800C7D4E4 /* SubCategories.plist */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -508,21 +532,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				503388E91AE51BAF007AA5ED /* Locations.gpx in Resources */,
-				505E877F1AD789F90068D6A9 /* Let's go Digital Regular.ttf in Resources */,
-				5015FB631ADCE79D00D849DA /* NightFares.plist in Resources */,
-				5090D9CD1ADF884200D518C4 /* SubCategories.plist in Resources */,
-				5065FF881AD53E24004E21C2 /* Services.plist in Resources */,
-				5015FB5F1ADCD26B00D849DA /* Fares.plist in Resources */,
-				5079E2EA1AD6390C00ED9293 /* Providers.plist in Resources */,
-				50AD890C1AE57F2B00F70956 /* Locations Test.gpx in Resources */,
-				5088D47C1AD7A29200A626E8 /* NavigationArrow.png in Resources */,
+				507FE5961B28C70800C7D4E4 /* Services.plist in Resources */,
+				507FE58E1B28C70800C7D4E4 /* history.png in Resources */,
 				501BB53D1AC4012E0066CA3D /* Main.storyboard in Resources */,
-				5015FB611ADCE78D00D849DA /* DayFares.plist in Resources */,
+				507FE58B1B28C70800C7D4E4 /* Default.png in Resources */,
+				507FE5981B28C70800C7D4E4 /* stopbutton.png in Resources */,
 				501BB5421AC4012E0066CA3D /* LaunchScreen.xib in Resources */,
+				507FE5881B28C70800C7D4E4 /* checkbox.png in Resources */,
+				507FE5911B28C70800C7D4E4 /* Locations.gpx in Resources */,
 				501BB53F1AC4012E0066CA3D /* Images.xcassets in Resources */,
 				50AD89111AE58A9200F70956 /* InfoViewController.xib in Resources */,
+				507FE5901B28C70800C7D4E4 /* Locations Test.gpx in Resources */,
+				507FE5891B28C70800C7D4E4 /* checkboxselected.png in Resources */,
+				507FE58F1B28C70800C7D4E4 /* Let's go Digital Regular.ttf in Resources */,
+				507FE5991B28C70800C7D4E4 /* SubCategories.plist in Resources */,
+				507FE5971B28C70800C7D4E4 /* startjourney.png in Resources */,
+				507FE58D1B28C70800C7D4E4 /* Fares.plist in Resources */,
+				507FE5921B28C70800C7D4E4 /* logo.png in Resources */,
+				507FE5951B28C70800C7D4E4 /* Providers.plist in Resources */,
+				507FE5941B28C70800C7D4E4 /* NightFares.plist in Resources */,
 				50C9EC231AC9C78400D34A0B /* GoogleMaps.bundle in Resources */,
+				507FE58C1B28C70800C7D4E4 /* Default_Ratina.png in Resources */,
+				507FE5931B28C70800C7D4E4 /* NavigationArrow.png in Resources */,
+				507FE58A1B28C70800C7D4E4 /* DayFares.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

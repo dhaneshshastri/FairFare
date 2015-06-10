@@ -11,7 +11,9 @@
 #import "TestFairy.h"
 
 @interface AppDelegate ()
-
+{
+    UIView* _splashView;
+}
 @end
 
 @implementation AppDelegate
@@ -78,8 +80,70 @@
         }
     }
     [DataBaseManager dataBaseManager];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window makeKeyAndVisible];
+    
+    
     //Disable lock
     [UIApplication sharedApplication].idleTimerDisabled = YES;
+    //Splash Image
+    {
+        _splashView = [[UIView alloc] init];
+        [_splashView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self.window addSubview:_splashView];
+        [[LayoutManager layoutManager] fillView:_splashView
+                                         inView:self.window];
+        {
+            UIImageView *_backgroundImageView = [[UIImageView alloc] init];
+            [_backgroundImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+            [_backgroundImageView setBackgroundColor:[UIColor redColor]];
+            [_splashView addSubview:_backgroundImageView];
+            [[LayoutManager layoutManager] fillView:_backgroundImageView
+                                             inView:_splashView];
+            [_backgroundImageView setImage:[UIImage imageNamed:@"Default.png"]];
+            
+            //Add Center Logo
+            UIImageView* logoImageView = [[UIImageView alloc] init];
+            UIImage* image = [UIImage imageNamed:@"logo.png"];
+            [logoImageView setImage:image];
+            [logoImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+            [_splashView addSubview:logoImageView];
+            
+            logoImageView.alpha = 0.4;
+            
+            [[LayoutManager layoutManager] setSize:CGSizeMake(image.size.width / 2,
+                                                              image.size.height / 2)
+                                            ofView:logoImageView
+                                            inView:_splashView];
+            //_splashView.alpha = 0.0;
+            
+            [logoImageView setContentMode:UIViewContentModeRedraw];
+
+            [[LayoutManager layoutManager] alignView:logoImageView
+                                           toRefView:_splashView
+                                          withOffset:CGPointZero
+                                              inView:_splashView
+                                 withAlignmentOption:NSLayoutAttributeCenterX
+                               andRefAlignmentOption:NSLayoutAttributeCenterX];
+            
+            [[LayoutManager layoutManager] alignView:logoImageView
+                                           toRefView:_splashView
+                                          withOffset:CGPointZero
+                                              inView:_splashView
+                                 withAlignmentOption:NSLayoutAttributeCenterY
+                               andRefAlignmentOption:NSLayoutAttributeCenterY];
+            
+            [UIView animateWithDuration:1.0
+                                  delay:0.0
+                                options:UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat
+                             animations:^{
+                                 
+                                 logoImageView.alpha = 1.0;
+                                 
+                             }completion:nil];
+        }
+    }
     return YES;
 }
 
@@ -95,6 +159,17 @@
                                                         object:locations];
     
     
+    if([_splashView isDescendantOfView:self.window])
+    {
+        [_splashView removeFromSuperview];
+        _splashView = nil;
+        //Remove and add the Storyboard
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *vc = [mainStoryboard instantiateViewControllerWithIdentifier:@"navigationController"];
+        
+        [[UIApplication sharedApplication].keyWindow setRootViewController:vc];
+
+    }
     
 }
 - (void)locationManager:(CLLocationManager *)manager
