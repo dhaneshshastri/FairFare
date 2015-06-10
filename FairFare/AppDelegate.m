@@ -143,6 +143,9 @@
                                  
                              }completion:nil];
         }
+        [self performSelector:@selector(hideSplash)
+                   withObject:nil
+                   afterDelay:4.0];
     }
     return YES;
 }
@@ -159,6 +162,10 @@
                                                         object:locations];
     
     
+    
+}
+- (void)hideSplash
+{
     if([_splashView isDescendantOfView:self.window])
     {
         [_splashView removeFromSuperview];
@@ -168,9 +175,7 @@
         UIViewController *vc = [mainStoryboard instantiateViewControllerWithIdentifier:@"navigationController"];
         
         [[UIApplication sharedApplication].keyWindow setRootViewController:vc];
-
     }
-    
 }
 - (void)locationManager:(CLLocationManager *)manager
 didFinishDeferredUpdatesWithError:(NSError *)error
@@ -178,7 +183,6 @@ didFinishDeferredUpdatesWithError:(NSError *)error
     NSLog(@"%@",[error description]);
 //    
 //    manager.deferringUpdates
-    
 }
 - (void) locationManager:(CLLocationManager *)manager
         didUpdateHeading:(CLHeading *)newHeading
