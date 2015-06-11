@@ -72,6 +72,112 @@
                                          inView:self.contentView];
         //Add Labels
         {
+            UIImageView* topHeaderImageView = [UIImageView new];
+            if([_data[@"index"] integerValue] == 0)
+            {
+                [topHeaderImageView setImage:[UIImage imageNamed:@"box1.png"]];
+            }
+            else
+                [topHeaderImageView setImage:[UIImage imageNamed:@"box2.png"]];
+            
+            [topHeaderImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+            [view addSubview:topHeaderImageView];
+            [view setBackgroundColor:[UIColor redColor]];
+            
+            [[LayoutManager layoutManager] setHeight:30.0
+                                              ofView:topHeaderImageView
+                                              inView:view
+                                         andRelation:NSLayoutRelationEqual];
+            
+            [[LayoutManager layoutManager] fillView:topHeaderImageView
+                                             inView:view
+                                       isHorizontal:YES];
+            
+            
+            _mediumNameLabel = [UILabel new];
+            [_mediumNameLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+            [view addSubview:_mediumNameLabel];
+            [_mediumNameLabel setBackgroundColor:[UIColor clearColor]];
+            
+            [_mediumNameLabel setTextColor:[UIColor whiteColor]];
+            [_mediumNameLabel setFont:[UIFont boldSystemFontOfSize:18.0]];
+            
+            [[LayoutManager layoutManager] setWidthOfView:_mediumNameLabel
+                                               sameAsView:view
+                                                   inView:view
+                                               multiplier:0.95
+                                              andRelation:NSLayoutRelationEqual];
+            
+            [[LayoutManager layoutManager] alignView:_mediumNameLabel
+                                           toRefView:view
+                                          withOffset:CGPointMake(5, 0)
+                                              inView:view
+                                 withAlignmentOption:NSLayoutAttributeTop
+                               andRefAlignmentOption:NSLayoutAttributeTop];
+            
+            [[LayoutManager layoutManager] alignView:_mediumNameLabel
+                                           toRefView:view
+                                          withOffset:CGPointZero
+                                              inView:view
+                                 withAlignmentOption:NSLayoutAttributeCenterX
+                               andRefAlignmentOption:NSLayoutAttributeCenterX];
+            
+            [[LayoutManager layoutManager] setHeight:20
+                                              ofView:_mediumNameLabel
+                                              inView:view
+                                         andRelation:NSLayoutRelationEqual];
+            
+            
+            
+            {
+                
+                NSDictionary* provider = [[ContentManager sharedManager] providerWithProviderId:_data[@"providerId"]
+                                                                                   andServiceId:_data[@"serviceId"]];
+                NSString* providerOrServiceName = provider[@"name"];
+                //Fetch the Service Detail
+                if(!providerOrServiceName)
+                {
+                    NSDictionary* service = [[ContentManager sharedManager] serviceWithServiceId:_data[@"serviceId"]];
+                    providerOrServiceName = service[@"name"];
+                }
+                NSLog(@"%@",[providerOrServiceName description]);
+                [_mediumNameLabel setText:providerOrServiceName];
+                [_mediumNameLabel setTextAlignment:NSTextAlignmentLeft];
+            }
+//            UIView* innerView = [UIView new];
+//            [innerView setTranslatesAutoresizingMaskIntoConstraints:NO];
+//            [view addSubview:innerView];
+//            [innerView setBackgroundColor:[UIColor whiteColor]];
+//            
+//            [[LayoutManager layoutManager] alignView:topHeaderImageView
+//                                           toRefView:innerView
+//                                          withOffset:CGPointZero
+//                                              inView:view
+//                                 withAlignmentOption:NSLayoutAttributeBottom
+//                               andRefAlignmentOption:NSLayoutAttributeTop];
+//            
+//            [[LayoutManager layoutManager] setHeight:30
+//                                              ofView:innerView
+//                                              inView:view
+//                                         andRelation:NSLayoutRelationEqual];
+//            
+//            [[LayoutManager layoutManager] fillView:innerView
+//                                             inView:view
+//                                       isHorizontal:YES];
+//            
+//            [[LayoutManager layoutManager] alignView:innerView
+//                                           toRefView:view
+//                                          withOffset:CGPointZero
+//                                              inView:view
+//                                 withAlignmentOption:NSLayoutAttributeCenterX
+//                               andRefAlignmentOption:NSLayoutAttributeCenterX];
+            {
+                
+            }
+            return;
+            
+            
+            
             //Src/Dest
             _sourceAddressLabel = [UILabel new];
             [_sourceAddressLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -366,6 +472,16 @@
                    withObject:nil
                    afterDelay:1.0];
     }
+    
+    UIImage* image = [UIImage imageNamed:@"LeftArrow.png"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem*doneButton=[[UIBarButtonItem alloc] initWithImage:image
+                                                  landscapeImagePhone:nil
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self
+                                                               action:@selector(goBack)];
+    
+    self.navigationItem.leftBarButtonItem = doneButton;
 }
 - (void)goBack
 {
@@ -407,10 +523,15 @@
     if(!cell)
     {
         cell = [[HistoryCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:@"historyCell"];
+                                  reuseIdentifier:@"historyCell"];
+        
     }
+    NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithDictionary:[_journeys[[indexPath row]] dictionary]];
     
-    cell.data = [_journeys[[indexPath row]] dictionary];//Call layout
+    [dict setValue:@([indexPath row])
+            forKey:@"index"];
+    
+    cell.data = dict;//Call layout
     
     return cell;
 }

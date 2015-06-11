@@ -59,6 +59,10 @@
     [_headerLabel setText:_title];
     [_headerLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_headerLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
+    [_headerLabel setTextColor:[UIColor colorWithRed:92.0 / 255.0
+                                               green:94.0 / 255.0
+                                                blue:145.0 / 255.0
+                                               alpha:1.0]];
     [self addSubview:_headerLabel];
     
     //
@@ -81,6 +85,12 @@
     }
     [_optionButton setTitle:_buttonTitle
                    forState:UIControlStateNormal];
+    [_optionButton setTitleColor:[UIColor colorWithRed:154.0 / 255.0
+                                                 green:138.0 / 255.0
+                                                  blue:94.0 / 255.0
+                                                 alpha:1.0]
+                        forState:UIControlStateNormal];
+    
     [_optionButton addTarget:self
                       action:@selector(buttonAction:)
             forControlEvents:UIControlEventTouchUpInside];
@@ -104,10 +114,11 @@
     NSDictionary* _selectedProvider;
     NSDictionary* _selectedSubCategory;
     ///////
-    __weak IBOutlet ButtonOptionView* _servicesOptionView;
     __weak IBOutlet ButtonOptionView* _providerOptionView;
     __weak IBOutlet ButtonOptionView* _subCategoryOptionView;
     ///////
+    __weak IBOutlet UIButton *_cabButton;
+    __weak IBOutlet UIButton *_autoRickshawButton;
     __weak IBOutlet UILabel *_cityLabel;
     __weak IBOutlet UILabel *_distanceTravelledLabel;
     ///////
@@ -143,14 +154,14 @@
     _subCategoryOptionView.hidden = !isArraySafe(_subCategories);
     /////////
     [_providerOptionView setButtonTitle:_selectedProvider[@"name"]];
-    [_servicesOptionView setButtonTitle:_selectedService[@"name"]];
+ //   [_servicesOptionView setButtonTitle:_selectedService[@"name"]];
     [_subCategoryOptionView setButtonTitle:_selectedSubCategory[@"name"]];
 }
 - (void)createOptions
 {
     /////
-    [_servicesOptionView setTitle:@"Select Service"
-                   andButtonTitle:@""];
+//    [_servicesOptionView setTitle:@"Select Service"
+//                   andButtonTitle:@""];
     
     [_providerOptionView setTitle:@"Select Provider"
                    andButtonTitle:@""];
@@ -159,12 +170,12 @@
                    andButtonTitle:@""];
 
     //
-    _servicesOptionView.delegate = self;
+ //   _servicesOptionView.delegate = self;
     _providerOptionView.delegate = self;
     _subCategoryOptionView.delegate = self;
     
     /////
-    _servicesOptionView.tag = 1000;
+ //   _servicesOptionView.tag = 1000;
     _providerOptionView.tag = 2000;
     _subCategoryOptionView.tag = 3000;
     ////
@@ -191,35 +202,47 @@
     ////
     /////////
     [_providerOptionView setButtonTitle:(_providers[0])[@"name"]];
-    [_servicesOptionView setButtonTitle:service[@"name"]];
+ //   [_servicesOptionView setButtonTitle:service[@"name"]];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self createOptions];
     [self initialize];
+    
+    UIImage* image = [UIImage imageNamed:@"LeftArrow.png"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem*doneButton=[[UIBarButtonItem alloc] initWithImage:image
+                                                  landscapeImagePhone:nil
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self
+                                                               action:@selector(goBack)];
+    
+    self.navigationItem.leftBarButtonItem = doneButton;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
     CLLocationDistance distanceTravelled = [_data[@"travelledDistance"] doubleValue];
     //Update the distance metre
     MKDistanceFormatter *df = [[MKDistanceFormatter alloc] init];
     df.unitStyle = MKDistanceFormatterUnitStyleDefault;
     
+    _cabButton.selected = YES;
     if(distanceTravelled > 0)
     {
-        [_distanceTravelledLabel setText:[NSString stringWithFormat:@"You have travelled %@.",[df stringFromDistance: distanceTravelled]]];
+        [_distanceTravelledLabel setText:[df stringFromDistance: distanceTravelled]];
     }
     
-    id address = _data[@"addressOrLocation"];
-    if([address isKindOfClass:[GMSAddress class]])
-    {
-        //Address
-        [_cityLabel setText:[NSString stringWithFormat:@"In %@",((GMSAddress*)address).locality]];
-        [_cityLabel setFont:[UIFont boldSystemFontOfSize:14.0]];
-    }
+  //  id address = _data[@"addressOrLocation"];
+//    if([address isKindOfClass:[GMSAddress class]])
+//    {
+//        //Address
+//        [_cityLabel setText:[NSString stringWithFormat:@"In %@",((GMSAddress*)address).locality]];
+//        [_cityLabel setFont:[UIFont boldSystemFontOfSize:14.0]];
+//    }
     //Else fetch the address and show
     id location = _data[@"addressOrLocation"];
     if([location isKindOfClass:[CLLocation class]])
@@ -252,7 +275,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)goBack
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 /*
  #pragma mark - Navigation
  
@@ -339,13 +365,13 @@
     switch (_pickerView.tag) {
         case 1:
         {
-            _selectedService = nil;
-            _selectedService = [[ContentManager sharedManager] services][row];
-            //Set
-            [_servicesOptionView setButtonTitle:_selectedService[@"name"]];
-            //Reset the provider and subcategory
-            _providers = nil;
-            _subCategories = nil;
+//            _selectedService = nil;
+//            _selectedService = [[ContentManager sharedManager] services][row];
+//            //Set
+//            [_servicesOptionView setButtonTitle:_selectedService[@"name"]];
+//            //Reset the provider and subcategory
+//            _providers = nil;
+//            _subCategories = nil;
         }
             break;
         case 2:
@@ -421,20 +447,21 @@
 }
 - (void)showServicePicker {
     
-    NSUInteger index = indexOfItemFor([[ContentManager sharedManager] services],
-                                      @"name",
-                                      _servicesOptionView.buttonTitle);
-    _pickerView = nil;
-    _pickerView = [ActionSheetCustomPicker showPickerWithTitle:@"Select Service"
-                                                      delegate:self
-                                              showCancelButton:NO
-                                                        origin:self.view
-                                             initialSelections:nil
-                                                        andTag:1];
-    [(UIPickerView*)(_pickerView.pickerView) selectRow:index
-                                           inComponent:0
-                                              animated:YES];
+//    NSUInteger index = indexOfItemFor([[ContentManager sharedManager] services],
+//                                      @"name",
+//                                      _servicesOptionView.buttonTitle);
+//    _pickerView = nil;
+//    _pickerView = [ActionSheetCustomPicker showPickerWithTitle:@"Select Service"
+//                                                      delegate:self
+//                                              showCancelButton:NO
+//                                                        origin:self.view
+//                                             initialSelections:nil
+//                                                        andTag:1];
+//    [(UIPickerView*)(_pickerView.pickerView) selectRow:index
+//                                           inComponent:0
+//                                              animated:YES];
 }
+
 - (IBAction)calculateFare:(UIButton *)sender
 {
     //Take to FareCalculator screen
@@ -481,6 +508,58 @@
     _data = nil;
     _data = dict;
     _activeJourneyId = _data[@"activeJourneyId"];
+}
+- (IBAction)autoRadioButtonTapped:(UIButton*)sender {
+    [sender setSelected:!sender.selected];
+    [_cabButton setSelected:!sender.selected];
+    
+    _selectedService = nil;
+    _selectedService = _services[1];
+    
+    _providers = nil;
+    _subCategories = nil;
+    if(!_providers)
+    {
+        //Set both
+        _providers = [[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]];
+        _selectedProvider = _providers[0];
+        [_providerOptionView setButtonTitle:_selectedProvider[@"name"]];
+    }
+    if(!_subCategories)
+    {
+        _subCategories = [[ContentManager sharedManager] subCategoriesForServiceId:_selectedService[@"selfId"]
+                                                                     andProviderId:_selectedProvider[@"selfId"]];
+        _selectedSubCategory = _subCategories[0];
+        [_subCategoryOptionView setButtonTitle:_selectedSubCategory[@"name"]];
+        
+    }
+    [self updateOptions];
+}
+- (IBAction)cabRadioButtonTapped:(UIButton*)sender {
+
+    [sender setSelected:!sender.selected];
+    [_autoRickshawButton setSelected:!sender.selected];
+    _selectedService = nil;
+    _selectedService = _services[0];
+    
+    _providers = nil;
+    _subCategories = nil;
+    if(!_providers)
+    {
+        //Set both
+        _providers = [[ContentManager sharedManager] providersForServiceId:_selectedService[@"selfId"]];
+        _selectedProvider = _providers[0];
+        [_providerOptionView setButtonTitle:_selectedProvider[@"name"]];
+    }
+    if(!_subCategories)
+    {
+        _subCategories = [[ContentManager sharedManager] subCategoriesForServiceId:_selectedService[@"selfId"]
+                                                                     andProviderId:_selectedProvider[@"selfId"]];
+        _selectedSubCategory = _subCategories[0];
+        [_subCategoryOptionView setButtonTitle:_selectedSubCategory[@"name"]];
+        
+    }
+    [self updateOptions];
 }
 #pragma mark ButtonOptionView Delegates
 - (void)buttonOptionTappedFor:(ButtonOptionView*)buttonOptionView

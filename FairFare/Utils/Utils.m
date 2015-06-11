@@ -120,6 +120,26 @@ NSString* formatDistance(double distance)
     df.unitStyle = MKDistanceFormatterUnitStyleDefault;
     return [df stringFromDistance: distance];
 }
+NSString* formatTime(double timeInMinutes)
+{
+    int hours = timeInMinutes / 60.0;
+    int minutes = fmod(timeInMinutes, 60.0);
+    NSString *time = nil;
+    if(timeInMinutes < 60)
+    {
+        time = [NSString stringWithFormat:@"%d min",(int) timeInMinutes];
+    }
+    else if(minutes > 0)
+    {
+        time = [NSString stringWithFormat:@"%d hr %d min", hours, minutes];
+    }
+    else
+    {
+        time = [NSString stringWithFormat:@"%d hr", hours];
+    }
+    
+    return time;
+}
 NSString* distanceUnit()//will return Mi or Km
 {
     NSString* formattedString = formatDistance(1000);

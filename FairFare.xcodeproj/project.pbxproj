@@ -52,6 +52,15 @@
 		507FE5991B28C70800C7D4E4 /* SubCategories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507FE5871B28C70800C7D4E4 /* SubCategories.plist */; };
 		50874DD11AD3F2D80060AB57 /* ContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50874DD01AD3F2D80060AB57 /* ContentManager.m */; };
 		5088D47E1AD7ADC500A626E8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D47D1AD7ADC500A626E8 /* MapKit.framework */; };
+		5089DE8A1B29F48F009D2987 /* auto.png in Resources */ = {isa = PBXBuildFile; fileRef = 5089DE861B29F48F009D2987 /* auto.png */; };
+		5089DE8B1B29F48F009D2987 /* car.png in Resources */ = {isa = PBXBuildFile; fileRef = 5089DE871B29F48F009D2987 /* car.png */; };
+		5089DE8C1B29F48F009D2987 /* radio1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5089DE881B29F48F009D2987 /* radio1.png */; };
+		5089DE8D1B29F48F009D2987 /* radio2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5089DE891B29F48F009D2987 /* radio2.png */; };
+		5089DE8F1B29F819009D2987 /* butto_purple_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5089DE8E1B29F819009D2987 /* butto_purple_background.png */; };
+		5089DE921B2A0CCB009D2987 /* LeftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5089DE901B2A0CCB009D2987 /* LeftArrow.png */; };
+		5089DE931B2A0CCB009D2987 /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5089DE911B2A0CCB009D2987 /* RightArrow.png */; };
+		5089DE951B2A3030009D2987 /* box1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5089DE941B2A3030009D2987 /* box1.png */; };
+		5089DE971B2A3816009D2987 /* box2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5089DE961B2A3816009D2987 /* box2.png */; };
 		508B1EB01AE0E7AD00086AAB /* YouPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B1EAF1AE0E7AD00086AAB /* YouPayViewController.m */; };
 		50AD89101AE58A9200F70956 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AD890E1AE58A9200F70956 /* InfoViewController.m */; };
 		50AD89111AE58A9200F70956 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50AD890F1AE58A9200F70956 /* InfoViewController.xib */; };
@@ -158,6 +167,15 @@
 		50874DCF1AD3F2D80060AB57 /* ContentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentManager.h; sourceTree = "<group>"; };
 		50874DD01AD3F2D80060AB57 /* ContentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentManager.m; sourceTree = "<group>"; };
 		5088D47D1AD7ADC500A626E8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		5089DE861B29F48F009D2987 /* auto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = auto.png; sourceTree = "<group>"; };
+		5089DE871B29F48F009D2987 /* car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car.png; sourceTree = "<group>"; };
+		5089DE881B29F48F009D2987 /* radio1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radio1.png; sourceTree = "<group>"; };
+		5089DE891B29F48F009D2987 /* radio2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radio2.png; sourceTree = "<group>"; };
+		5089DE8E1B29F819009D2987 /* butto_purple_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = butto_purple_background.png; sourceTree = "<group>"; };
+		5089DE901B2A0CCB009D2987 /* LeftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow.png; sourceTree = "<group>"; };
+		5089DE911B2A0CCB009D2987 /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RightArrow.png; sourceTree = "<group>"; };
+		5089DE941B2A3030009D2987 /* box1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box1.png; sourceTree = "<group>"; };
+		5089DE961B2A3816009D2987 /* box2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box2.png; sourceTree = "<group>"; };
 		508B1EAE1AE0E7AD00086AAB /* YouPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouPayViewController.h; sourceTree = "<group>"; };
 		508B1EAF1AE0E7AD00086AAB /* YouPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouPayViewController.m; sourceTree = "<group>"; };
 		50AD890D1AE58A9200F70956 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
@@ -345,6 +363,15 @@
 		507FE5751B28C70700C7D4E4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				5089DE961B2A3816009D2987 /* box2.png */,
+				5089DE941B2A3030009D2987 /* box1.png */,
+				5089DE901B2A0CCB009D2987 /* LeftArrow.png */,
+				5089DE911B2A0CCB009D2987 /* RightArrow.png */,
+				5089DE8E1B29F819009D2987 /* butto_purple_background.png */,
+				5089DE861B29F48F009D2987 /* auto.png */,
+				5089DE871B29F48F009D2987 /* car.png */,
+				5089DE881B29F48F009D2987 /* radio1.png */,
+				5089DE891B29F48F009D2987 /* radio2.png */,
 				50F1B8B31B2953FA00BEB1FA /* Icon_1024x1024.png */,
 				507FE5761B28C70700C7D4E4 /* checkbox.png */,
 				507FE5771B28C70700C7D4E4 /* checkboxselected.png */,
@@ -535,24 +562,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5089DE921B2A0CCB009D2987 /* LeftArrow.png in Resources */,
 				507FE5961B28C70800C7D4E4 /* Services.plist in Resources */,
 				507FE58E1B28C70800C7D4E4 /* history.png in Resources */,
 				501BB53D1AC4012E0066CA3D /* Main.storyboard in Resources */,
 				50F1B8B41B2953FA00BEB1FA /* Icon_1024x1024.png in Resources */,
 				507FE58B1B28C70800C7D4E4 /* Default.png in Resources */,
 				507FE5981B28C70800C7D4E4 /* stopbutton.png in Resources */,
+				5089DE8B1B29F48F009D2987 /* car.png in Resources */,
 				501BB5421AC4012E0066CA3D /* LaunchScreen.xib in Resources */,
 				507FE5881B28C70800C7D4E4 /* checkbox.png in Resources */,
 				507FE5911B28C70800C7D4E4 /* Locations.gpx in Resources */,
+				5089DE8D1B29F48F009D2987 /* radio2.png in Resources */,
+				5089DE8F1B29F819009D2987 /* butto_purple_background.png in Resources */,
+				5089DE931B2A0CCB009D2987 /* RightArrow.png in Resources */,
 				501BB53F1AC4012E0066CA3D /* Images.xcassets in Resources */,
 				50AD89111AE58A9200F70956 /* InfoViewController.xib in Resources */,
+				5089DE8A1B29F48F009D2987 /* auto.png in Resources */,
 				507FE5901B28C70800C7D4E4 /* Locations Test.gpx in Resources */,
 				507FE5891B28C70800C7D4E4 /* checkboxselected.png in Resources */,
 				507FE58F1B28C70800C7D4E4 /* Let's go Digital Regular.ttf in Resources */,
 				507FE5991B28C70800C7D4E4 /* SubCategories.plist in Resources */,
+				5089DE951B2A3030009D2987 /* box1.png in Resources */,
 				507FE5971B28C70800C7D4E4 /* startjourney.png in Resources */,
+				5089DE8C1B29F48F009D2987 /* radio1.png in Resources */,
 				507FE58D1B28C70800C7D4E4 /* Fares.plist in Resources */,
 				507FE5921B28C70800C7D4E4 /* logo.png in Resources */,
+				5089DE971B2A3816009D2987 /* box2.png in Resources */,
 				507FE5951B28C70800C7D4E4 /* Providers.plist in Resources */,
 				507FE5941B28C70800C7D4E4 /* NightFares.plist in Resources */,
 				50C9EC231AC9C78400D34A0B /* GoogleMaps.bundle in Resources */,

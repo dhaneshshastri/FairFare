@@ -174,7 +174,17 @@
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *vc = [mainStoryboard instantiateViewControllerWithIdentifier:@"navigationController"];
         
+        
         [[UIApplication sharedApplication].keyWindow setRootViewController:vc];
+        
+        vc.view.alpha = 0.3;
+        
+        [UIView animateWithDuration:1.0
+                         animations:^{
+                            
+                             vc.view.alpha = 1.0;
+                             
+                         }];
     }
 }
 - (void)locationManager:(CLLocationManager *)manager

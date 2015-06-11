@@ -36,6 +36,7 @@
     CLLocation* _endLocation;
     NSString* _activeJourneyId;
     UIImageView* _backgroundImageView;
+    NSLayoutConstraint* _controlsBackViewWidthConstraint;
 }
 @property (nonatomic,readonly,strong) LFGlassView* glassView;
 @end
@@ -307,10 +308,38 @@
                          }];
     }
 }
+- (void)showDistanceLabel
+{
+    if(!_controlsBackViewWidthConstraint)
+        return;
+    [_mapView removeConstraint:_controlsBackViewWidthConstraint];
+    _controlsBackViewWidthConstraint = nil;
+    UIView* view = [_mapView viewWithTag:3000];
+    
+    _travelledDistanceLabel.alpha = 0.0;
+    
+    [UIView animateWithDuration:1.0
+                     animations:^{
+    
+                         _travelledDistanceLabel.alpha = 1.0;
+                         
+                         [[LayoutManager layoutManager] setWidthOfView:view
+                                                            sameAsView:_mapView
+                                                                inView:_mapView
+                                                            multiplier:0.99
+                                                           andRelation:NSLayoutRelationEqual];
+                         [_mapView layoutIfNeeded];
+                         
+                     }];
+    
+}
 - (void)createOnTravelControls
 {
+    UIView* view = [_mapView viewWithTag:3000];
+    [view removeFromSuperview];
     //Master panel view
-    UIView* view = [[UIView alloc] init];
+    view = [[UIView alloc] init];
+    [view setTag:3000];
     {
         
         [view setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -320,12 +349,13 @@
                                                  green:0.0 / 255.0
                                                   blue:0.0 / 255.0
                                                  alpha:0.8]];
+
+        _controlsBackViewWidthConstraint = nil;
+        _controlsBackViewWidthConstraint = [[LayoutManager layoutManager] setWidth:(43.0 / 1.5) + 4.0 //4 + 4 on both sides
+                                                                            ofView:view
+                                                                            inView:_mapView
+                                                                       andRelation:NSLayoutRelationEqual];
         
-        [[LayoutManager layoutManager] setWidthOfView:view
-                                           sameAsView:_mapView
-                                               inView:_mapView
-                                           multiplier:0.99
-                                          andRelation:NSLayoutRelationEqual];
         
         [[LayoutManager layoutManager] setHeight:(43.0 / 1.5) + 4
                                           ofView:view
@@ -374,7 +404,7 @@
     
     [[LayoutManager layoutManager] alignView:_closeButton
                                    toRefView:view
-                                  withOffset:CGPointMake(-4, 0)
+                                  withOffset:CGPointMake(-2, 0)
                                       inView:view
                          withAlignmentOption:NSLayoutAttributeRight
                        andRefAlignmentOption:NSLayoutAttributeRight];
@@ -441,6 +471,7 @@
             0.5f * CGRectGetHeight(self.view.bounds)
         };
         _glassView.layer.cornerRadius = 4.0;
+        _glassView.scaleFactor = 1.0;
     }
     return _glassView;
 }
@@ -508,9 +539,11 @@
     else{
         NSLog(@"Threshold reached, Navigating %f",minThresholdDistance);
         _isNavigating = YES;
+        [self showDistanceLabel];
     }
     if(_isNavigating)
     {
+        
         //Append distance
         if(_previousLocation)
             _travelledDistance += [_previousLocation distanceFromLocation:_currentLocation];

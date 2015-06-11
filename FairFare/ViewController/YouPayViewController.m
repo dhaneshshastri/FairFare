@@ -20,6 +20,7 @@
     __weak IBOutlet UILabel *_waitingLabel;
     __weak IBOutlet UILabel *_totalDistanceLabel;
     
+    __weak IBOutlet UILabel *_waitTimeValueLabel;
     __weak IBOutlet UILabel *_minDistanceFareLabel;
     __weak IBOutlet UILabel *_afterMinDistanceFareLabel;
     __weak IBOutlet UILabel *_waitingFareLabel;
@@ -51,8 +52,21 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    UIImage* image = [UIImage imageNamed:@"LeftArrow.png"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem*doneButton=[[UIBarButtonItem alloc] initWithImage:image
+                                                  landscapeImagePhone:nil
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self
+                                                               action:@selector(goBack)];
+    
+    self.navigationItem.leftBarButtonItem = doneButton;
+    
+    
     [self calculateFare];
     [self initialize];
+    
 }
 - (void)initialize
 {
@@ -114,6 +128,8 @@
     {
         [_totalAmount setText:formatCurrency([totalAmount floatValue])];
     }
+    [_totalDistanceLabel setText:formatDistance([distanceTravelled doubleValue])];
+    [_waitTimeValueLabel setText:formatTime([waitingTime doubleValue])];
     //Set the active journey
     Journey* journey = [[AppDataBaseManager appDataBaseManager] journeyWithId:_data[@"activeJourneyId"]];
     journey.calculatedFare = [totalAmount doubleValue];

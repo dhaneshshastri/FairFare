@@ -29,6 +29,17 @@
     _webView.contentMode = UIViewContentModeScaleAspectFit;
     NSURLRequest *request = [NSURLRequest requestWithURL:_url];
     [_webView loadRequest:request];
+    
+    
+    UIImage* image = [UIImage imageNamed:@"LeftArrow.png"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem*doneButton=[[UIBarButtonItem alloc] initWithImage:image
+                                                  landscapeImagePhone:nil
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self
+                                                               action:@selector(goBack)];
+    
+    self.navigationItem.leftBarButtonItem = doneButton;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -47,6 +58,10 @@
     NSLog(@"finished loading");
     
 
+}
+- (void)goBack
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 /*
 #pragma mark - Navigation
