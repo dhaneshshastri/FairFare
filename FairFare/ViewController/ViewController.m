@@ -374,7 +374,7 @@
     
     [[LayoutManager layoutManager] alignView:_closeButton
                                    toRefView:view
-                                  withOffset:CGPointMake(-2, 0)
+                                  withOffset:CGPointMake(-4, 0)
                                       inView:view
                          withAlignmentOption:NSLayoutAttributeRight
                        andRefAlignmentOption:NSLayoutAttributeRight];

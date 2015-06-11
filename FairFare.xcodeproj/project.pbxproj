@@ -75,6 +75,7 @@
 		50DA13641AF368E900A5295A /* AppDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DA13631AF368E900A5295A /* AppDataBaseManager.m */; };
 		50E0BE7F1ACC408400F7D67B /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0BE7E1ACC408400F7D67B /* HistoryViewController.m */; };
 		50E0BE811ACC463A00F7D67B /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E0BE801ACC463A00F7D67B /* Utils.m */; };
+		50F1B8B41B2953FA00BEB1FA /* Icon_1024x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F1B8B31B2953FA00BEB1FA /* Icon_1024x1024.png */; };
 		50FD9EA91AD11F07002519A7 /* M13Checkbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FD9EA81AD11F07002519A7 /* M13Checkbox.m */; };
 /* End PBXBuildFile section */
 
@@ -187,6 +188,7 @@
 		50E0BE7D1ACC408400F7D67B /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		50E0BE7E1ACC408400F7D67B /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		50E0BE801ACC463A00F7D67B /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		50F1B8B31B2953FA00BEB1FA /* Icon_1024x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_1024x1024.png; sourceTree = "<group>"; };
 		50FD9EA71AD11F07002519A7 /* M13Checkbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13Checkbox.h; sourceTree = "<group>"; };
 		50FD9EA81AD11F07002519A7 /* M13Checkbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13Checkbox.m; sourceTree = "<group>"; };
 		619B2155FA25487598D74AEE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 		507FE5751B28C70700C7D4E4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				50F1B8B31B2953FA00BEB1FA /* Icon_1024x1024.png */,
 				507FE5761B28C70700C7D4E4 /* checkbox.png */,
 				507FE5771B28C70700C7D4E4 /* checkboxselected.png */,
 				507FE5781B28C70700C7D4E4 /* DayFares.plist */,
@@ -535,6 +538,7 @@
 				507FE5961B28C70800C7D4E4 /* Services.plist in Resources */,
 				507FE58E1B28C70800C7D4E4 /* history.png in Resources */,
 				501BB53D1AC4012E0066CA3D /* Main.storyboard in Resources */,
+				50F1B8B41B2953FA00BEB1FA /* Icon_1024x1024.png in Resources */,
 				507FE58B1B28C70800C7D4E4 /* Default.png in Resources */,
 				507FE5981B28C70800C7D4E4 /* stopbutton.png in Resources */,
 				501BB5421AC4012E0066CA3D /* LaunchScreen.xib in Resources */,
