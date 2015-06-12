@@ -223,7 +223,7 @@
     _isNavigating = NO;
     _journeyStarted = NO;
     
-    if(!_activeJourneyId)
+    if(!_activeJourneyId || _travelledDistance == 0)
         return;
     //Now Update the created journey object
     __block Journey* journey = [[AppDataBaseManager appDataBaseManager] fetchedResultsFor:@"Journey"

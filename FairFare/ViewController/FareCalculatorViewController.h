@@ -15,7 +15,7 @@
 - (void)buttonOptionTappedFor:(ButtonOptionView*)buttonOptionView;
 @end
 
-@interface FareCalculatorViewController : UIViewController <UIPickerViewDataSource,ActionSheetCustomPickerDelegate,UIPickerViewDataSource,ButtonOptionViewDelegate>
+@interface FareCalculatorViewController : UIViewController <UIPickerViewDataSource,ActionSheetCustomPickerDelegate,UIPickerViewDataSource,ButtonOptionViewDelegate,UIGestureRecognizerDelegate>
 - (void)setData:(NSDictionary*)dict;
 - (void)initialize;
 @end

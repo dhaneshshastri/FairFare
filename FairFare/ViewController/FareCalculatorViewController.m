@@ -124,6 +124,8 @@
     ///////
     NSDictionary* _data;
     NSString* _activeJourneyId;
+    __weak IBOutlet UIView *_autoTopView;
+    __weak IBOutlet UIView *_cabTopView;
 }
 @end
 
@@ -132,7 +134,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(cabViewAction:)];
+    tapGesture.delegate = self;
+    _cabTopView.userInteractionEnabled = YES;
+    [_cabTopView addGestureRecognizer:tapGesture];
     
+    tapGesture = nil;
+    tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                         action:@selector(autoViewAction:)];
+        tapGesture.delegate = self;
+    _autoTopView.userInteractionEnabled = YES;
+    [_autoTopView addGestureRecognizer:tapGesture];
 }
 - (void)initialize
 {
@@ -509,7 +522,19 @@
     _data = dict;
     _activeJourneyId = _data[@"activeJourneyId"];
 }
+- (void)autoViewAction:(id)sender {
+    [self autoRadioButtonTapped:_autoRickshawButton];
+}
+- (void)cabViewAction:(id)sender {
+    [self cabRadioButtonTapped:_cabButton];
+}
 - (IBAction)autoRadioButtonTapped:(UIButton*)sender {
+    
+    if([sender isSelected])
+    {
+        return;
+    }
+    
     [sender setSelected:!sender.selected];
     [_cabButton setSelected:!sender.selected];
     
@@ -537,6 +562,11 @@
 }
 - (IBAction)cabRadioButtonTapped:(UIButton*)sender {
 
+    if([sender isSelected])
+    {
+        return;
+    }
+    
     [sender setSelected:!sender.selected];
     [_autoRickshawButton setSelected:!sender.selected];
     _selectedService = nil;

@@ -17,6 +17,8 @@
 		502051201B18429B007F2560 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5020511F1B18429B007F2560 /* CoreMedia.framework */; };
 		502051221B1842A7007F2560 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 502051211B1842A7007F2560 /* CoreMotion.framework */; };
 		502238041B05A1BE00105448 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 502238031B05A1BE00105448 /* ViewController.m */; };
+		5035113A1B2AFAEB005D37C0 /* icon_end.png in Resources */ = {isa = PBXBuildFile; fileRef = 503511381B2AFAEB005D37C0 /* icon_end.png */; };
+		5035113B1B2AFAEB005D37C0 /* icon_start.png in Resources */ = {isa = PBXBuildFile; fileRef = 503511391B2AFAEB005D37C0 /* icon_start.png */; };
 		5040199F1AF73EBD0011BC56 /* NSDictionary+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5040199E1AF73EBD0011BC56 /* NSDictionary+Helper.m */; };
 		50455CD31B1E201F00EB2415 /* libPods-LiveFrost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50455CD21B1E201F00EB2415 /* libPods-LiveFrost.a */; };
 		50455CD51B1E202400EB2415 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50455CD41B1E202400EB2415 /* libPods.a */; };
@@ -117,6 +119,8 @@
 		502051211B1842A7007F2560 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		502238021B05A1BE00105448 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		502238031B05A1BE00105448 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		503511381B2AFAEB005D37C0 /* icon_end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_end.png; sourceTree = "<group>"; };
+		503511391B2AFAEB005D37C0 /* icon_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_start.png; sourceTree = "<group>"; };
 		5040199D1AF73EBD0011BC56 /* NSDictionary+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Helper.h"; sourceTree = "<group>"; };
 		5040199E1AF73EBD0011BC56 /* NSDictionary+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Helper.m"; sourceTree = "<group>"; };
 		50455CD21B1E201F00EB2415 /* libPods-LiveFrost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-LiveFrost.a"; path = "Pods/../build/Debug-iphoneos/libPods-LiveFrost.a"; sourceTree = "<group>"; };
@@ -363,6 +367,8 @@
 		507FE5751B28C70700C7D4E4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				503511381B2AFAEB005D37C0 /* icon_end.png */,
+				503511391B2AFAEB005D37C0 /* icon_start.png */,
 				5089DE961B2A3816009D2987 /* box2.png */,
 				5089DE941B2A3030009D2987 /* box1.png */,
 				5089DE901B2A0CCB009D2987 /* LeftArrow.png */,
@@ -566,6 +572,7 @@
 				507FE5961B28C70800C7D4E4 /* Services.plist in Resources */,
 				507FE58E1B28C70800C7D4E4 /* history.png in Resources */,
 				501BB53D1AC4012E0066CA3D /* Main.storyboard in Resources */,
+				5035113B1B2AFAEB005D37C0 /* icon_start.png in Resources */,
 				50F1B8B41B2953FA00BEB1FA /* Icon_1024x1024.png in Resources */,
 				507FE58B1B28C70800C7D4E4 /* Default.png in Resources */,
 				507FE5981B28C70800C7D4E4 /* stopbutton.png in Resources */,
@@ -584,6 +591,7 @@
 				507FE58F1B28C70800C7D4E4 /* Let's go Digital Regular.ttf in Resources */,
 				507FE5991B28C70800C7D4E4 /* SubCategories.plist in Resources */,
 				5089DE951B2A3030009D2987 /* box1.png in Resources */,
+				5035113A1B2AFAEB005D37C0 /* icon_end.png in Resources */,
 				507FE5971B28C70800C7D4E4 /* startjourney.png in Resources */,
 				5089DE8C1B29F48F009D2987 /* radio1.png in Resources */,
 				507FE58D1B28C70800C7D4E4 /* Fares.plist in Resources */,

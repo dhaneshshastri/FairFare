@@ -80,9 +80,10 @@
             else
                 [topHeaderImageView setImage:[UIImage imageNamed:@"box2.png"]];
             
+            
             [topHeaderImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
             [view addSubview:topHeaderImageView];
-            [view setBackgroundColor:[UIColor redColor]];
+            [view setBackgroundColor:[UIColor clearColor]];
             
             [[LayoutManager layoutManager] setHeight:30.0
                                               ofView:topHeaderImageView
@@ -93,6 +94,19 @@
                                              inView:view
                                        isHorizontal:YES];
             
+            [[LayoutManager layoutManager] alignView:topHeaderImageView
+                                           toRefView:view
+                                          withOffset:CGPointZero
+                                              inView:view
+                                 withAlignmentOption:NSLayoutAttributeCenterX
+                               andRefAlignmentOption:NSLayoutAttributeCenterX];
+            
+            [[LayoutManager layoutManager] alignView:topHeaderImageView
+                                           toRefView:view
+                                          withOffset:CGPointZero
+                                              inView:view
+                                 withAlignmentOption:NSLayoutAttributeTop
+                               andRefAlignmentOption:NSLayoutAttributeTop];
             
             _mediumNameLabel = [UILabel new];
             [_mediumNameLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -144,39 +158,49 @@
                 [_mediumNameLabel setText:providerOrServiceName];
                 [_mediumNameLabel setTextAlignment:NSTextAlignmentLeft];
             }
-//            UIView* innerView = [UIView new];
-//            [innerView setTranslatesAutoresizingMaskIntoConstraints:NO];
-//            [view addSubview:innerView];
-//            [innerView setBackgroundColor:[UIColor whiteColor]];
-//            
-//            [[LayoutManager layoutManager] alignView:topHeaderImageView
-//                                           toRefView:innerView
-//                                          withOffset:CGPointZero
-//                                              inView:view
-//                                 withAlignmentOption:NSLayoutAttributeBottom
-//                               andRefAlignmentOption:NSLayoutAttributeTop];
-//            
-//            [[LayoutManager layoutManager] setHeight:30
-//                                              ofView:innerView
-//                                              inView:view
-//                                         andRelation:NSLayoutRelationEqual];
-//            
-//            [[LayoutManager layoutManager] fillView:innerView
-//                                             inView:view
-//                                       isHorizontal:YES];
-//            
-//            [[LayoutManager layoutManager] alignView:innerView
-//                                           toRefView:view
-//                                          withOffset:CGPointZero
-//                                              inView:view
-//                                 withAlignmentOption:NSLayoutAttributeCenterX
-//                               andRefAlignmentOption:NSLayoutAttributeCenterX];
+            /////
+            UIView* innerView = [UIView new];
+            [innerView setTranslatesAutoresizingMaskIntoConstraints:NO];
+            [view addSubview:innerView];
+            [innerView setBackgroundColor:[UIColor whiteColor]];
+            
+            [[LayoutManager layoutManager] alignView:topHeaderImageView
+                                           toRefView:innerView
+                                          withOffset:CGPointZero
+                                              inView:view
+                                 withAlignmentOption:NSLayoutAttributeBottom
+                               andRefAlignmentOption:NSLayoutAttributeTop];
+            
+            [[LayoutManager layoutManager] fillView:innerView
+                                             inView:view
+                                       isHorizontal:YES];
+            
+            [[LayoutManager layoutManager] alignView:innerView
+                                           toRefView:view
+                                          withOffset:CGPointZero
+                                              inView:view
+                                 withAlignmentOption:NSLayoutAttributeCenterX
+                               andRefAlignmentOption:NSLayoutAttributeCenterX];
+            
+            [[LayoutManager layoutManager] alignView:innerView
+                                           toRefView:view
+                                          withOffset:CGPointZero
+                                              inView:view
+                                 withAlignmentOption:NSLayoutAttributeBottom
+                               andRefAlignmentOption:NSLayoutAttributeBottom];
+            
+            
+            //If the source and destinations are set then show addresseses otherwise only distance and fare side by side
+            if([self isSourceDestinationSet:_data])
             {
-                
+                [self updateUIForSrcDest:innerView
+                                 andData:_data];
             }
+            else
+                [self updateUIForDistanceAndFare:innerView
+                                         andData:_data];
+            
             return;
-            
-            
             
             //Src/Dest
             _sourceAddressLabel = [UILabel new];
@@ -297,7 +321,6 @@
             [[LayoutManager layoutManager] layoutWithFormat:@"V:[distanceLabel(toLabel)]-2-|"
                                                toParentView:view
                                                   withViews:NSDictionaryOfVariableBindings(toLabel,distanceLabel)];
-            
             
             [distanceLabel setText:[_data[@"travelledDistance"] doubleValue] > 0 ?
              formatDistance([_data[@"travelledDistance"] doubleValue]) : @""];
@@ -425,6 +448,264 @@
         }
     }
 }
+- (void)updateUIForSrcDest:(UIView*)view
+                   andData:(NSDictionary*)data
+{
+    UIImageView* arrowIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"RightArrow.png"]];
+    [arrowIconView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [view addSubview:arrowIconView];
+    [[LayoutManager layoutManager] setSize:CGSizeMake(10, 20)
+                                    ofView:arrowIconView
+                                    inView:view];
+    
+    [[LayoutManager layoutManager] alignView:arrowIconView
+                                   toRefView:view
+                                  withOffset:CGPointZero
+                                      inView:view
+                         withAlignmentOption:NSLayoutAttributeCenterY
+                       andRefAlignmentOption:NSLayoutAttributeCenterY];
+    
+    [[LayoutManager layoutManager] alignView:arrowIconView
+                                   toRefView:view
+                                  withOffset:CGPointZero
+                                      inView:view
+                         withAlignmentOption:NSLayoutAttributeRight
+                       andRefAlignmentOption:NSLayoutAttributeRight];
+    
+    //Add source and destination
+    UIImageView* sourceIconImageView = [UIImageView new];
+    [sourceIconImageView setBackgroundColor:[UIColor clearColor]];
+    [sourceIconImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [sourceIconImageView setImage:[UIImage imageNamed:@"icon_start.png"]];
+    
+    
+    UIImageView* destIconImageView = [UIImageView new];
+    [destIconImageView setBackgroundColor:[UIColor clearColor]];
+    [destIconImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+  //  [view addSubview:destIconImageView];
+    [destIconImageView setImage:[UIImage imageNamed:@"icon_end.png"]];
+    
+    [_sourceAddressLabel removeFromSuperview];
+    _sourceAddressLabel = nil;
+    _sourceAddressLabel = [UILabel new];
+    [_sourceAddressLabel setText:[self sourceAddressText:_data]];
+    [_sourceAddressLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_sourceAddressLabel setAdjustsFontSizeToFitWidth:YES];
+    [_sourceAddressLabel setNumberOfLines:2];
+    [_sourceAddressLabel setFont:[UIFont systemFontOfSize:14.0]];
+    
+    [_destinationAddressLabel removeFromSuperview];
+    _destinationAddressLabel = nil;
+    _destinationAddressLabel = [UILabel new];
+    [_destinationAddressLabel setText:[self destAddressText:_data]];
+    [_destinationAddressLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_destinationAddressLabel setAdjustsFontSizeToFitWidth:YES];
+    [_destinationAddressLabel setNumberOfLines:2];
+    [_destinationAddressLabel setFont:[UIFont systemFontOfSize:14.0]];
+    
+    
+    UILabel* distanceLabel = [UILabel new];
+    [distanceLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [distanceLabel setBackgroundColor:[UIColor clearColor]];
+    ///
+    [distanceLabel setFont:[UIFont boldSystemFontOfSize:26.0]];
+    [distanceLabel setTextAlignment:NSTextAlignmentRight];
+    [distanceLabel setText:[_data[@"travelledDistance"] doubleValue] > 0 ?
+     formatDistance([_data[@"travelledDistance"] doubleValue]) : @""];
+
+    [_totalCostLabel removeFromSuperview];
+    _totalCostLabel = [UILabel new];
+    [_totalCostLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_totalCostLabel setBackgroundColor:[UIColor clearColor]];
+    [_totalCostLabel setFont:[UIFont boldSystemFontOfSize:26.0]];
+    [_totalCostLabel setTextAlignment:NSTextAlignmentRight];
+    [_totalCostLabel setText:formatCurrency([_data[@"calculatedFare"] doubleValue])];
+    
+    
+    
+    
+    {
+        UIView* topView = [UIView new];
+        [topView setBackgroundColor:[UIColor clearColor]];
+        [topView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [view addSubview:topView];
+        
+        [[LayoutManager layoutManager] setWidthOfView:topView
+                                           sameAsView:view
+                                               inView:view
+                                           multiplier:0.96
+                                          andRelation:NSLayoutRelationEqual];
+        
+        [[LayoutManager layoutManager] alignView:topView
+                                       toRefView:view
+                                      withOffset:CGPointZero
+                                          inView:view
+                             withAlignmentOption:NSLayoutAttributeLeft
+                           andRefAlignmentOption:NSLayoutAttributeLeft];
+        
+        UIView* bottomView = [UIView new];
+        [bottomView setBackgroundColor:[UIColor clearColor]];
+        [bottomView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [view addSubview:bottomView];
+        
+        [[LayoutManager layoutManager] setWidthOfView:bottomView
+                                           sameAsView:view
+                                               inView:view
+                                           multiplier:0.96
+                                          andRelation:NSLayoutRelationEqual];
+        
+        [[LayoutManager layoutManager] alignView:bottomView
+                                       toRefView:view
+                                      withOffset:CGPointZero
+                                          inView:view
+                             withAlignmentOption:NSLayoutAttributeLeft
+                           andRefAlignmentOption:NSLayoutAttributeLeft];
+        
+        [[LayoutManager layoutManager] layoutWithFormat:@"V:|-0-[topView]-0-[bottomView(topView)]-0-|"
+                                           toParentView:view
+                                              withViews:NSDictionaryOfVariableBindings(bottomView,topView)];
+        
+        
+        //Configure top view
+        {
+            [topView addSubview:sourceIconImageView];
+            [topView addSubview:_sourceAddressLabel];
+            [topView addSubview:_totalCostLabel];
+            
+            [[LayoutManager layoutManager] alignView:sourceIconImageView
+                                           toRefView:topView
+                                          withOffset:CGPointZero
+                                              inView:topView
+                                 withAlignmentOption:NSLayoutAttributeCenterY
+                               andRefAlignmentOption:NSLayoutAttributeCenterY];
+            
+            [[LayoutManager layoutManager] layoutWithFormat:@"V:[sourceIconImageView(20)]"
+                                               toParentView:topView
+                                                  withViews:NSDictionaryOfVariableBindings(sourceIconImageView)];
+            
+        
+            
+            [[LayoutManager layoutManager] fillView:_sourceAddressLabel
+                                             inView:topView isHorizontal:NO];
+            
+            [[LayoutManager layoutManager] fillView:_totalCostLabel
+                                             inView:topView isHorizontal:NO];
+            
+            [[LayoutManager layoutManager] layoutWithFormat:@"H:|-1-[sourceIconImageView(20)]-1-[_sourceAddressLabel]-2-[_totalCostLabel(100)]-0-|"
+                                               toParentView:topView
+                                                  withViews:NSDictionaryOfVariableBindings(sourceIconImageView,_sourceAddressLabel,_totalCostLabel)];
+            
+            
+        }
+        //configure bottom view
+        {
+            [bottomView addSubview:destIconImageView];
+            [bottomView addSubview:_destinationAddressLabel];
+            [bottomView addSubview:distanceLabel];
+            
+            [[LayoutManager layoutManager] alignView:destIconImageView
+                                           toRefView:bottomView
+                                          withOffset:CGPointZero
+                                              inView:bottomView
+                                 withAlignmentOption:NSLayoutAttributeCenterY
+                               andRefAlignmentOption:NSLayoutAttributeCenterY];
+            
+            [[LayoutManager layoutManager] layoutWithFormat:@"V:[destIconImageView(20)]"
+                                               toParentView:bottomView
+                                                  withViews:NSDictionaryOfVariableBindings(destIconImageView)];
+            
+            [[LayoutManager layoutManager] fillView:_destinationAddressLabel
+                                             inView:bottomView isHorizontal:NO];
+            
+            [[LayoutManager layoutManager] fillView:distanceLabel
+                                             inView:bottomView isHorizontal:NO];
+            
+            [[LayoutManager layoutManager] layoutWithFormat:@"H:|-1-[destIconImageView(20)]-1-[_destinationAddressLabel]-2-[distanceLabel(100)]-0-|"
+                                               toParentView:bottomView
+                                                  withViews:NSDictionaryOfVariableBindings(destIconImageView,_destinationAddressLabel,distanceLabel)];
+        }
+    }
+}
+- (void)updateUIForDistanceAndFare:(UIView*)view
+                           andData:(NSDictionary*)data
+{
+    UIImageView* arrowIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"RightArrow.png"]];
+    [arrowIconView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [view addSubview:arrowIconView];
+    
+    UILabel* distanceLabel = [UILabel new];
+    [distanceLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [view addSubview:distanceLabel];
+    [distanceLabel setBackgroundColor:[UIColor clearColor]];
+    ///
+    [distanceLabel setFont:[UIFont boldSystemFontOfSize:26.0]];
+    [distanceLabel setTextAlignment:NSTextAlignmentLeft];
+    [distanceLabel setText:[_data[@"travelledDistance"] doubleValue] > 0 ?
+     formatDistance([_data[@"travelledDistance"] doubleValue]) : @""];
+    ///
+    [_totalCostLabel removeFromSuperview];
+    _totalCostLabel = [UILabel new];
+    [_totalCostLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [view addSubview:_totalCostLabel];
+    [_totalCostLabel setBackgroundColor:[UIColor clearColor]];
+    
+    [[LayoutManager layoutManager] layoutWithFormat:@"H:|-2-[distanceLabel(_totalCostLabel)]-0-[_totalCostLabel]-2-[arrowIconView(10)]-0-|"
+                                       toParentView:view
+                                          withViews:NSDictionaryOfVariableBindings(distanceLabel,_totalCostLabel,arrowIconView)];
+    
+    [[LayoutManager layoutManager] layoutWithFormat:@"V:|-0-[distanceLabel(_totalCostLabel)]-0-|"
+                                       toParentView:view
+                                          withViews:NSDictionaryOfVariableBindings(distanceLabel,_totalCostLabel)];
+    
+    [[LayoutManager layoutManager] layoutWithFormat:@"V:|-0-[_totalCostLabel(distanceLabel)]-0-|"
+                                       toParentView:view
+                                          withViews:NSDictionaryOfVariableBindings(distanceLabel,_totalCostLabel)];
+    
+    [[LayoutManager layoutManager] layoutWithFormat:@"V:[arrowIconView(20)]"
+                                       toParentView:view
+                                          withViews:NSDictionaryOfVariableBindings(arrowIconView)];
+    
+    [[LayoutManager layoutManager] alignView:arrowIconView
+                                   toRefView:view
+                                  withOffset:CGPointZero
+                                      inView:view
+                         withAlignmentOption:NSLayoutAttributeCenterY
+                       andRefAlignmentOption:NSLayoutAttributeCenterY];
+    
+    [_totalCostLabel setFont:[UIFont boldSystemFontOfSize:26.0]];
+    [_totalCostLabel setTextAlignment:NSTextAlignmentRight];
+    [_totalCostLabel setText:formatCurrency([_data[@"calculatedFare"] doubleValue])];
+}
+- (NSString*)sourceAddressText:(NSDictionary*)data
+{
+    //Set data
+    Address* startAddress = [[AppDataBaseManager appDataBaseManager] addressWithId:data[@"startLocationId"]
+                                                                      andJourneyId:data[@"selfId"]];
+    
+    
+    
+    return startAddress.addressLine1.length ? startAddress.addressLine1 : @"";
+}
+- (NSString*)destAddressText:(NSDictionary*)data
+{
+    Address* endAddress = [[AppDataBaseManager appDataBaseManager] addressWithId:_data[@"endLocationId"]
+                                                                    andJourneyId:_data[@"selfId"]];
+    
+    return endAddress.addressLine1.length ? endAddress.addressLine1 : @"";
+}
+- (BOOL)isSourceDestinationSet:(NSDictionary*)data
+{
+    //Set data
+    Address* startAddress = [[AppDataBaseManager appDataBaseManager] addressWithId:data[@"startLocationId"]
+                                                                      andJourneyId:data[@"selfId"]];
+    
+    Address* endAddress = [[AppDataBaseManager appDataBaseManager] addressWithId:data[@"endLocationId"]
+                                                                    andJourneyId:data[@"selfId"]];
+    
+    return !(![NSObject isValidObject:startAddress.addressLine1] || ![NSObject isValidObject:endAddress.addressLine1]);
+}
 @end
 @interface HistoryViewController ()
 {
@@ -508,7 +789,7 @@
     
     if(!journey.endLocationId || !journey.startLocationId)
     {
-        return 50.0;
+        return 70.0;
     }
     return 130.0;
 }
