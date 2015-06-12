@@ -106,8 +106,7 @@ static AppDataBaseManager *appDataBaseManager;
 - (NSArray*)journeys
 {
     NSArray* array = [self fetchedResultsFor:@"Journey"
-                                     sortKey:nil
-                             andSearchformat:nil];
+                                     sortKey:nil sortAscending:NO];
     return safeArray(array);
 }
 - (Journey*)journeyWithId:(NSString*)journeyId
